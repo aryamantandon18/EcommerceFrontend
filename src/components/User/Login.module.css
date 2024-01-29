@@ -196,5 +196,14 @@ cursor: pointer;
     .loginForm{
         height:55vh;
         width:77vw; 
+        left:190px;
+        top:440px;
+    }
+    .loginForm>h3{
+        width:100%;
+        font-size: 25px;
+        font-weight: 500;
+        line-height: 30px;
+        text-align: center;
     }
 }

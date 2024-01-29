@@ -96,4 +96,9 @@
   .category-link {
     font: 400 1.8vmax "Roboto";
   }
+  .productsHeading{
+    margin: 18px auto;
+    font: 500 2vmax "Roboto";
+    border-bottom: 1px solid rgba(0, 0, 0, 0.171);
+  }
 }

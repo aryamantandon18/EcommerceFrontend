@@ -44,3 +44,34 @@ div >.searchBox > input[type="text"] {
     background-color: rgb(55, 97, 214);
   }
   
+  @media screen and (max-width: 600px) {
+    div> .searchBox{
+      margin: 5px auto;
+      width:100vw;
+    height:6.9vh;
+    display:flex;
+    align-items: center;
+   justify-content: center;
+   /* margin-top: 20px ; */
+   max-width: 100%;
+   /* background-color: rgb(231, 231,231);    */
+   /*      if we do not give background color then position fixed does not work properly */
+   position: absolute;  
+   top: 15%;
+   left: 0; 
+    }
+    div > .searchBox > button {
+      height: 8%;
+      border-radius: 0%;
+      background-color: tomato;
+      border: none;
+      padding: 1vmax;
+      width: 10%;
+      font: 300 1.4vmax "Roboto";
+      cursor: pointer;
+      color: white;
+      transition: all 0.5s;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.274);
+    }
+  }
+  
