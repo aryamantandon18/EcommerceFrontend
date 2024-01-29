@@ -13,6 +13,7 @@ import "./payment.css";
 // import Shipping from "./Shipping";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { server } from "../../index.js";
 
 const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
@@ -45,7 +46,7 @@ const Payment = () => {
 
     try {
 
-      const { data:{razorpayApiKey} } = await axios.get("/razorpayapikey");
+      const { data:{razorpayApiKey} } = await axios.get(`${server}/razorpayapikey`);
       console.log(razorpayApiKey);  
 
       const config = {
@@ -55,7 +56,7 @@ const Payment = () => {
       };
       
       const { data } = await axios.post(
-        "/payment/process",
+        `${server}/payment/process`,
         paymentData,
         config,
       );

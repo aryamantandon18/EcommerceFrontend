@@ -19,11 +19,12 @@ import{
     DELETE_PRODUCT_REQUEST,
     DELETE_PRODUCT_SUCCESS,
 } from '../constants/productConstants.js'
+import { server } from '../index.js';
 
 export const getProduct =(finalKeyword='',currentPage= 1, price=[0,50000] , rating=0) => async(dispatch)=>{
     try {
         dispatch({type : ALL_PRODUCT_REQUEST})
-        let link =`/products?keyword=${finalKeyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&rating[gte]=${rating}`;
+        let link =`${server}/products?keyword=${finalKeyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&rating[gte]=${rating}`;
         const {data} =  await axios.get(link);
         dispatch({
             type: ALL_PRODUCT_SUCCESS,
@@ -40,7 +41,7 @@ export const getProduct =(finalKeyword='',currentPage= 1, price=[0,50000] , rati
 export const getAdminProducts=()=>async(dispatch)=>{
     try{
         dispatch({type:ADMIN_PRODUCT_REQUEST});
-        const {data} = await axios.get("/admin/products");
+        const {data} = await axios.get(`${server}/admin/products`);
             console.log("This the product List comming from backend");
             console.log(data);
         dispatch({
@@ -60,7 +61,7 @@ export const getProductDetails =(id)=> async(dispatch)=>{
     try {
         dispatch({type : ALL_PRODUCT_DETAILS_REQUEST})
 
-        const {data} = await axios.get(`/product/${id}`)
+        const {data} = await axios.get(`${server}/product/${id}`)
         dispatch({
             type: ALL_PRODUCT_DETAILS_SUCCESS,
             payload: data.product,
@@ -81,7 +82,7 @@ export const newReview = (reviewData)=>async(dispatch)=>{
             headers:{"Content-Type":"application/json"}
         }
 
-        const {data} = await axios.put('/product/review',reviewData,config);
+        const {data} = await axios.put(`${server}/product/review`,reviewData,config);
 
         dispatch({
             type:NEW_REVIEW_SUCCESS,payload:data.success
@@ -103,7 +104,7 @@ export const createProduct=(productData)=>async(dispatch)=>{
         const config={
             headers:{"Content-Type":"application/json"}
         }
-        const {data} = await axios.post('/admin/product/new',productData,config);
+        const {data} = await axios.post(`${server}/admin/product/new`,productData,config);
 
         dispatch({
         type:NEW_PRODUCT_SUCCESS,
@@ -121,7 +122,7 @@ export const deleteProduct = (id)=>async(dispatch)=>{
     try{
         dispatch({ type:DELETE_PRODUCT_REQUEST })
 
-        const {data} = await axios.delete(`/admin/product/${id}`);
+        const {data} = await axios.delete(`${server}/admin/product/${id}`);
 
         dispatch({
             type:DELETE_PRODUCT_SUCCESS,
