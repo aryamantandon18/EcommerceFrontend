@@ -28,6 +28,7 @@ const Login = () => {
         dispatch(login(email,password));
     }
     useEffect(()=>{
+      if(isAuthenticated==false) return
         if(error){
         toast.error(error);
          dispatch({type:CLEAR_ERRORS});
@@ -56,7 +57,7 @@ const Login = () => {
       
               {/* <label htmlFor='password'>Password</label> */}
               <div className={styles.pswd}>
-              <input className={styles.Logininput} type={show ? 'text' : 'password'} placeholder='Password' id='password' ref={passwordElement} required/>
+              <input className={styles.Logininput} type={show ? 'text' : 'password'} placeholder='Password' id='password' ref={passwordElement} required/>  
             <IconButton
               aria-label="toggle password visibility"
               onClick={() => setShow(!show)}

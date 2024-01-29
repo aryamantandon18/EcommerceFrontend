@@ -45,7 +45,7 @@ switch(action.type){
             loading:false,
             isAuthenticated:false,
             user:null,
-            error:action.payload
+            error:action.payload,
         }    
     case CLEAR_ERRORS:
         return{
@@ -53,7 +53,7 @@ switch(action.type){
             error:null,
         }       
     default:
-        return {...state}    
+        return state;   
 }
 
 }

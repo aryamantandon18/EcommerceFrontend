@@ -10,6 +10,7 @@
   /* position:fixed; */
   background-color: white;
   z-index: 10;
+  overflow-x:hidden;
 }
 .leftPart{
   position: relative;
@@ -72,11 +73,17 @@
   height:48px;
   border-radius: 100%;
 }
-@media screen and (max-width: 600px){
-  
+
+@media screen and (max-width:730px) and (min-width:600px){
   .rightPart>ul>li{
-    padding:0px 25px ;
+    font:300 1.6vmax "Roboto"; 
+    padding: 0 30px;
+    list-style: none;
+    transition: all 0.7s;
   }
+
+}
+@media screen and (max-width: 600px){
   .leftPart>h1{
     display: none;
   }
@@ -101,11 +108,13 @@
     border-radius: 100%;
   }
   .rightPart>ul>li{
-    font:300 1.6vmax "Roboto"; 
+    font:300 1.7vmax "Roboto"; 
     padding: 0 15px;
     list-style: none;
     transition: all 0.7s;
   }
   
 }
+
+
 

@@ -43,8 +43,10 @@
     bottom: -87px;
 }
 .loginForm {
-height:500px;
-width:400px;
+    height:75%;
+    aspect-ratio: 0.83;
+/* height:500px;
+width:400px; */
 background-color: #080710da;
 position:absolute;
 transform:translate(-50%,-45%);
@@ -194,10 +196,12 @@ cursor: pointer;
         bottom: -55px;
     }
     .loginForm{
-        height:55vh;
-        width:77vw; 
-        left:190px;
-        top:440px;
+        height:60%;
+        width:70%; 
+        left:46%;
+        top:48%;
+        /* left:190px;
+        top:440px; */
     }
     .loginForm>h3{
         width:100%;

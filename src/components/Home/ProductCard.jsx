@@ -8,7 +8,6 @@ export const ProductCard =({product})=>{
         value: product.rating,
         readOnly: true,
         precision: 0.5,
-        isHalf:true,
     }
     return(
         <Link className='productCard' to={`/product/${product._id}`}>
