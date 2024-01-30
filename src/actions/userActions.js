@@ -127,7 +127,9 @@ export const loadUser =() => async(dispatch)=>{
 
 export const logout=() => async(dispatch)=>{
     try {
-        const {data} = await axios.get(`${server}/users/logout`);
+        const {data} = await axios.get(`${server}/users/logout`,{
+            withCredentials:true,
+        });
         dispatch({type:LOGOUT_SUCCESS})
 
     } catch (error) {
