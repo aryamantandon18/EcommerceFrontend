@@ -81,8 +81,8 @@
 }
 .eye{
     position: absolute;
-    top: 54%;
+    top: 50.5%;
     right: 30px; /* Adjusted for spacing */
-    transform: translate(0, -50%);
+    /* transform: translate(0, -50%); */
     cursor: pointer;
   }
