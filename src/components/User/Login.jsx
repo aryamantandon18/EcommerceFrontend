@@ -53,15 +53,14 @@ const Login = () => {
                 <input required="required" type={show ? 'text' : 'password'} id='password' ref={passwordElement} />
                 <span>Password</span>
               </div>
-              <IconButton
+            <div className={styles.eye}>  <IconButton 
                  aria-label="toggle password visibility"
                  onClick={() => setShow(!show)}
-                 className={styles.eye}
                  >
                  {show? <VisibilityOff /> : <Visibility />}
-               </IconButton>
+               </IconButton></div>
               <div class={styles.inputbox}>
-                <input type="button" value="submit"/>
+                <input type="submit" value="submit"/>
               </div>
               <Link to="/register" className={styles.loginLink}> don't have an accout? SignUp</Link>
             </form>
