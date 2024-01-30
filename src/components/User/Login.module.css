@@ -59,6 +59,7 @@ box-shadow: 0 0 40px rgba(8,7,16,0.6);
 padding: 50px 35px;
 margin: 20px;
 border: 2px solid grey;
+object-fit: contain;
 }
 .loginForm *{
     font-family: 'Poppins',sans-serif;
@@ -182,20 +183,22 @@ cursor: pointer;
     transform: translate(-1.5vmax,-1.9vmax);   
 }
 
+
 @media screen and (max-width: 600px) {
     .background>.shape{
         height:100px;
         width:100px;
     }
     .background>.shape:first-child{
-        left: 20px;
-        top: -10px;
+        left: 40px;
+        top: 0px;
     }
     .background>.shape:last-child{
-        right: 20px;
+        right: 40px;
         bottom: -55px;
     }
     .loginForm{
+        object-fit: contain;
         height:60%;
         width:70%; 
         left:46%;
@@ -210,4 +213,6 @@ cursor: pointer;
         line-height: 30px;
         text-align: center;
     }
-}
+    .Loginbutton{
+        margin-top: 20px; }
+    }        
