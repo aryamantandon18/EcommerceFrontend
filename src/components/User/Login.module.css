@@ -60,7 +60,7 @@
   transform: translateX(-13px) translateY(-35px);
   font-size: 1em;
 }
-.center .inputbox [type="button"] {
+.center .inputbox [type="submit"] {
   width: 50%;
   background: dodgerblue;
   color: #fff;
