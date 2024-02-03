@@ -195,5 +195,9 @@
             position:absolute;
             border-radius: 50%;
         }
+          .pswd svg{
+            position: absolute;
+            transform: translate(-1.5vmax,-2vmax);   
+        }
 
     }
