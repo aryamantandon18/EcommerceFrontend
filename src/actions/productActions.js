@@ -38,24 +38,23 @@ export const getProduct =(finalKeyword='',currentPage= 1, price=[0,50000] , rati
     }
 }
 //for ADMIN
-export const getAdminProducts=()=>async(dispatch)=>{
-    try{
-        dispatch({type:ADMIN_PRODUCT_REQUEST});
-        const {data} = await axios.get(`${server}/admin/products`);
-            console.log("This the product List comming from backend");
-            console.log(data);
-        dispatch({
-            type:ADMIN_PRODUCT_SUCCESS,  
-            payload:data.products,
-        })
+export const getAdminProducts = () => async (dispatch) => {
+    try {
+      dispatch({ type: ADMIN_PRODUCT_REQUEST });
+  
+      const { data } = await axios.get(`${server}/admin/products`);
+  
+      dispatch({
+        type: ADMIN_PRODUCT_SUCCESS,
+        payload: data.products,
+      });
+    } catch (error) {
+      dispatch({
+        type: ADMIN_PRODUCT_FAIL,
+        payload: error.response.data.message,
+      });
     }
-    catch(error){
-    dispatch({
-        type:ADMIN_PRODUCT_FAIL,
-        payload:error.response.data.message,
-    });
-    }
-}
+  };
 
 export const getProductDetails =(id)=> async(dispatch)=>{
     try {

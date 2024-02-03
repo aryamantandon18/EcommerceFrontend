@@ -7,6 +7,7 @@ import './Dashboard.css'
 import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 import { clearErrors, getAdminProducts } from '../../actions/productActions.js';
+import { CLEAR_ERRORS } from '../../constants/productConstants.js';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -19,12 +20,12 @@ const {error,products} = useSelector((state)=>state.products);
   })
 
   useEffect(()=>{
-    if(error){
-      toast.error(error.message);
-      dispatch(clearErrors());
-    }
+    // if(error){
+    //   toast.error(error);
+    //   dispatch({type:CLEAR_ERRORS});
+    // }
     dispatch(getAdminProducts());
-  },[dispatch,error]);
+  },[dispatch]);
 
   // const lineState = {
   //   labels: [0,1],

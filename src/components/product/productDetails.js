@@ -160,7 +160,7 @@ const ProductDetails = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={SubmitReviewToggle}>Cancel</Button>
-          <Button onClick={reviewSubmitHandler} >Sumit</Button>
+          <Button onClick={reviewSubmitHandler} >Submit</Button>
         </DialogActions>
 
       </Dialog>
