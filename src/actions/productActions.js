@@ -73,24 +73,26 @@ export const getProductDetails =(id)=> async(dispatch)=>{
     }
 }
 
-export const newReview = (reviewData)=>async(dispatch)=>{
-    try {
-        dispatch({type: NEW_REVIEW_REQUEST});
+    export const newReview = (reviewData)=>async(dispatch)=>{
+        try {
+            dispatch({type: NEW_REVIEW_REQUEST});
 
-        const config={
-            headers:{"Content-Type":"application/json"}
+            const config = {
+                headers: {"Content-Type":"application/json"},
+                withCredentials: true, 
+              };
+            console.log("SUBMITTING Review");
+            const {data} = await axios.put(`${server}/product/review`,reviewData,config);
+            console.log("Review was DONE");
+
+            dispatch({
+                type:NEW_REVIEW_SUCCESS,payload:data.success
+            })
+
+        } catch (error) {
+            dispatch({type:NEW_REVIEW_FAIL,payload:error.response.data.message});
         }
-
-        const {data} = await axios.put(`${server}/product/review`,reviewData,config);
-
-        dispatch({
-            type:NEW_REVIEW_SUCCESS,payload:data.success
-        })
-
-    } catch (error) {
-        dispatch({type:NEW_REVIEW_FAIL,payload:error.response.data.message});
     }
-}
 
 export const clearErrors=() =>async(dispatch)=>{
     dispatch({type: CLEAR_ERRORS}); 

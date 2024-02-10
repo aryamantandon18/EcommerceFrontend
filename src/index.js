@@ -4,7 +4,7 @@ import App from './App';
 import { Provider } from 'react-redux';
 import store from './store';
 
-export const server = "https://ecmm-nhgl.onrender.com"
+export const server = "https://ecmm-nhgl.onrender.com";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
@@ -12,3 +12,4 @@ root.render(
   </Provider>
 );
   //https://ecmm-nhgl.onrender.com
+  //http://localhost:4000

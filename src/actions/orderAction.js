@@ -21,6 +21,7 @@ export const createOrder = (order) => async(dispatch) =>{
             headers: {
               "Content-Type": "application/json",
             },
+          withCredentials:true,
           };
         const {data} = await axios.post(`${server}/order/new`,order,config);
         console.log("this is data here ->",data);
@@ -37,17 +38,18 @@ export const createOrder = (order) => async(dispatch) =>{
 
 export const myOrders = () => async(dispatch) =>{
     try{
-        dispatch({type:MY_ORDERS_REQUEST})
+        dispatch({type:MY_ORDERS_REQUEST});
         console.log("before axios request");
         const {data} = await axios.get(`${server}/order/me`);
         console.log("This is the data in myOrdersAction",data);
 
-        dispatch({type:MY_ORDERS_SUCCESS,payload:data.orders})
+        dispatch({type:MY_ORDERS_SUCCESS,payload:data.orders});
     }
     catch (error){
+        const errorMessage = error.response ? error.response.data.message : 'An error occurred';
         dispatch({
             type:MY_ORDERS_FAIL,
-            payload:error.response.data.message,
+            payload:errorMessage,
         })
     }
 }

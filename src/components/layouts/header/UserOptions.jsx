@@ -21,7 +21,7 @@ const UserOptions = ({user}) => {
         
     ];
     
-    if(user && user.role==="admin"){
+    if(user && user.role==="Admin"){
         options.unshift({                  //unshift adds this object in front of the array
             icon:<DashboardIcon/>,
             name:"dashboard",

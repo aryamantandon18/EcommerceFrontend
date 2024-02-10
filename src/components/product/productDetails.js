@@ -43,11 +43,13 @@ const ProductDetails = () => {
       const SubmitReviewToggle=()=>{
         setOpen(!open);
       }
-      const reviewSubmitHandler=()=>{
+      const reviewSubmitHandler=(e)=>{
+        e.preventDefault();
         const myForm = new FormData();
 
         myForm.set("rating",rating);
         myForm.set("comment",comment);
+        // console.log(id);
         myForm.set("productId",id);
 
         dispatch(newReview(myForm));
@@ -145,8 +147,8 @@ const ProductDetails = () => {
         <DialogTitle>Submit Review</DialogTitle>
         <DialogContent className='submitDialog'>
         <Rating
-        onChange={(e)=>setRating(e.target.value)}
-        value={rating}
+        onChange={(e)=>setRating(parseFloat(e.target.value))}
+        value={parseFloat(rating)}
         size= "large" />
         <textarea 
         className='submitDialogTextArea'
