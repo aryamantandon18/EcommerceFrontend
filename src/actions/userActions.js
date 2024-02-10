@@ -49,7 +49,7 @@ export const updateProfile=(userData)=>async(dispatch)=>{
     try {
         dispatch({type:UPDATE_PROFILE_REQUEST})
     
-        const config = { headers:{"Content-Type":"multipart/form-data"} };     //bcoz we send images also as form data
+        const config = { headers:{"Content-Type":"multipart/form-data"}, withCredentials:true, };     //bcoz we send images also as form data
     
         const {data} = await axios.put(`${server}/users/me/update`,userData,config);
     
@@ -65,7 +65,7 @@ export const updateProfile=(userData)=>async(dispatch)=>{
         try {
             dispatch({type:UPDATE_PASSWORD_REQUEST})
         
-            const config = { headers:{"Content-Type":"application/json"} };   
+            const config = { headers:{"Content-Type":"application/json"}, withCredentials:true, };   
         
             const {data} = await axios.put(`${server}/users/password/update`,passwords,config);
         
@@ -82,7 +82,7 @@ export const updateProfile=(userData)=>async(dispatch)=>{
         try {
             dispatch({type:FORGOT_PASSWORD_REQUEST})
         
-            const config = { headers:{"Content-Type":"application/json"} };   
+            const config = { headers:{"Content-Type":"application/json"}, withCredentials:true, };   
         
             const {data} = await axios.post(`${server}/users/password/forgot`,email,config);
         
@@ -98,7 +98,7 @@ export const updateProfile=(userData)=>async(dispatch)=>{
             try {
                 dispatch({type:RESET_PASSWORD_REQUEST})
             
-                const config = { headers:{"Content-Type":"application/json"} };   
+                const config = { headers:{"Content-Type":"application/json"}, withCredentials:true, };   
             
                 const {data} = await axios.put(`${server}/users/password/reset/${token}`,passwords,config);
             
