@@ -1,7 +1,7 @@
 .p-wrapper{
   display: flex;
   flex-direction: column;
-  transform:translateY(92px);
+  transform:translateY(76px);
 }
 
 .productsHeading {
@@ -93,9 +93,6 @@
 }
 
 @media screen and (max-width: 600px) {
-  .p-wrapper{
-    transform:translateY(60px);
-  }
   .filterBox {
     width: 20vmax;
     position: static;
