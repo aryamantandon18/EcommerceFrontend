@@ -62,7 +62,7 @@ div >.searchBox > input[type="text"] {
    /* background-color: rgb(231, 231,231);    */
    /*      if we do not give background color then position fixed does not work properly */
    position: absolute;  
-   top: 15%;
+   top: -7.5%;
    left: 0; 
     }
     div > .searchBox > button {

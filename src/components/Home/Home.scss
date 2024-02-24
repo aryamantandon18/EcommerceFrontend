@@ -103,6 +103,9 @@
   }
   
   @media screen and (max-width: 600px) {
+    // .productCard{
+    //   margin: .4vmax;
+    // }
     .productCard > p {
       font-size: 1.7vmax;
     }
@@ -121,8 +124,16 @@
       font: 300 1vmax "Roboto";
     }
     .banner{
-      display: none;
+      height: 18vh;
     } 
+    .crim{
+      width:100%;
+      height:100%;
+      object-fit: contain;
+    }
+    .container{
+      overflow-x:scroll;
+    }
   }
   .homeHeading {
     text-align: center;
@@ -142,6 +153,11 @@
     flex-wrap: wrap;
     justify-content: center;
     max-width: 100%;
+    overflow: auto;
+    // overflow-x: scroll;
+  }
+  .container::-webkit-scrollbar{
+    width:10px;
   }
   // div > img{
   //  height:55vh;

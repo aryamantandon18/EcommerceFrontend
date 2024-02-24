@@ -1,6 +1,7 @@
 .shippingContainer{
+    transform: translateY(10vh);
     width:100%;
-    border:2px solid black;
+    /* border:2px solid black; */
     height:77.8vh;
     display: flex;
     justify-content: center;
@@ -90,7 +91,7 @@
     }
   
     .shippingForm {
-      padding: 11vw;
+      padding: 7vw;
     }
   
     .shippingForm > div > input,
