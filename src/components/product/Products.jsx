@@ -67,9 +67,10 @@ setPrice(newPrice);
        <MetaData title="PRODUCTS -- ECOMMERCE" />
       {loading?<Loader/>:(
         <Fragment>
+          <div className='p-wrapper'>
           <div>
           <form className='searchBox' onSubmit={searchHandler}>
-         <input type='text' placeholder='search' onChange={(e)=> setKeyword(e.target.value)} value={keyword}/>
+         <input type='text' placeholder='search' onChange={(e)=> setKeyword(e.target.value)} value={keyword} className='sInput'/>
         <Button type='submit' value="Search" onClick={(e)=> setFinalKeyword(keyword)}>Search</Button>
     </form>
           </div>
@@ -80,6 +81,7 @@ setPrice(newPrice);
             <ProductCard key={product._id} product={product}/>
           ))
         }
+        </div>
         </div>
         
         <div className="filterBox">

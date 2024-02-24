@@ -1,3 +1,9 @@
+.p-wrapper{
+  display: flex;
+  flex-direction: column;
+  transform:translateY(91px);
+}
+
 .productsHeading {
     margin: 2vmax auto;
     width: 15vw;
@@ -50,6 +56,9 @@
 .page-item:hover {
   background-color: rgb(230, 230, 230);
 }
+.page-item:hover .page-link {
+  color: rgb(0, 0, 0);
+}
 .pageItemActive {
   background-color: tomato;
 }
@@ -60,12 +69,12 @@
 .filterBox{
   width: 10vmax;
   position: absolute;
-  top:10vmax;
+  top:14vmax;
   left: 4vmax;
 }
 
 .filterBox > fieldset {
-  border: 1px solid rgba(0, 0, 0, 0.329);
+  border: 0px solid rgba(0, 0, 0, 0.329);
 }
 .categoryBox {
   padding: 0%;

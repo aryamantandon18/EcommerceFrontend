@@ -6,11 +6,12 @@
   height:10vh;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  /* position:fixed; */
+  justify-content: space-between; 
   background-color: white;
   z-index: 10;
   overflow-x:hidden;
+  position:fixed;
+  box-shadow: 5px 5px 10px #888888;
 }
 .leftPart{
   position: relative;
@@ -96,6 +97,7 @@
   }
   .leftPart>img{
     height: 6vh;
+    /* mix-blend-mode: color-burn; */
   }
   .speedDial{
     position:fixed;

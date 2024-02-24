@@ -74,15 +74,15 @@ const MyOrders = () => {
     });
 
   useEffect(() => {
-    if(error){
-      toast.error(error);
-      dispatch(clearErrors())
-    }
+    // if(error){
+    //   toast.error(error);
+    //   dispatch(clearErrors())
+    // }
     
     dispatch(myOrders());
   },[dispatch,error]);
 
-  return (
+  return (  
     <Fragment>
       {console.log(loading)}
       {loading ? (

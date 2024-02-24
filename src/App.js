@@ -82,7 +82,7 @@ function App() {
         <Route path="/process/payment" element={<Payment />} />
         
         <Route path="/success" element={<OrderSuccess />} />
-        <Route path="/orders" element={<MyOrders />} />
+        <Route path="/orders" element={<MyOrders/>} />
 
         <Route path="/order/confirm" element={<ConfirmOrder />} />
         <Route path="/order/:id"  element={<OrderDetails/>}/>

@@ -62,9 +62,11 @@ const Header = () => {
   <ul>
       <li > <Link className='link' style={{textDecoration:"none"}} to="/">HOME</Link></li>
       <li > <Link className='link' style={{textDecoration:"none"}} to="/products">PRODUCTS</Link></li>
-      <li > <Link className='link' style={{textDecoration:"none"}} to={isAuthenticated?"/cart":"/login"}><div>
+      <li > <Link className='link' style={{textDecoration:"none"}} to={isAuthenticated?"/cart":"/login"}>
+  <div>
       <ShoppingCartIcon/>CART
-        </div></Link></li>
+  </div>
+        </Link></li>
         <li ><Link className='link' style={{textDecoration:"none"}} to="/login">
       {isAuthenticated? <UserOptions user={user} />:"LOGIN"} </Link></li>
     </ul>

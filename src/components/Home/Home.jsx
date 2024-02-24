@@ -7,10 +7,11 @@ import{ getProduct} from '../../actions/productActions.js'
 import {useSelector,useDispatch} from 'react-redux'
 import Loader from '../layouts/loader/Loader.jsx';
 import toast from 'react-hot-toast';
-// import { Carousel } from 'react-responsive-carousel';
-// import imag1 from './imag1.webp'
-// import imag2 from './imag2.png'
-// import imag4 from './imag4.png'
+import { Carousel } from 'react-responsive-carousel';
+import imag1 from './imag1.webp'
+import imag8 from './imag8.webp'
+import imag9 from './imag9.webp'
+import imag7 from './imag7.webp'
 // import { useNavigate } from 'react-router-dom';
 
 // const products =[
@@ -96,8 +97,55 @@ import toast from 'react-hot-toast';
       <Fragment>
       <MetaData title="ECOMMERCE" />
  
- <div className="banner">
- {/* <Carousel
+ <div>
+ <Carousel
+        infiniteLoop
+        autoPlay
+        showStatus={false}
+        showArrows={true}
+        showThumbs={false}
+        interval={1000}
+        className= 'banner'
+      >
+          <div>
+          <img src={imag7} alt="Item1" className='crim' />  
+        </div>
+        <div>
+          <img src={imag8} alt="Item1" className='crim'/>
+        </div>
+        <div>
+          <img src={imag9} alt="Item3" className='crim'/>
+        </div>
+      </Carousel> 
+   {/* <p>Welcome to Ecohub Ecommerce</p>
+   <h1>FIND AMAZING PRODUCTS BELOW</h1> 
+
+   <a href='#container'>
+     <button className='btn' onClick={()=>{}}>
+       Scroll <CgMouse />
+     </button>
+     </a> */}
+ 
+ </div>
+
+ <h2 className="homeHeading">Featured Products</h2>
+
+ <div className="container" id="container">
+   {products &&
+     products.map((product) => (
+       <ProductCard key={product._id} product={product} />
+     ))}
+ </div>
+ </Fragment>
+     )}
+ 
+        </Fragment>
+    )}
+
+export default Home
+
+
+{/* <Carousel
         infiniteLoop
         autoPlay
         showStatus={false}
@@ -119,29 +167,3 @@ import toast from 'react-hot-toast';
           <p className="legend">Peer-to-peer Support</p>
         </div>
       </Carousel> */}
-   <p>Welcome to Ecohub Ecommerce</p>
-   <h1>FIND AMAZING PRODUCTS BELOW</h1> 
-
-   <a href='#container'>
-     <button className='btn' onClick={()=>{}}>
-       Scroll <CgMouse />
-     </button>
-     </a>
- 
- </div>
-
- <h2 className="homeHeading">Featured Products</h2>
-
- <div className="container" id="container">
-   {products &&
-     products.map((product) => (
-       <ProductCard key={product._id} product={product} />
-     ))}
- </div>
- </Fragment>
-     )}
- 
-        </Fragment>
-    )}
-
-export default Home
