@@ -1,7 +1,7 @@
 .p-wrapper{
   display: flex;
   flex-direction: column;
-  transform:translateY(91px);
+  transform:translateY(92px);
 }
 
 .productsHeading {
@@ -93,6 +93,9 @@
 }
 
 @media screen and (max-width: 600px) {
+  .p-wrapper{
+    transform:translateY(60px);
+  }
   .filterBox {
     width: 20vmax;
     position: static;
@@ -106,7 +109,7 @@
     font: 400 1.8vmax "Roboto";
   }
   .productsHeading{
-    margin: 12px auto;
+    margin: 10px auto;
     font: 800 2vmax "Roboto";
     border-bottom: 1px solid rgba(0, 0, 0, 0.171);
   }

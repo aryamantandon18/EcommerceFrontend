@@ -51,7 +51,7 @@ div >.searchBox > input[type="text"] {
   
   @media screen and (max-width: 600px) {
     div> .searchBox{
-      margin: 5px auto;
+      margin: 0px auto;
       width:100vw;
     height:6.9vh;
     display:flex;
@@ -61,9 +61,9 @@ div >.searchBox > input[type="text"] {
    max-width: 100%;
    /* background-color: rgb(231, 231,231);    */
    /*      if we do not give background color then position fixed does not work properly */
-   position: absolute;  
-   top: -7.5%;
-   left: 0; 
+   /* position: absolute;   */
+   /* top: -7.5%;
+   left: 0;  */
     }
     div > .searchBox > button {
       height: 8%;
@@ -78,5 +78,8 @@ div >.searchBox > input[type="text"] {
       transition: all 0.5s;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.274);
     }
+  }
+  @media screen and (max-width: 600px){
+
   }
   
