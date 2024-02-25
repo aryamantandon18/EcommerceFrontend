@@ -63,6 +63,7 @@
 @media screen and (max-width: 600px) {
   .myOrdersPage {
     padding: 0;
+    padding-top: 11vh;
     height: 93vh;
   }
 
