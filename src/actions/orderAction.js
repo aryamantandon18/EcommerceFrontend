@@ -104,10 +104,10 @@ export const getAllOrders = () => async (dispatch) => {
     dispatch({ type: ALL_ORDERS_REQUEST });
     console.log("Before the order request");
     const config={
-      headers:{"Content-Type":"application/json"},
+      // headers:{"Content-Type":"application/json"},
       withCredentials: true, 
   }
-    const { data } = await axios.get("/admin/orders",config); 
+    const { data } = await axios.get(`${server}/admin/orders`,config); 
 
     dispatch({ type: ALL_ORDERS_SUCCESS, payload: data.orders });
   } catch (error) {
@@ -130,7 +130,7 @@ export const updateOrder = (id, order) => async (dispatch) => {
       withCredentials:true,
     };
     const { data } = await axios.put(
-      `/admin/order/${id}`,
+      `${server}/admin/order/${id}`,
       order,
       config
     );
@@ -149,7 +149,7 @@ export const deleteOrder = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_ORDER_REQUEST });
 
-    const { data } = await axios.delete(`/admin/order/${id}`,{withCredentials:true });
+    const { data } = await axios.delete(`${server}/admin/order/${id}`,{withCredentials:true });
 
     dispatch({ type: DELETE_ORDER_SUCCESS, payload: data.success });
   } catch (error) {

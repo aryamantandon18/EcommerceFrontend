@@ -12,11 +12,12 @@ import { CLEAR_ERRORS } from '../../constants/productConstants.js';
 const Dashboard = () => {
   const dispatch = useDispatch();
 const {error,products} = useSelector((state)=>state.products);
+const {error:orderError,orders} = useSelector((state)=> state.allOrders);
+let totalOrderPrice = 0;
   let outOfStock =0;
   products &&
   products.forEach((item)=>{
     if(item.stock==0) outOfStock += 1;
-
   })
 
   useEffect(()=>{
@@ -57,7 +58,12 @@ const {error,products} = useSelector((state)=>state.products);
         <div className="dashboardSummary">
           <div>
             <p>
-              Total Amount <br/> ₹2000
+              
+              {  orders && orders.forEach((order)=>{
+                totalOrderPrice+=order.totalPrice;
+              })}
+            
+              Total Amount <br/> ₹{totalOrderPrice}
             </p>
           </div>
           <div className="dashboardSummaryBox2">
@@ -67,11 +73,11 @@ const {error,products} = useSelector((state)=>state.products);
             </Link>
             <Link to="/admin/orders">
               <p>Orders</p>
-              <p>4</p>
+              <p>{orders && orders.length}</p>
             </Link>
             <Link to="/admin/users">
               <p>Users</p>
-              <p>2</p>
+              <p>5</p>
             </Link>
           </div>
         </div>

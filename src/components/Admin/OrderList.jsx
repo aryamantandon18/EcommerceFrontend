@@ -36,7 +36,7 @@ useEffect(()=>{
         dispatch({type:DELETE_ORDER_RESET});
     }
     dispatch(getAllOrders());
-},[dispatch,error,isDeleted,orderError,orders])
+},[dispatch,error,isDeleted,orderError])
 
 const deleteOrderHandler = (id) => {
     dispatch(deleteOrder(id));
@@ -104,7 +104,7 @@ if(Array.isArray(orders)){
    }) }
 return (
     <Fragment>
-        {console.log("These are all the orders",orders)}
+        {/* {console.log("These are all the orders",orders)} */}
         <MetaData title={'ALL Orders - ADMIN'}/>
         <div className='dashboard'>
             <SideBar/>

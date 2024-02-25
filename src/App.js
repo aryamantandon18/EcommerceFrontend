@@ -36,6 +36,7 @@ import ProductList from "./components/Admin/ProductList.jsx";
 import UserOptions from "./components/layouts/header/UserOptions.jsx";
 import OrderList from "./components/Admin/OrderList.jsx";
 import UpdateProduct from "./components/Admin/UpdateProduct.jsx";
+import AllUsers from "./components/Admin/AllUsers.jsx";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -95,6 +96,7 @@ function App() {
         <Route path="/admin/product" element={<NewProduct/>}/>
         <Route path="/admin/product/:id" element={<UpdateProduct/>}/>
         <Route path="/admin/orders" element={<OrderList/>}/>
+        <Route path="/admin/users" element={<AllUsers/>}/>
          </Routes>
 
       <Footer />
