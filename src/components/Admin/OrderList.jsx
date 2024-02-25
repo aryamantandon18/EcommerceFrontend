@@ -32,7 +32,7 @@ useEffect(()=>{
     }
     if(isDeleted){
         toast.success("Order Deleted Successfully");
-        navigate("/admin/dashboard");
+        navigate("/admin/orders");
         dispatch({type:DELETE_ORDER_RESET});
     }
     dispatch(getAllOrders());
