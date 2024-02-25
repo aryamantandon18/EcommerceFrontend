@@ -102,10 +102,12 @@ export const getOrderDetails = (id) => async(dispatch) =>{
 export const getAllOrders = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_ORDERS_REQUEST });
-
-    const { data } = await axios.get("/admin/orders",{
-      withCredentials:true,
-    }); 
+    console.log("Before the order request");
+    const config={
+      headers:{"Content-Type":"application/json"},
+      withCredentials: true, 
+  }
+    const { data } = await axios.get("/admin/orders",config); 
 
     dispatch({ type: ALL_ORDERS_SUCCESS, payload: data.orders });
   } catch (error) {
