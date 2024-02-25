@@ -130,9 +130,10 @@ import imag7 from './imag7.webp'
 
  <h2 className="homeHeading">Featured Products</h2>
 
+
  <div className="container" id="container">
    {products &&
-     products.map((product) => (
+    products.slice(0, 4).map((product) => (
        <ProductCard key={product._id} product={product} />
      ))}
  </div>
@@ -142,7 +143,7 @@ import imag7 from './imag7.webp'
 
  <div className="container" id="container">
    {products &&
-     products.map((product) => (
+     products.slice(4).map((product) => (
        <ProductCard key={product._id} product={product} />
      ))}
  </div>

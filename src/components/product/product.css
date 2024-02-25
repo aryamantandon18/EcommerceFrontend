@@ -1,7 +1,7 @@
 .p-wrapper{
   display: flex;
   flex-direction: column;
-  transform:translateY(76px);
+  transform:translateY(92px);
 }
 
 .productsHeading {
@@ -17,9 +17,10 @@
   .products {
     display: flex;
     flex-wrap: wrap;
-    padding: 0 5vmax;
+    padding: 0 13vmax;
     justify-content: center;
     min-height: 30vh;
+    transform: translateX(60px);
   }
   .paginationBox{
     display:flex;
@@ -69,7 +70,7 @@
 .filterBox{
   width: 10vmax;
   position: absolute;
-  top:14vmax;
+  top:18vmax;
   left: 4vmax;
 }
 
@@ -109,5 +110,8 @@
     margin: 10px auto;
     font: 800 2vmax "Roboto";
     border-bottom: 1px solid rgba(0, 0, 0, 0.171);
+  }
+  .products{
+    transform: translateX(0px);
   }
 }
