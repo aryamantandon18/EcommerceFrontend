@@ -5,15 +5,13 @@ import { Link } from 'react-router-dom';
 import { Typography } from '@mui/material';
 import './Dashboard.css'
 import { useDispatch, useSelector } from 'react-redux';
-import toast from 'react-hot-toast';
-import { clearErrors, getAdminProducts } from '../../actions/productActions.js';
-import { CLEAR_ERRORS } from '../../constants/productConstants.js';
+import {getAdminProducts } from '../../actions/productActions.js';
+import { getAllOrders } from '../../actions/orderAction.js';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-const {error,products} = useSelector((state)=>state.products);
-const {error:orderError,orders} = useSelector((state)=> state.allOrders);
-let totalOrderPrice = 0;
+const {products} = useSelector((state)=>state.products);
+const {orders} = useSelector((state)=> state.allOrders);
   let outOfStock =0;
   products &&
   products.forEach((item)=>{
@@ -21,12 +19,14 @@ let totalOrderPrice = 0;
   })
 
   useEffect(()=>{
-    // if(error){
-    //   toast.error(error);
-    //   dispatch({type:CLEAR_ERRORS});
-    // }
     dispatch(getAdminProducts());
+    dispatch(getAllOrders());
   },[dispatch]);
+
+  let totalOrderPrice = 0;
+   orders && orders.forEach((order)=>{
+    totalOrderPrice+=order.totalPrice;
+  })
 
   // const lineState = {
   //   labels: [0,1],
@@ -58,11 +58,7 @@ let totalOrderPrice = 0;
         <div className="dashboardSummary">
           <div>
             <p>
-              
-              {  orders && orders.forEach((order)=>{
-                totalOrderPrice+=order.totalPrice;
-              })}
-            
+    
               Total Amount <br/> ₹{totalOrderPrice}
             </p>
           </div>
