@@ -64,7 +64,7 @@ const Header = () => {
      <div className='header z-10'>
      
       <h2 className='h2 font-sans font-semibold absolute'><span className='font-bold text-yellow-300'>Shop</span>kart</h2>
-       <nav className=' h-[9vh] max-w-screen  font-serif w-screen flex items-center justify-between  shadow-2xl shadow-gray'>
+       <nav className='max-w-screen  font-serif w-screen flex items-center justify-between  shadow-2xl shadow-gray'>
        <img src={logo} className='h-20 ml-4'/>
            <div className='flex justify-end mr-5' ref={navRef}>
                <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/">Home</Link>
@@ -87,7 +87,7 @@ const Header = () => {
 return (
     <div className='header z-10 shadow-lg'>
       <h2 className='h2 font-sans font-semibold absolute '><span className='font-bold text-yellow-400'>Shop</span>kart</h2>
-    <nav className=' h-[9vh] max-w-screen font-serif w-screen flex items-center justify-between shadow-2xl shadow-gray'>
+    <nav className=' max-w-screen font-serif w-screen flex items-center justify-between shadow-2xl shadow-gray'>
       <div className='flex items-center '>
       <UserOptions user={user}/>
         </div>
@@ -100,7 +100,7 @@ return (
       <FaTimes/>
       </button> 
         </div>
-        <button className='navBtn openBtn mx-12 text-xl ' onClick={showNavbar}>
+        <button className='navBtn openBtn mx-7 text-xl ' onClick={showNavbar}>
       <FaBars/>
     </button>
     </nav>
