@@ -69,6 +69,7 @@ const UserOptions = ({user}) => {
             tooltipTitle={item.name}
             onClick={item.func}
             tooltipOpen={window.innerWidth <= 600 ? true : false}
+            tooltipPlacement="right"
           />
         ))}
 

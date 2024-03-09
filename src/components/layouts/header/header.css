@@ -1,0 +1,77 @@
+.header .navBtn{
+    visibility:hidden ;
+    position:absolute;
+}
+.header{
+    position: fixed;
+}
+.h2{
+    /* margin-left: 110px; */
+    left:6% !important;
+    top:16% !important;
+    font-size: 40px;
+}
+.speedDial{
+  position:fixed;
+  top:0.7vmax;
+  left:2vmax;
+}
+.speedDialIcon{
+  width:48px;
+  height:48px;
+  border-radius: 100%;
+} 
+.header > nav{
+    background: repeating-linear-gradient(to left, #6565e6,rgb(255, 255, 255),rgb(27, 196, 253));
+}
+@media only screen and (max-width: 700px){
+    .header .navBtn{
+        visibility:visible;
+        opacity:1;
+        position:static;
+        color: black;
+    }
+    .header nav div{
+        position:fixed;
+        top:0;
+        left:0;
+        height:100%;
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap:1.5rem; 
+        /* background-color: */
+        backdrop-filter: blur(12px); 
+        border:2px solid purple;
+        transition: 1s;
+        transform:translateY(-100vh);
+    }
+    .header nav div > a:hover{
+        text-underline-offset: 9px;
+    }
+
+    .header .responsiveNav{
+        z-index: 10;
+        transform: none;
+    }
+    .header .navCloseBtn{
+        position: absolute;
+        font-size: 32px;
+        top: 22px;
+        right: 25px;
+        z-index: 11;
+    }
+    .header .openBtn{
+        position: absolute;
+        top: 25px;
+        right: 15px;
+        font-size: 30px;
+        z-index:10;
+    }
+    .h2{
+        margin-left: 70px;
+        font-size: 30px;
+    }
+}

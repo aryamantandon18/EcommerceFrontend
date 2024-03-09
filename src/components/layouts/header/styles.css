@@ -63,7 +63,7 @@
   margin-left: 20px;
   font:600 2.2vmax "Roboto"; 
 }
-
+/* 
 .speedDial{
   position:fixed;
   top:0.7vmax;
@@ -73,11 +73,11 @@
   width:48px;
   height:48px;
   border-radius: 100%;
-}
+} */
 
 @media screen and (max-width:730px) and (min-width:600px){
   .rightPart>ul>li{
-    font:300 1.6vmax "Roboto"; 
+    font:300 1.7vmax "Roboto"; 
     padding: 0 30px;
     list-style: none;
     transition: all 0.7s;
@@ -99,7 +99,7 @@
     height: 6vh;
     /* mix-blend-mode: color-burn; */
   }
-  .speedDial{
+  /* .speedDial{
     position:fixed;
     top:8vmax;
     right:4vmax;
@@ -114,7 +114,7 @@
     padding: 0 15px;
     list-style: none;
     transition: all 0.7s;
-  }
+  } */
   
 }
 

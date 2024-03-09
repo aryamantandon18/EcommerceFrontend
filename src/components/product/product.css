@@ -1,7 +1,7 @@
 .p-wrapper{
   display: flex;
   flex-direction: column;
-  transform:translateY(92px);
+  transform:translateY(85px);
 }
 
 .productsHeading {

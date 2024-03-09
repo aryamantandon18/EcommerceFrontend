@@ -9,6 +9,7 @@
   height: 92vh;
   background: linear-gradient(45deg, greenyellow, dodgerblue);
   font-family: "Sansita Swashed", cursive;
+  padding-top:9vh;
 }
 .center {
   position: relative;
@@ -81,8 +82,14 @@
 }
 .eye{
     position: absolute;
-    top: 50.5%;
-    right: 30px; /* Adjusted for spacing */
+    top: 51.5%;
+    right: 58px; /* Adjusted for spacing */
     /* transform: translate(0, -50%); */
     cursor: pointer;
+  }
+
+  @media screen and (max-width:600px){
+    .center{
+      transform: scale(0.91);
+    }
   }

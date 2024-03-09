@@ -1,10 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./components/layouts/header/Header.jsx";
-import { useEffect} from "react";
+import React,{ useEffect,lazy} from "react";
 import webFont from "webfontloader";
 import Footer from "./components/layouts/footer/Footer.jsx";
-import Home from "./components/Home/Home";
 import { Toaster } from "react-hot-toast";
 import ProductDetails from "./components/product/productDetails.js";
 import Products from "./components/product/Products.jsx";
@@ -37,6 +36,8 @@ import UserOptions from "./components/layouts/header/UserOptions.jsx";
 import OrderList from "./components/Admin/OrderList.jsx";
 import UpdateProduct from "./components/Admin/UpdateProduct.jsx";
 import AllUsers from "./components/Admin/AllUsers.jsx";
+
+const Home = lazy(()=>import('./components/Home/Home.jsx'));
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);

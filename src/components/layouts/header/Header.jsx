@@ -33,15 +33,16 @@
 //     </nav>
 //   );
 // };
-import React from 'react'
+import React, { useRef } from 'react'
 // import {ReactNavbar} from "overlay-navbar";
-import "./styles.css";
+import './header.css'
 import { Link } from 'react-router-dom';
 import {useSelector } from 'react-redux';
 // import { logout } from '../../../actions/userActions';
 import UserOptions from './UserOptions';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import logo from './flipkart.png'
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Header = () => {
   // const dispatch = useDispatch();
@@ -49,30 +50,62 @@ const Header = () => {
   // const btnHandler=()=>{
   //   dispatch(logout()); 
   // }
-
+ const navRef = useRef();
   const {isAuthenticated,user} =  useSelector(state=>state.user);
+  const showNavbar =()=>{
+    if (navRef.current) {
+      navRef.current.classList.toggle('responsiveNav');
+    }
+  }   
+  if(!isAuthenticated){
+    console.log(isAuthenticated ," ???????");
   return (
-   <>
-   <div className='navbar'>
-    <div className='leftPart'>
-      <img src={logo}/>
-    <h1 className='heading'>Flipkart</h1>
+    <>
+     <div className='header z-10'>
+     
+      <h2 className='h2 font-sans font-semibold absolute'><span className='font-bold text-yellow-300'>Shop</span>kart</h2>
+       <nav className=' h-[9vh] max-w-screen  font-serif w-screen flex items-center justify-between  shadow-2xl shadow-gray'>
+       <img src={logo} className='h-20 ml-4'/>
+           <div className='flex justify-end mr-5' ref={navRef}>
+               <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/">Home</Link>
+               <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/products">Products</Link>
+               <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/login">Login</Link>
+               <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/register">signUp</Link>
+               <button className='navBtn navCloseBtn ' onClick={showNavbar}>
+       <FaTimes/>
+       </button> 
+           </div>
+           <button className='navBtn openBtn mx-12 text-2xl ' onClick={showNavbar}>
+       <FaBars/>
+     </button>
+       </nav>
+       </div>
+    </>
+   )
+  }
+
+return (
+    <div className='header z-10 shadow-lg'>
+      <h2 className='h2 font-sans font-semibold absolute '><span className='font-bold text-yellow-400'>Shop</span>kart</h2>
+    <nav className=' h-[9vh] max-w-screen font-serif w-screen flex items-center justify-between shadow-2xl shadow-gray'>
+      <div className='flex items-center '>
+      <UserOptions user={user}/>
+        </div>
+        <div className='flex justify-end mr-5' ref={navRef}>
+            <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/">Home</Link>
+            <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/products">Products</Link>
+            <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/cart">Cart</Link>
+            
+            <button className='navBtn navCloseBtn ' onClick={showNavbar}>
+      <FaTimes/>
+      </button> 
+        </div>
+        <button className='navBtn openBtn mx-12 text-xl ' onClick={showNavbar}>
+      <FaBars/>
+    </button>
+    </nav>
+  
     </div>
-  <div className='rightPart'>
-  <ul>
-      <li > <Link className='link' style={{textDecoration:"none"}} to="/">HOME</Link></li>
-      <li > <Link className='link' style={{textDecoration:"none"}} to="/products">PRODUCTS</Link></li>
-      <li > <Link className='link' style={{textDecoration:"none"}} to={isAuthenticated?"/cart":"/login"}>
-  <div>
-      <ShoppingCartIcon/>CART
-  </div>
-        </Link></li>
-        <li ><Link className='link' style={{textDecoration:"none"}} to="/login">
-      {isAuthenticated? <UserOptions user={user} />:"LOGIN"} </Link></li>
-    </ul>
-  </div>
-   </div>
-   </>
   )
 }
 
@@ -99,3 +132,34 @@ export default Header
     </div>
   </li>
       </> */}
+
+
+
+
+
+      // --------------------------------------------------------------------------------------
+  //     <div className='navbar'>
+  //   <div className='leftPart'>
+  //     <img src={logo}/>
+  //   <h1 className='heading'>Flipkart</h1>
+  //   </div>
+  // <div className='rightPart' >
+  // <ul ref={navRef}>
+  //     <li > <Link className='link' style={{textDecoration:"none"}} to="/">HOME</Link></li>
+  //     <li > <Link className='link' style={{textDecoration:"none"}} to="/products">PRODUCTS</Link></li>
+  //     <li > <Link className='link' style={{textDecoration:"none"}} to={isAuthenticated?"/cart":"/login"}>
+  // <div>
+  //     <ShoppingCartIcon/>CART
+  // </div>
+  //       </Link></li>
+  //       <li ><Link className='link' style={{textDecoration:"none"}} to="/login">
+  //     {isAuthenticated? <UserOptions user={user} />:"LOGIN"} </Link></li>
+  //     <button className='navBtn navCloseBtn ' onClick={showNavbar}>
+  //     <FaTimes/>
+  //     </button> 
+  //   </ul>
+  //   <button className='navBtn openBtn mx-12 text-xl ' onClick={showNavbar}>
+  //     <FaBars/>
+  //   </button>
+  // </div>
+  //  </div>
