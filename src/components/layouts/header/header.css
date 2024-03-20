@@ -9,9 +9,9 @@
     /* margin-left: 110px; */
     left:6% !important;
     top:16% !important;
-    font-size: 40px;
+    font-size: 40px !important; 
 }
-.speedDial{
+/* .speedDial{
   position:fixed;
   top:0.7vmax;
   left:2vmax;
@@ -20,7 +20,7 @@
   width:48px;
   height:48px;
   border-radius: 100%;
-} 
+}  */
 .header > nav{
     height: 9vh;
     background: repeating-linear-gradient(to left, #6565e6,rgb(255, 255, 255),rgb(27, 196, 253));
@@ -74,6 +74,6 @@
     }
     .h2{
         margin-left: 70px;
-        font-size: 30px;
+        font-size: 30px !important;
     }
 }

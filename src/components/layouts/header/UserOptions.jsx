@@ -50,13 +50,14 @@ const UserOptions = ({user}) => {
            ariaLabel="SpeedDial tooltip example"
            onClose={() => setOpen(false)}
            onOpen={() => setOpen(true)}
-           style={{ zIndex: "11" }}
+           style={{ zIndex: "11",position:"fixed",top:"0.7vmax" , left:"2vmax" }}
            open={open}
            direction="down"
            className="speedDial"
            icon={
             <img
             className='speedDialIcon'
+            style={{width:"48px",height:"48px",borderRadius:"100%"}}
             src={user.avatar.url?user.avatar.url:"/Profile.png"}
             alt='Profile'
             />
