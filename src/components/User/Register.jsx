@@ -107,7 +107,7 @@ const Register = () => {
         onChange={(e)=>setRole(e.target.value)}/>Admin <span></span> </label> 
        </div>
 
-        <button type='submit' className={styles.Loginbutton}>Sign Up</button>
+        <button type='submit' className={styles.Signupbutton} style={{backgroundColor:"white"}}>Sign Up</button>
         {/* <div className={styles.social}>
             <div className={styles.go}>Google</div>
             <div className={styles.fb}>Facebook</div>

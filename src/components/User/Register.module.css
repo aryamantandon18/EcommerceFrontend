@@ -90,10 +90,10 @@
     ::placeholder{
         color: #e5e5e5;
     }
-    .Loginbutton{
-        margin-top: 50px;
+    .Signupbutton{
+        background-color: #fffffff7;
+        margin-top: 37px;
         width: 100%;
-        background-color: #ffffff;
         color: #080710;
         padding: 15px 0;
         font-size: 18px;

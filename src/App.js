@@ -36,8 +36,9 @@ import UserOptions from "./components/layouts/header/UserOptions.jsx";
 import OrderList from "./components/Admin/OrderList.jsx";
 import UpdateProduct from "./components/Admin/UpdateProduct.jsx";
 import AllUsers from "./components/Admin/AllUsers.jsx";
+import Home from "./components/Home/Home.jsx";
 
-const Home = lazy(()=>import('./components/Home/Home.jsx'));
+// const Home = lazy(()=>import('./components/Home/Home.jsx'));
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -59,7 +60,7 @@ function App() {
      { console.log("Is use Loggeding checking authentication",isAuthenticated)}
       {isAuthenticated && <UserOptions user={user} />}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home/>} />
         <Route path="/product/:id" element={<ProductDetails />} />
         {/* <Route path="/sad" element={<Loader/>} /> */}
         <Route path="/products" element={<Products />} />
