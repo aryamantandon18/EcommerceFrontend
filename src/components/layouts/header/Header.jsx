@@ -67,10 +67,10 @@ const Header = () => {
        <nav className='max-w-screen  font-serif w-screen flex items-center justify-between  shadow-2xl shadow-gray'>
        <img src={logo} className='h-20 ml-4'/>
            <div className='flex justify-end mr-5' ref={navRef}>
-               <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/">Home</Link>
-               <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/products">Products</Link>
-               <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/login">Login</Link>
-               <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/register">signUp</Link>
+               <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/" onClick={showNavbar}>Home</Link>
+               <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/products" onClick={showNavbar}>Products</Link>
+               <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/login" onClick={showNavbar}>Login</Link>
+               <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/register" onClick={showNavbar}>signUp</Link>
                <button className='navBtn navCloseBtn ' onClick={showNavbar}>
        <FaTimes/>
        </button> 
@@ -92,9 +92,9 @@ return (
       <UserOptions user={user}/>
         </div>
         <div className='flex justify-end mr-5' ref={navRef}>
-            <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/">Home</Link>
-            <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/products">Products</Link>
-            <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/cart">Cart</Link>
+            <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/" onClick={showNavbar}>Home</Link>
+            <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/products" onClick={showNavbar}>Products</Link>
+            <Link className='mx-10 font-sans hover:underline underline-offset-[29px] text-xl hover:font-bold focus:font-bold font-semibold' to="/cart" onClick={showNavbar}>Cart</Link>
             
             <button className='navBtn navCloseBtn ' onClick={showNavbar}>
       <FaTimes/>

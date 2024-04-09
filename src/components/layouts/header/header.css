@@ -60,7 +60,7 @@
 
     .header .responsiveNav{
         z-index: 10;
-        transform: none;
+        transform:none;
     }
     .header .navCloseBtn{
         position: absolute;
