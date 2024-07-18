@@ -17,6 +17,10 @@ const Footer = () => {
     <p>High Quality is our first priority</p>
 
     <p>Copyrights 2024 &copy; Aryaman</p>
+    <p>In case you don't want to signup , Here are the Testing credentials: <br/>
+        **email** :  test@gmail.com <br/>
+        **password** :  password
+    </p>
    </div>
    <div className="rightFooter">
    <h4>Follow Us</h4>

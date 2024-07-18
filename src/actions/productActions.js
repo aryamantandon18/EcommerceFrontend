@@ -36,7 +36,7 @@ export const getProduct =(finalKeyword='',currentPage= 1, price=[0,50000] , rati
     } catch (error) {
         dispatch({
             type: ALL_PRODUCT_FAIL,
-            payload: error.response.data.message,
+            payload: error.response?.data?.message,
         });
     }
 }

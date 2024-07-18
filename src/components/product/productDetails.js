@@ -93,18 +93,18 @@ const ProductDetails = () => {
   <Fragment>       
    <div className='ProductDetails'>
     <div>
-    <Carousel showStatus={false} showArrows={true} infiniteLoop={false}   showThumbs={true}>
-        {
-            product.images && 
-            product.images.map((item,i)=>(
-                <img className='CarouselImage' style={{position:'relative'}}
-                key={item.url}
-                src={item.url}
-                alt={`${i} slide`}
-                />
-            ))
-        }
-    </Carousel>   
+      <Carousel showStatus={false} showArrows={true} infiniteLoop={false}   showThumbs={true}>
+          {
+              product.images && 
+              product.images.map((item,i)=>(
+                  <img className='CarouselImage' style={{position:'relative'}}
+                  key={item.url}
+                  src={item.url}
+                  alt={`${i} slide`}
+                  />
+              ))
+          }
+      </Carousel>   
     </div> 
 <div>                                                  {/* Second main div  */}
     <div className='detailsBlock-1'>

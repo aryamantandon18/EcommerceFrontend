@@ -60,7 +60,7 @@ const Login = () => {
                  {show? <VisibilityOff /> : <Visibility />}
                </IconButton></div>
               <div class={styles.inputbox}>
-                <input type="submit" value="submit"/>
+                <input type="submit" value="submit"/> 
               </div>
               <Link to="/register" className={styles.loginLink}> don't have an accout? SignUp</Link>
             </form>

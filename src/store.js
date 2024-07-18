@@ -50,13 +50,13 @@ let initialState = {
       : {},
   },
 };
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+ 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;    // how redux store and redux devtools extension are composed together for enhancing redux store funcitonality.
 
 const store = createStore(
   reducer,
   initialState,
-  composeEnhancers(applyMiddleware(thunk, promiseMiddleware))
+  composeEnhancers(applyMiddleware(thunk, promiseMiddleware))         //   applyMiddleware(thunk)
 );
 
 export default store;

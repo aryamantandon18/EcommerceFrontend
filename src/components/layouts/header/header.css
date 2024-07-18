@@ -15,16 +15,18 @@
     top:16% !important;
     font-size: 40px !important; 
 }
-/* .speedDial{
+.speedDial{
   position:fixed;
   top:0.7vmax;
   left:2vmax;
+  width:50px;
+  /* height:80px; */
 }
 .speedDialIcon{
   width:48px;
   height:48px;
   border-radius: 100%;
-}  */
+} 
 .header > nav{
     height: 9vh;
     background: repeating-linear-gradient(to left, #6565e6,rgb(255, 255, 255),rgb(27, 196, 253));
@@ -36,6 +38,9 @@
         opacity:1;
         position:static;
         color: black;
+    }
+    .header > nav{
+        height: 7vh;
     }
     .header nav div{
         position:fixed;
@@ -64,20 +69,31 @@
     }
     .header .navCloseBtn{
         position: absolute;
-        font-size: 32px;
-        top: 22px;
+        font-size: 30px;
+        top: 17px;
         right: 25px;
         z-index: 11;
     }
     .header .openBtn{
         position: absolute;
-        top: 25px;
+        top: 17px;
         right: 10px;
-        font-size: 30px;
+        font-size: 24px;
         z-index:10;
     }
     .h2{
         margin-left: 70px;
-        font-size: 30px !important;
+        font-size: 29px !important;
     }
+    .speedDial{
+        position:fixed;
+        top:0.6vmax;
+        left:2vmax;
+      }
+      .speedDialIcon{
+        width:40px;
+        height:40px;
+        border-radius: 100%;
+      } 
+
 }
