@@ -17,7 +17,7 @@ const Footer = () => {
     <p>High Quality is our first priority</p>
 
     <p>Copyrights 2024 &copy; Aryaman</p>
-    <p>In case you don't want to signup , Here are the Testing credentials: <br/>
+    <p>Testing Credentials: <br/>
         **email** :  test@gmail.com <br/>
         **password** :  password
     </p>
