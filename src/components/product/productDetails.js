@@ -16,6 +16,8 @@ import { clearErrors } from '../../actions/userActions.js';
 import { Dialog,DialogTitle,DialogContent,DialogActions,Button } from '@mui/material';
 import { Rating } from '@mui/material';
 import { NEW_REVIEW_RESET } from '../../constants/productConstants.js';
+import ProductPopup from './ProductPopup.jsx'
+import CustomImageMagnifier from './customImageMagnifier.jsx'
 
 const ProductDetails = () => {
     const {id} = useParams();
@@ -26,6 +28,8 @@ const ProductDetails = () => {
     const [open, setOpen] = useState(false);
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("");
+    const [productImage,setProductImage] = useState("");
+    const [popup,setPopup] = useState(false);
     const increaseQuantity = () => {
         if (product.stock <= quantity) return;
     
@@ -85,15 +89,17 @@ const ProductDetails = () => {
     precision: 0.5,
     }
 
+    useEffect(()=>{
+      if(product?.images) setProductImage(product?.images[0]);
+    },[product])
   return ( 
 <Fragment>
-   
     {loading?(<Loader/>):error?(toast.error(error.message))
     :product?(
   <Fragment>       
    <div className='ProductDetails'>
     <div>
-      <Carousel showStatus={false} showArrows={true} infiniteLoop={false}   showThumbs={true}>
+      <Carousel showStatus={false} showArrows={true} infiniteLoop={false}   showThumbs={true} className='lg:hidden'>
           {
               product.images && 
               product.images.map((item,i)=>(
@@ -104,7 +110,37 @@ const ProductDetails = () => {
                   />
               ))
           }
-      </Carousel>   
+      </Carousel>  
+    {
+      productImage?.url ?(
+        <div className='flex'> 
+        <div className="lg:flex flex-col gap-4 mr-4 mt-0.5 hidden">
+        {product && product.images.map((imageObj,index)=>(
+           <img key={index} src={imageObj.url} className="w-[60px] h-[60px] border-[0.7px] border-gray-700 rounded-lg hover:shadow-image focus:shadow-image active:shadow-image" 
+           onClick={()=> setProductImage(imageObj)}
+           />
+        ))}
+        </div>
+        <div className="hidden lg:flex flex-col gap-2.5 w-[400px]">
+        <div onClick={() => setPopup(true)}>
+          <div className='flex'>
+            <CustomImageMagnifier src={productImage?.url} alt="productImage" />
+          </div>
+        </div>
+        {popup && (
+          <div className="transition-all duration-300 ease-in-out opacity-100 ">
+            <ProductPopup
+              setPopup={setPopup}
+              productImage={productImage}
+              product={product}
+              setProductImage={setProductImage}
+            />
+          </div>
+        )}
+      </div>
+      </div>
+      ):("No product Image")
+    }
     </div> 
 <div>                                                  {/* Second main div  */}
     <div className='detailsBlock-1'>
@@ -112,7 +148,9 @@ const ProductDetails = () => {
     <p>Product # {product._id}</p>
     </div>
     <div className='detailsBlock-2'>
-    <Rating {...options}/>
+    <Rating {...options}     sx={{
+        zIndex:0
+    }}/>
     <span> ({product.numOfReviews} Reviews )</span>
     </div>
     <div className='detailsBlock-3'>
