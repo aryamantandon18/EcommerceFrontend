@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link ,useLocation, useNavigate} from 'react-router-dom'
 // import { TreeItem, TreeView } from '@material-ui/lab';
 // import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -14,6 +14,15 @@ import './SideBar.css'
 
 
 const SideBar = () => {
+    const location = useLocation();
+    useEffect(() => {
+      if (window.innerWidth <= 768) {
+        setTimeout(() => {
+          window.scrollTo(0, document.body.scrollHeight);
+        }, 100);
+      }
+    }, [location]);
+
   return (
     <div className="sidebar">
       <Link to="/">

@@ -50,7 +50,7 @@ const UserOptions = ({user}) => {
            ariaLabel="SpeedDial tooltip example"
            onClose={() => setOpen(false)}
            onOpen={() => setOpen(true)}
-           style={{ zIndex: "11",position:"fixed",top:"0.7vmax" , left:"2vmax" }}
+        //    style={{ zIndex: "10",position:"fixed",top:"2vmax" , left:"4vmax",width:"20px",height:"9vh" }}
            open={open}
            direction="down"
            className="speedDial"

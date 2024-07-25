@@ -80,7 +80,6 @@ import imag7 from './imag7.webp'
   const {loading,error,products} = useSelector((state)=>state.products);
   //  const{isAuthenticated} = useContext(Context);
    const dispatch = useDispatch();
-
    useEffect(()=>{
     if(error){
       console.error("Error fetching products:", error);
@@ -97,7 +96,7 @@ import imag7 from './imag7.webp'
       <Fragment>
       <MetaData title="ECOMMERCE" />
  
- <div>
+ <div className='pt-20'>
  <Carousel
         infiniteLoop
         autoPlay
@@ -128,25 +127,27 @@ import imag7 from './imag7.webp'
  
  </div>
 
- <h2 className="homeHeading">Featured Products</h2>
-
-
- <div className="container" id="container">
-   {products &&
-    products.slice(0, 4).map((product) => (
-       <ProductCard key={product._id} product={product} />
-     ))}
- </div>
+<div className='pt-10'>
+<h2 className="homeHeading">Featured Products</h2>
+<div className="container" id="container">
+  {products &&
+   products.slice(0, 4).map((product) => (
+      <ProductCard key={product._id} product={product} />
+    ))}
+</div>
+</div>
 
  
- <h2 className="homeHeading">Best Sellers</h2>
+<div className='pt-5'>
+<h2 className="homeHeading">Best Sellers</h2>
 
- <div className="container" id="container">
-   {products &&
-     products.slice(4).map((product) => (
-       <ProductCard key={product._id} product={product} />
-     ))}
- </div>
+<div className="container" id="container">
+  {products &&
+    products.slice(4).map((product) => (
+      <ProductCard key={product._id} product={product} />
+    ))}
+</div>
+</div>
 
  </Fragment>
      )}

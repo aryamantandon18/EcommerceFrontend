@@ -34,11 +34,11 @@ const AllUsers = () => {
         }
         } 
 
-    // const deleteUserHandler=async(userId)=>{
-    //     await axios.delete(`${server}/users/admin/user/${userId}`,{withCredentials:true});
-    //     setUsers([]);
-    //     allUsers();
-    // }
+    const deleteUserHandler=async(userId)=>{
+        await axios.delete(`${server}/users/admin/user/${userId}`,{withCredentials:true});
+        setUsers([]);
+        allUsers();
+    }
      
     useEffect(()=>{
         allUsers();
@@ -86,8 +86,7 @@ const AllUsers = () => {
                      <Link to={`/admin/user/${params.row.id}`}>
                      <EditIcon />
                   </Link>
-            <Button>   
-            {/* onClick={()=>{deleteUserHandler(params.row.id)}} */}
+            <Button onClick={()=>{deleteUserHandler(params.row.id)}}>   
                 <DeleteIcon />
                  </Button>
                  </Fragment>

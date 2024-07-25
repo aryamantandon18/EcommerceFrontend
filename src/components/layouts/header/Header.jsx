@@ -67,10 +67,10 @@ const Header = () => {
        <nav className='max-w-screen  font-serif w-screen flex items-center justify-between  shadow-2xl shadow-gray'>
        <img src={logo} className='h-20 ml-4'/>
            <div className='flex justify-end mr-5' ref={navRef}>
-               <Link className='mx-10 font-sans hover:underline underline-offset-[33px] text-xl hover:font-bold focus:font-bold font-semibold' to="/" onClick={showNavbar}>Home</Link>
-               <Link className='mx-10 font-sans hover:underline underline-offset-[33px] text-xl hover:font-bold focus:font-bold font-semibold' to="/products" onClick={showNavbar}>Products</Link>
-               <Link className='mx-10 font-sans hover:underline underline-offset-[33px] text-xl hover:font-bold focus:font-bold font-semibold' to="/login" onClick={showNavbar}>Login</Link>
-               <Link className='mx-10 font-sans hover:underline underline-offset-[33px] text-xl hover:font-bold focus:font-bold font-semibold' to="/register" onClick={showNavbar}>signUp</Link>
+               <Link className='md:mx-10 font-sans md:hover:underline md:underline-offset-[33px] text-xl md:hover:font-bold md:focus:font-bold md:font-semibold' to="/" onClick={showNavbar}>Home</Link>
+               <Link className='md:mx-10 font-sans md:hover:underline md:underline-offset-[33px] text-xl md:hover:font-bold md:focus:font-bold md:font-semibold' to="/products" onClick={showNavbar}>Products</Link>
+               <Link className='md:mx-10 font-sans md:hover:underline md:underline-offset-[33px] text-xl md:hover:font-bold md:focus:font-bold md:font-semibold' to="/login" onClick={showNavbar}>Login</Link>
+               <Link className='md:mx-10 font-sans md:hover:underline md:underline-offset-[33px] text-xl md:hover:font-bold md:focus:font-bold md:font-semibold' to="/register" onClick={showNavbar}>signUp</Link>
                <button className='navBtn navCloseBtn ' onClick={showNavbar}>
        <FaTimes/>
        </button> 
@@ -88,13 +88,13 @@ return (
     <div className='header z-10 shadow-lg'>
       <h2 className='h2 font-sans font-semibold absolute '><span className='font-bold text-yellow-400'>Shop</span>kart</h2>
     <nav className=' max-w-screen font-serif w-screen flex items-center justify-between shadow-2xl shadow-gray'>
-      <div className='flex items-center '>
-      <UserOptions user={user}/>
+      <div className=''>
+      <UserOptions user={user} className="h-[9vh] "/>
         </div>
         <div className='flex justify-end mr-5' ref={navRef}>
-            <Link className='mx-10 font-sans hover:underline underline-offset-[33px] text-xl hover:font-bold focus:font-bold font-semibold' to="/" onClick={showNavbar}>Home</Link>
-            <Link className='mx-10 font-sans hover:underline underline-offset-[33px] text-xl hover:font-bold focus:font-bold font-semibold' to="/products" onClick={showNavbar}>Products</Link>
-            <Link className='mx-10 font-sans hover:underline underline-offset-[33px] text-xl hover:font-bold focus:font-bold font-semibold' to="/cart" onClick={showNavbar}>Cart</Link>
+            <Link className='md:mx-10 font-sans md:hover:underline md:underline-offset-[33px] text-xl md:hover:font-bold md:focus:font-bold md:font-semibold' to="/" onClick={showNavbar}>Home</Link>
+            <Link className='md:mx-10 font-sans md:hover:underline md:underline-offset-[33px] text-xl md:hover:font-bold md:focus:font-bold md:font-semibold' to="/products" onClick={showNavbar}>Products</Link>
+            <Link className='md:mx-10 font-sans md:hover:underline md:underline-offset-[33px] text-xl md:hover:font-bold md:focus:font-bold md:font-semibold' to="/cart" onClick={showNavbar}>Cart</Link>
             
             <button className='navBtn navCloseBtn ' onClick={showNavbar}>
       <FaTimes/>
@@ -163,3 +163,7 @@ export default Header
   //   </button>
   // </div>
   //  </div>
+
+
+  // className='w-full flex justify-center py-2 font-sans text-xl hover:font-bold focus:font-bold font-semibold border-b-2 border-gray-600 focus:bg-[#0000ff9e]
+  //           active:bg-[#0000ff9e]'

@@ -7,7 +7,9 @@
     position:absolute;
 }
 .header{
+    color: white;
     position: fixed;
+    width: 100%;
 }
 .h2{
     /* margin-left: 110px; */
@@ -43,42 +45,55 @@
         height: 9vh;
     }
     .header nav div{
+        color:white;
+        z-index: 20;
         position:fixed;
         top:0;
         left:0;
-        height:100%;
+        height:fit-content;
         width:100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        gap:1.5rem; 
-        /* background-color: */
-        backdrop-filter: blur(12px); 
-        border:2px solid purple;
+        justify-content: flex-end;
+        padding: 16px 0px;
+        background:rgb(12, 33, 128);
+        /* backdrop-filter: blur(12px);  */
+        /* border:2px solid purple; */
         transition: 1s;
         transform:translateY(-100vh);
     }
-    .header nav div > a:hover{
-        text-underline-offset: 9px;
+    .header nav div > a{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 8px 0px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.705);
+    }
+    .header nav div a:hover,
+    .header nav div a:active,
+    .header nav div a:focus{
+        background-color: #0000ff9e;
     }
 
     .header .responsiveNav{
-        z-index: 10;
+        z-index: 11;
         transform:none;
+        padding-top: 60px;
     }
     .header .navCloseBtn{
         position: absolute;
         font-size: 30px;
-        top: 17px;
+        top: 20px;
         right: 25px;
         z-index: 11;
+        color:white;
     }
     .header .openBtn{
         position: absolute;
-        top: 17px;
-        right: 10px;
-        font-size: 24px;
+        top: 25px;
+        right: 9px;
+        font-size: 28px;
         z-index:10;
     }
     .h2{
@@ -87,8 +102,9 @@
     }
     .speedDial{
         position:fixed;
-        top:0.6vmax;
+        top:2vmax;
         left:2vmax;
+        height: 9vh;
       }
       .speedDialIcon{
         width:40px;
