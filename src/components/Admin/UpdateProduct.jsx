@@ -94,7 +94,7 @@ const UpdateProduct = () => {
         myForm.append("images",image)
     ))
 
-    dispatch(updateProduct(id,myForm));
+    dispatch(updateProduct({id,productData:myForm}));
   }
 
   const updateProductImagesChange=(e)=>{

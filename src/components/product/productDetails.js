@@ -79,8 +79,8 @@ const ProductDetails = () => {
         dispatch({type:NEW_REVIEW_RESET});
       }
 
-        dispatch(getProductDetails(id));           //like in backend we use req.params.id to access the product is 
-    },[dispatch,id,error,success,reviewError,product])
+                  //like in backend we use req.params.id to access the product is 
+    },[dispatch,error,success,reviewError,product])
 
     const options={
       size: "large",
@@ -89,6 +89,9 @@ const ProductDetails = () => {
     precision: 0.5,
     }
 
+    useEffect(()=>{
+      dispatch(getProductDetails(id)); 
+    },[id])
     useEffect(()=>{
       if(product?.images) setProductImage(product?.images[0]);
     },[product])

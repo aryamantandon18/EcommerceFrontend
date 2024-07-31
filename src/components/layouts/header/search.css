@@ -1,12 +1,12 @@
 div> .searchBox{
-    width:100vw;
+    width:70vw;
     height:6.9vh;
     display:flex;
     align-items: center;
    justify-content: center;
    /* margin-top: 20px ; */
    max-width: 100%;
-   background-color: rgb(231, 231,231);   
+   /* background-color: rgb(231, 231,231);    */
    /*      if we do not give background color then position fixed does not work properly */
    /* position: relative;  
    top: 58%;
@@ -34,7 +34,7 @@ div >.searchBox > input[type="text"] {
  div > .searchBox > button {
     height: 8%;
     border-radius: 0%;
-    background-color: tomato;
+    background-color: rgb(70, 109, 216);
     border: none;
     padding: 1vmax;
     width: 10%;

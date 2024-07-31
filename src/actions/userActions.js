@@ -117,7 +117,7 @@ export const loadUser =() => async(dispatch)=>{
         const {data} = await axios.get(`${server}/users/me`,{
             withCredentials:true,                   //fix bug of getting loggouted on reloading
           });
-        {console.log("Here is the user -> ",data.user)}
+        // {console.log("Here is the user -> ",data.user)}
 
         dispatch({type:LOAD_USER_SUCCESS,payload:data.user});
 

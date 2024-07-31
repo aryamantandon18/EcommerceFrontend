@@ -29,7 +29,7 @@ const CustomImageMagnifier = ({
 
   return (
     <div style={{ display: 'flex'}} >
-      <div
+      <div 
         style={{
           position: 'relative',
           height: `${height}px`,

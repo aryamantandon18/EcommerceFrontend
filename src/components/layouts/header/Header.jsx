@@ -33,16 +33,21 @@
 //     </nav>
 //   );
 // };
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 // import {ReactNavbar} from "overlay-navbar";
 import './header.css'
-import { Link } from 'react-router-dom';
-import {useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import {useDispatch, useSelector } from 'react-redux';
 // import { logout } from '../../../actions/userActions';
 import UserOptions from './UserOptions';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import logo from './flipkart.png'
 import { FaBars, FaTimes } from "react-icons/fa";
+import { getProduct } from '../../../actions/productActions';
+import { Button} from '@mui/material'
+import toast from 'react-hot-toast';
+import './search.css'
+import { IoIosSearch } from 'react-icons/io';
 
 const Header = () => {
   // const dispatch = useDispatch();
@@ -50,6 +55,31 @@ const Header = () => {
   // const btnHandler=()=>{
   //   dispatch(logout()); 
   // }
+  const dispatch = useDispatch();
+  const [currentPage,setCurrentPage] = useState(1);
+  const [price,setPrice] = useState([0,50000]);
+  const [rating, setRating] = useState(0);
+  const [category, setCategory] = useState("");
+  const {products,loading,error,productsCount,resultPerPage} = useSelector((state)=>state.products);
+  const [finalKeyword,setFinalKeyword] = useState();
+  const navigate = useNavigate();
+  const [keyword,setKeyword] = useState(''); 
+
+    const searchHandler= (e)=>{
+        e.preventDefault();
+        if(keyword.trim()){
+        navigate(`/products`);
+        }
+        else{
+            navigate(`/`);
+        }
+    }
+
+    useEffect(()=>{
+      if(error) {return toast.error(error);}
+      dispatch(getProduct(finalKeyword,currentPage,price,rating,category));
+    },[dispatch,finalKeyword,currentPage,error,price,rating,category])
+
  const navRef = useRef();
   const {isAuthenticated,user} =  useSelector(state=>state.user);
   const showNavbar =()=>{
@@ -59,6 +89,7 @@ const Header = () => {
   }   
   if(!isAuthenticated){
     console.log(isAuthenticated ," ???????");
+  
   return (
     <>
      <div className='header z-10'>
@@ -91,6 +122,19 @@ return (
       <div className=''>
       <UserOptions user={user} className="h-[9vh] "/>
         </div>
+       <div>
+       <form className="flex relative items-center w-10/12 md:w-[200%] h-[6vh] mx-auto rounded-xl" onSubmit={searchHandler}>
+         <input
+           type="text"
+           placeholder="Search"
+           onChange={(e) => setKeyword(e.target.value)}
+           value={keyword}
+           className="shadow-sm bg-white border-none text-gray-700 p-[1vmax] w-full outline-none h-8 text-[1.1vmax] font-light font-sans rounded-xl border-blue-400 border-2" />
+         <IoIosSearch className='text-black absolute right-2'/>
+        </form>
+
+
+       </div>
         <div className='flex justify-end mr-5' ref={navRef}>
             <Link className='md:mx-10 font-sans md:hover:underline md:underline-offset-[33px] text-xl md:hover:font-bold md:focus:font-bold md:font-semibold' to="/" onClick={showNavbar}>Home</Link>
             <Link className='md:mx-10 font-sans md:hover:underline md:underline-offset-[33px] text-xl md:hover:font-bold md:focus:font-bold md:font-semibold' to="/products" onClick={showNavbar}>Products</Link>

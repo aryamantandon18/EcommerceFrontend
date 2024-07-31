@@ -31,7 +31,8 @@
 } 
 .header > nav{
     height: 9vh;
-    background: repeating-linear-gradient(to left, #6565e6,rgb(255, 255, 255),rgb(27, 196, 253));
+    /* background: repeating-linear-gradient(to left, #6565e6,rgb(255, 255, 255),rgb(27, 196, 253)); */
+    background:#2455f4;
 }
 @media only screen and (max-width: 700px){
 
@@ -57,7 +58,7 @@
         align-items: center;
         justify-content: flex-end;
         padding: 16px 0px;
-        background:rgb(12, 33, 128);
+        background:#2455f4;
         /* backdrop-filter: blur(12px);  */
         /* border:2px solid purple; */
         transition: 1s;
@@ -73,7 +74,7 @@
     .header nav div a:hover,
     .header nav div a:active,
     .header nav div a:focus{
-        background-color: #0000ff9e;
+        background-color: #0000ff80;
     }
 
     .header .responsiveNav{

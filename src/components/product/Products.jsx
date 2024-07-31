@@ -10,7 +10,7 @@ import MetaData from '../layouts/MetaData'
 import {toast} from'react-hot-toast'
 import { Button, Slider } from '@mui/material'
 import {Typography} from '@mui/material'
-import './search.css'
+
 
 const categories = [
   "Laptop",
@@ -30,23 +30,14 @@ const Products = () => {
   const [rating, setRating] = useState(0);
   const [category, setCategory] = useState("");
 
-  const [finalKeyword,setFinalKeyword] = useState();
+ 
   
   const setCurrentPageNo = (e)=>{
     setCurrentPage(e);
   }
 // console.log(currentPage);
-const navigate = useNavigate();
-const [keyword,setKeyword] = useState(''); 
-    const searchHandler= (e)=>{
-        e.preventDefault();
-        if(keyword.trim()){
-        navigate(`/products/${keyword}`)
-        }
-        else{
-            navigate(`/products`);
-        }
-    }
+
+
   const dispatch = useDispatch();
   // const {keyword} = useParams();
   const {products,loading,error,productsCount,resultPerPage} = useSelector((state)=>state.products);
@@ -54,6 +45,7 @@ const [keyword,setKeyword] = useState('');
   const priceHandler=(e,newPrice)=>{
 setPrice(newPrice);
   }
+  const [finalKeyword,setFinalKeyword] = useState();
 
   useEffect(()=>{
     if(error) {return toast.error(error);}
@@ -69,10 +61,7 @@ setPrice(newPrice);
         <Fragment>
           <div className='p-wrapper'>
           <div>
-          <form className='searchBox' onSubmit={searchHandler}>
-         <input type='text' placeholder='search' onChange={(e)=> setKeyword(e.target.value)} value={keyword} className='sInput'/>
-        <Button type='submit' value="Search" onClick={(e)=> setFinalKeyword(keyword)}>Search</Button>
-    </form>
+       
           </div>
         <h2 className='productsHeading'>Products</h2>
         <div className='products'>

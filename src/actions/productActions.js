@@ -86,9 +86,9 @@ export const getProductDetails =(id)=> async(dispatch)=>{
                 headers: {"Content-Type":"application/json"},
                 withCredentials: true, 
               };
-            console.log("SUBMITTING Review");
+            // console.log("SUBMITTING Review");
             const {data} = await axios.put(`${server}/product/review`,reviewData,config);
-            console.log("Review was DONE");
+            // console.log("Review was DONE");
 
             dispatch({
                 type:NEW_REVIEW_SUCCESS,payload:data.success
@@ -119,6 +119,7 @@ export const createProduct=(productData)=>async(dispatch)=>{
         })
 }
      catch(error) {
+        console.log("Line 122 ",error);
         dispatch({
             type:NEW_PRODUCT_FAIL,
             payload:error.response.data.message,
@@ -126,7 +127,7 @@ export const createProduct=(productData)=>async(dispatch)=>{
     }
 }
 //update Product
-export const updateProduct=(id,productData)=>async(dispatch)=>{
+export const updateProduct=({id,productData})=>async(dispatch)=>{
     try {
         dispatch({type:UPDATE_PRODUCT_REQUEST});
 
@@ -142,6 +143,7 @@ export const updateProduct=(id,productData)=>async(dispatch)=>{
         })
 }
      catch(error) {
+        console.log("Line 146",error)
         dispatch({
             type:UPDATE_PRODUCT_FAIL,
             payload:error.response.data.message,
