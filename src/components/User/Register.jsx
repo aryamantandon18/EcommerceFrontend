@@ -57,7 +57,8 @@ const Register = () => {
 
     useEffect(()=>{
         if(error){
-        toast.error(error);
+
+        // toast.error(error);
          dispatch({type:CLEAR_ERRORS});
          return;
         }   
