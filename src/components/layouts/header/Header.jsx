@@ -130,9 +130,10 @@ return (
     <div className='header z-10 shadow-lg'>
       <h2 className='h2 font-sans font-semibold absolute '><span className='font-bold text-yellow-400'>Shop</span>kart</h2>
     <nav className=' max-w-screen font-serif w-screen flex items-center justify-between shadow-2xl shadow-gray'>
-      <div className=''>
-      <UserOptions user={user} className="h-[9vh] "/>
-        </div>
+   <div className="relative ">
+  <UserOptions user={user} className="h-[9vh]"/>
+
+</div>
        <div>
        <form className="flex relative items-center w-10/12 md:w-[200%] h-[6vh] mx-auto rounded-xl" onSubmit={searchHandler}>
          <input
