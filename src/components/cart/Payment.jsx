@@ -152,7 +152,7 @@ const Payment = () => {
             type="submit"
             value={`Pay - ₹${orderInfo && orderInfo.totalPrice}`}
             ref={payBtn}
-            className="paymentFormBtn"
+            className="paymentFormBtn mt-20 bg-[#1F74BA]"
           />
         </form>
       </div>

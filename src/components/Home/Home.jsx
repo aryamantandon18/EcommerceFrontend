@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Banner from './Banner/Banner.jsx';
 import Categories from './Categories.jsx';
+import debounce from 'lodash/debounce';
 
 const Home = () => {
   const { loading, error, products } = useSelector((state) => state.products);
@@ -17,14 +18,13 @@ const Home = () => {
   const [productsPerPage, setProductsPerPage] = useState(4);
 
   const productRefs = useRef([]);
-
-  const updateProductsPerPage = () => {
+  const updateProductsPerPage = debounce(() => {
     if (window.innerWidth <= 700) {
       setProductsPerPage(4);
     } else {
       setProductsPerPage(5);
     }
-  };
+  }, 300);
 
   const handleNext = () => {
     if (currentPage < products.length - productsPerPage) {

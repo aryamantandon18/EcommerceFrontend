@@ -97,7 +97,7 @@ const Shipping = () => {
                 </select>
               </div>
             )}
-         <button type='submit' className={styles.shippingBtn}>Update</button>
+         <button type='submit' className={`${styles.shippingBtn} bg-[#1F74BA] `}>Update</button>
           
        </form>
        </div>
