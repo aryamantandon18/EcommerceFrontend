@@ -7,8 +7,8 @@
   justify-content: center;
   align-items: center;
   height: 92vh;
-  background: linear-gradient(45deg, greenyellow, dodgerblue);
-  font-family: "Sansita Swashed", cursive;
+  /* background: linear-gradient(45deg, greenyellow, dodgerblue); */
+  font-family: "Roboto";
   padding-top:9vh;
 }
 .center {
@@ -16,6 +16,9 @@
   padding: 50px 50px;
   background: #fff;
   border-radius: 10px;
+  /* border:2px solid black; */
+  box-shadow: 3px 5px 10px 0px #0000004d;
+  width:25vw;
 }
 .center h1 {
   font-size: 2em;
@@ -29,7 +32,7 @@
 }
 .center .inputbox {
   position: relative;
-  width: 300px;
+  width: 95%;
   height: 50px;
   margin-bottom: 50px;
 }
@@ -66,9 +69,11 @@
   background: dodgerblue;
   color: #fff;
   border: #fff;
+  cursor: pointer;
 }
 .center .inputbox:hover [type="submit"] {
-  background: linear-gradient(45deg, greenyellow, dodgerblue);
+  /* background: linear-gradient(45deg, greenyellow, dodgerblue); */
+  background-color: rgb(14, 113, 213);
 }
 .loginLink{
     display:block;
@@ -83,13 +88,24 @@
 .eye{
     position: absolute;
     top: 51.5%;
-    right: 58px; /* Adjusted for spacing */
+    right: 17%; /* Adjusted for spacing */
     /* transform: translate(0, -50%); */
     cursor: pointer;
   }
 
+  @media screen and (max-width:1200px) {
+    .center{
+      transform: scale(0.91);
+      width: 80%;
+    }
+
+  }
   @media screen and (max-width:600px){
     .center{
       transform: scale(0.91);
+      width: 100%;
+    }
+    .eye{
+      right: 18%; 
     }
   }

@@ -97,6 +97,17 @@ const Header = () => {
       <h2 className='h2 font-sans font-semibold absolute'><span className='font-bold text-yellow-300'>Shop</span>kart</h2>
        <nav className='max-w-screen  font-serif w-screen flex items-center justify-between  shadow-2xl shadow-gray'>
        <img src={logo} className='h-20 ml-4'/>
+       <div>
+       <form className="flex relative items-center w-10/12 md:w-[200%] h-[6vh] mx-auto rounded-xl" onSubmit={searchHandler}>
+         <input
+           type="text"
+           placeholder="Search"
+           onChange={(e) => setKeyword(e.target.value)}
+           value={keyword}
+           className="shadow-sm bg-white border-none text-gray-700 p-[1vmax] w-full outline-none h-8 text-[1.1vmax] font-light font-sans rounded-xl border-blue-400 border-2" />
+         <IoIosSearch className='text-black absolute right-2'/>
+        </form>
+       </div>
            <div className='flex justify-end mr-5' ref={navRef}>
                <Link className='md:mx-10 font-sans md:hover:underline md:underline-offset-[33px] text-xl md:hover:font-bold md:focus:font-bold md:font-semibold' to="/" onClick={showNavbar}>Home</Link>
                <Link className='md:mx-10 font-sans md:hover:underline md:underline-offset-[33px] text-xl md:hover:font-bold md:focus:font-bold md:font-semibold' to="/products" onClick={showNavbar}>Products</Link>
@@ -132,9 +143,9 @@ return (
            className="shadow-sm bg-white border-none text-gray-700 p-[1vmax] w-full outline-none h-8 text-[1.1vmax] font-light font-sans rounded-xl border-blue-400 border-2" />
          <IoIosSearch className='text-black absolute right-2'/>
         </form>
-
-
        </div>
+
+
         <div className='flex justify-end mr-5' ref={navRef}>
             <Link className='md:mx-10 font-sans md:hover:underline md:underline-offset-[33px] text-xl md:hover:font-bold md:focus:font-bold md:font-semibold' to="/" onClick={showNavbar}>Home</Link>
             <Link className='md:mx-10 font-sans md:hover:underline md:underline-offset-[33px] text-xl md:hover:font-bold md:focus:font-bold md:font-semibold' to="/products" onClick={showNavbar}>Products</Link>

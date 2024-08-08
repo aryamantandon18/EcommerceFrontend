@@ -30,8 +30,8 @@
             #1845ad,
             #23a2f6
         );
-        left: -80px;
-        top: -30px;
+        left: -114px;
+        top: -50px;
     }
     .shape:last-child{
         background: linear-gradient(
@@ -39,12 +39,12 @@
             #ff512f,
             #f09819
         );
-        right: -70px;
-        bottom: -87px;
+        right: -100px;
+        bottom: -100px;
     }
     .loginForm {
     height:540px;
-    width:400px;
+    width:24vw;
     background-color: #080710da;
     position:absolute;
     transform:translate(-50%,-45%);
@@ -144,7 +144,7 @@
     }
     .pswd svg{
         position: absolute;
-        transform: translate(-1.5vmax,-1.9vmax);   
+        transform: translate(-1.5vmax,-1.3vmax);   
     }
     
     .avtar{
@@ -232,6 +232,7 @@
             scale: 0.7;
              top:35%;
             left:35%; 
+            width: 100%;
         }
         .background>.shape{
             display: none;
@@ -242,7 +243,7 @@
         }
         .pswd svg{
             position: absolute;
-            transform: translate(-1.5vmax,-2vmax);   
+            transform: translate(-3vmax,-2.5vmax);   
         }
 
     }

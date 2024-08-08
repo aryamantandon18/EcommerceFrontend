@@ -4,12 +4,13 @@ import Loader from '../layouts/loader/Loader'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProduct } from '../../actions/productActions'
 import { ProductCard } from '../Home/ProductCard'
-import { useNavigate} from 'react-router-dom'
+// import { useNavigate} from 'react-router-dom'
 import Pagination from 'react-js-pagination'
 import MetaData from '../layouts/MetaData'
 import {toast} from'react-hot-toast'
 import { Button, Slider } from '@mui/material'
 import {Typography} from '@mui/material'
+// import { Filter } from './Filter.jsx'
 
 
 const categories = [
@@ -59,10 +60,9 @@ setPrice(newPrice);
        <MetaData title="PRODUCTS -- ECOMMERCE" />
       {loading?<Loader/>:(
         <Fragment>
-          <div className='p-wrapper'>
-          <div>
-       
-          </div>
+       <div className='p-wrapper'>
+   
+        
         <h2 className='productsHeading'>Products</h2>
         <div className='products'>
         {
@@ -72,9 +72,10 @@ setPrice(newPrice);
         }
         </div>
         </div>
+       
         
-        <div className="filterBox">
-          <Typography>Price</Typography>           {/* includes some inbuild css  */}
+         <div className="filterBox">
+          <Typography>Price</Typography>           
          <Slider
          value={price}
          onChange={priceHandler}
@@ -110,6 +111,8 @@ setPrice(newPrice);
               />
             </fieldset>
         </div>
+
+     
         {
           resultPerPage < productsCount && (
             <div className="paginationBox">

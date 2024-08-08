@@ -18,6 +18,7 @@ import { Rating } from '@mui/material';
 import { NEW_REVIEW_RESET } from '../../constants/productConstants.js';
 import ProductPopup from './ProductPopup.jsx'
 import CustomImageMagnifier from './customImageMagnifier.jsx'
+import { IoPricetagOutline } from "react-icons/io5";
 
 const ProductDetails = () => {
     const {id} = useParams();
@@ -176,8 +177,29 @@ const ProductDetails = () => {
          <div className='detailsBlock-4'>
           Description: <p>{product.description}</p>
          </div>
-          <button className='submitReview' onClick={SubmitReviewToggle}>Submit Review</button>
-      </div>                                              {/*  Second main div          */}
+          <button className='submitReview' onClick={SubmitReviewToggle}>Submit Review</button> {/*  Second main div          */}
+          <div className='select-none cursor-pointer'>
+      <span className="text-md font-segoe font-semibold text-heading">
+                Offers
+              </span>
+              <ul className="flex flex-col gap-1">
+                <li className="text-sm text-green-700 font-semibold font-segoe flex gap-2 tracking-wide items-center">
+                  <IoPricetagOutline color="black" /> Order  and get upto 10%
+                  off.
+                </li>
+                <li className="text-sm text-green-700 font-semibold font-segoe flex gap-2 tracking-wide items-center">
+                  <IoPricetagOutline color="black" /> Get flat 5% off on Bulk
+                  order.
+                </li>
+                <li className="text-sm text-green-700 font-semibold font-segoe flex gap-2 tracking-wide items-center">
+                  <IoPricetagOutline color="black" /> Get a free Demo on Bulk
+                  order.
+                </li>
+                {/* <ProductSlider forOffers={true} /> */}
+              </ul>
+        </div>    
+      </div>    
+                                         
     </div>                                    
       <h3 className='reviewHeading'>REVIEWS</h3> 
       <Dialog
