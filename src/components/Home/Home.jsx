@@ -17,38 +17,38 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [productsPerPage, setProductsPerPage] = useState(4);
 
-  const productRefs = useRef([]);
-  const updateProductsPerPage = debounce(() => {
-    if (window.innerWidth <= 700) {
-      setProductsPerPage(4);
-    } else {
-      setProductsPerPage(5);
-    }
-  }, 300);
+  // const productRefs = useRef([]);
+  // const updateProductsPerPage = debounce(() => {
+  //   if (window.innerWidth <= 700) {
+  //     setProductsPerPage(4);
+  //   } else {
+  //     setProductsPerPage(5);
+  //   }
+  // }, 300);
 
-  const handleNext = () => {
-    if (products && currentPage < products?.length - productsPerPage) {
-      const nextPage = currentPage + 1;
-      setCurrentPage(nextPage);
-      productRefs.current[nextPage]?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'start',
-      });
-    }
-  };
+  // const handleNext = () => {
+  //   if (products && currentPage < products.length - productsPerPage) {
+  //     const nextPage = currentPage + 1;
+  //     setCurrentPage(nextPage);
+  //     productRefs.current[nextPage]?.scrollIntoView({
+  //       behavior: 'smooth',
+  //       block: 'nearest',
+  //       inline: 'start',
+  //     });
+  //   }
+  // };
 
-  const handlePrev = () => {
-    if (currentPage > 0) {
-      const prevPage = currentPage - 1;
-      setCurrentPage(prevPage);
-      productRefs.current[prevPage]?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'start',
-      });
-    }
-  };
+  // const handlePrev = () => {
+  //   if (currentPage > 0) {
+  //     const prevPage = currentPage - 1;
+  //     setCurrentPage(prevPage);
+  //     productRefs.current[prevPage]?.scrollIntoView({
+  //       behavior: 'smooth',
+  //       block: 'nearest',
+  //       inline: 'start',
+  //     });
+  //   }
+  // };
 
   useEffect(()=>{
     if (error) {
@@ -58,11 +58,11 @@ const Home = () => {
     dispatch(getProduct());
   },[dispatch,error])
 
-  useEffect(() => {
-    updateProductsPerPage();
-    window.addEventListener('resize', updateProductsPerPage);
-    return () => window.removeEventListener('resize', updateProductsPerPage);
-  }, [dispatch, error]);
+  // useEffect(() => {
+  //   updateProductsPerPage();
+  //   window.addEventListener('resize', updateProductsPerPage);
+  //   return () => window.removeEventListener('resize', updateProductsPerPage);
+  // }, [dispatch, error]);
 
   return (
     <Fragment>
@@ -79,7 +79,7 @@ const Home = () => {
               <div className="bg-white group">
                 <h2 className="homeHeading mx-auto pt-8 mb-7 md:pt-10 md:mb-10">Featured Products</h2>
                 <div className="flex mx-auto w-[99%] justify-center max-w-full h-[60vh]">
-                  <div className="my-auto lg:mt-36 hidden group-hover:block">
+                  {/* <div className="my-auto lg:mt-36 hidden group-hover:block">
                     <button
                       onClick={handlePrev}
                       className="left-0 absolute bg-[#f1f2f4] md:p-6 p-3 h-20 sm:h-16 md:h-28"
@@ -87,21 +87,21 @@ const Home = () => {
                     >
                       <FaChevronLeft />
                     </button>
-                  </div>
+                  </div> */}
                   <div className="flex flex-wrap justify-center">
                     {products &&
                       products
-                        .slice(currentPage, currentPage + productsPerPage)
+                        // .slice(currentPage, currentPage + productsPerPage)
                         .map((product, index) => (
                           <div
                             key={product._id}
-                            ref={(el) => (productRefs.current[index + currentPage] = el)}
+                            // ref={(el) => (productRefs.current[index + currentPage] = el)}
                           >
                             <ProductCard product={product} />
                           </div>
                         ))}
                   </div>
-                  <div className="my-auto lg:mt-36 hidden group-hover:block">
+                  {/* <div className="my-auto lg:mt-36 hidden group-hover:block">
                     <button
                       onClick={handleNext}
                       className="absolute right-0 bg-[#f1f2f4] md:p-6 p-3 h-20 sm:h-16 md:h-28"
@@ -109,7 +109,7 @@ const Home = () => {
                     >
                       <FaChevronRight />
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
