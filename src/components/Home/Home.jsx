@@ -64,6 +64,9 @@ const Home = () => {
     return () => window.removeEventListener('resize', updateProductsPerPage);
   }, [dispatch, error]);
 
+  useEffect(()=>{
+  console.log("Line 68");
+  },[products])
   return (
     <Fragment>
       {loading ? (

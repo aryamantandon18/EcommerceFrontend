@@ -33,7 +33,7 @@
 //     </nav>
 //   );
 // };
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 // import {ReactNavbar} from "overlay-navbar";
 import './header.css'
 import { Link, useNavigate } from 'react-router-dom';
@@ -48,36 +48,37 @@ import { Button} from '@mui/material'
 import toast from 'react-hot-toast';
 import './search.css'
 import { IoIosSearch } from 'react-icons/io';
+import { AppContext } from '../../..';
 
 const Header = () => {
   // const dispatch = useDispatch();
-
   // const btnHandler=()=>{
   //   dispatch(logout()); 
   // }
+  const { currentPage, setCurrentPage, price, setPrice, rating, setRating, category, setCategory,finalKeyword,setFinalKeyword } = useContext(AppContext);
   const dispatch = useDispatch();
-  const [currentPage,setCurrentPage] = useState(1);
-  const [price,setPrice] = useState([0,50000]);
-  const [rating, setRating] = useState(0);
-  const [category, setCategory] = useState("");
   const {products,loading,error,productsCount,resultPerPage} = useSelector((state)=>state.products);
-  const [finalKeyword,setFinalKeyword] = useState();
+ 
   const navigate = useNavigate();
   const [keyword,setKeyword] = useState(''); 
 
-    const searchHandler= (e)=>{
-        e.preventDefault();
-        if(keyword.trim()){
+  const searchHandler = (e) => {
+    e.preventDefault();
+    if (keyword.trim()) {
+        setCategory("");
+        setFinalKeyword(keyword); // Update the context with the current keyword
+        setCurrentPage(1); // Reset to the first page on new search
         navigate(`/products`);
-        }
-        else{
-            navigate(`/`);
-        }
+    } else {
+        navigate(`/`);
     }
+};
+
 
     useEffect(()=>{
       if(error) {return toast.error(error);}
       dispatch(getProduct(finalKeyword,currentPage,price,rating,category));
+      setKeyword("");
     },[dispatch,finalKeyword,currentPage,error,price,rating,category])
 
  const navRef = useRef();
