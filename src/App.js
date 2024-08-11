@@ -57,7 +57,7 @@ function App() {
   return (
     <Router>
       <Header />
-     { console.log("Is use Loggeding checking authentication",isAuthenticated)}
+     {/* { console.log("Is use Loggeding checking authentication",isAuthenticated)} */}
       {isAuthenticated && <UserOptions user={user} />}
       <Routes>
         <Route path="/" element={<Home/>} />
