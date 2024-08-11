@@ -3,7 +3,7 @@ import React from 'react'
 import {Link} from "react-router-dom";
 
 
-export const ProductCard = React.memo(({ product }) => {
+export const ProductCard = ({ product }) => {
     const options={
         value: product.rating,
         readOnly: true,
@@ -23,4 +23,4 @@ export const ProductCard = React.memo(({ product }) => {
       {/* <button style={{fontStyle:"oblique", border:"1px solid black"}}> Buy Now</button> */}
         </Link>
     )
-  });
+}

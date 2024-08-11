@@ -50,13 +50,15 @@ const Home = () => {
     }
   };
 
-  useEffect(() => {
+  useEffect(()=>{
     if (error) {
       console.error("Error fetching products:", error);
       return toast.error(error.message);
     }
     dispatch(getProduct());
+  },[dispatch,error])
 
+  useEffect(() => {
     updateProductsPerPage();
     window.addEventListener('resize', updateProductsPerPage);
     return () => window.removeEventListener('resize', updateProductsPerPage);
