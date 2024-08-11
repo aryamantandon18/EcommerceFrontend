@@ -27,27 +27,27 @@ const Home = () => {
   }, 300);
 
   const handleNext = () => {
-    if (products && currentPage < products?.length - productsPerPage) {
-      const nextPage = currentPage + 1;
-      setCurrentPage(nextPage);
-      productRefs.current[nextPage]?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'start',
-      });
-    }
+    // if (products && currentPage < products?.length - productsPerPage) {
+    //   const nextPage = currentPage + 1;
+    //   setCurrentPage(nextPage);
+    //   productRefs.current[nextPage]?.scrollIntoView({
+    //     behavior: 'smooth',
+    //     block: 'nearest',
+    //     inline: 'start',
+    //   });
+    // }
   };
 
   const handlePrev = () => {
-    if (currentPage > 0) {
-      const prevPage = currentPage - 1;
-      setCurrentPage(prevPage);
-      productRefs.current[prevPage]?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'start',
-      });
-    }
+    // if (currentPage > 0) {
+    //   const prevPage = currentPage - 1;
+    //   setCurrentPage(prevPage);
+    //   productRefs.current[prevPage]?.scrollIntoView({
+    //     behavior: 'smooth',
+    //     block: 'nearest',
+    //     inline: 'start',
+    //   });
+    // }
   };
 
   useEffect(() => {
@@ -55,12 +55,12 @@ const Home = () => {
       console.error("Error fetching products:", error);
       return toast.error(error.message);
     }
-    
     dispatch(getProduct());
+
     updateProductsPerPage();
     window.addEventListener('resize', updateProductsPerPage);
     return () => window.removeEventListener('resize', updateProductsPerPage);
-  }, [dispatch, error]);
+  }, [dispatch, error,products]);
 
   return (
     <Fragment>
