@@ -103,7 +103,7 @@ const Home = () => {
                     <button
                       onClick={handleNext}
                       className="absolute right-0 bg-[#f1f2f4] md:p-6 p-3 h-20 sm:h-16 md:h-28"
-                      disabled={currentPage >= products.length - productsPerPage}
+                      disabled={products && currentPage >= products.length - productsPerPage}
                     >
                       <FaChevronRight />
                     </button>
