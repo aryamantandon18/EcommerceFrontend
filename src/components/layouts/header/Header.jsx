@@ -75,10 +75,10 @@ const Header = () => {
         }
     }
 
-    useEffect(()=>{
-      if(error) {return toast.error(error);}
-      dispatch(getProduct(finalKeyword,currentPage,price,rating,category));
-    },[dispatch,finalKeyword,currentPage,error,price,rating,category])
+    // useEffect(()=>{
+    //   if(error) {return toast.error(error);}
+    //   dispatch(getProduct(finalKeyword,currentPage,price,rating,category));
+    // },[dispatch,finalKeyword,currentPage,error,price,rating,category])
 
  const navRef = useRef();
   const {isAuthenticated,user} =  useSelector(state=>state.user);
