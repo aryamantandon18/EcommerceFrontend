@@ -27,7 +27,7 @@ const Home = () => {
   }, 300);
 
   const handleNext = () => {
-    if (currentPage < products?.length - productsPerPage) {
+    if (products && currentPage < products?.length - productsPerPage) {
       const nextPage = currentPage + 1;
       setCurrentPage(nextPage);
       productRefs.current[nextPage]?.scrollIntoView({
