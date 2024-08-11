@@ -55,9 +55,9 @@ const Home = () => {
       console.error("Error fetching products:", error);
       return toast.error(error.message);
     }
-    startTransition(() => {
-      dispatch(getProduct());
-    });
+    
+    dispatch(getProduct());
+    
     updateProductsPerPage();
 
     window.addEventListener('resize', updateProductsPerPage);
