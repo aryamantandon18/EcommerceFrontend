@@ -27,7 +27,7 @@ const Home = () => {
   }, 300);
 
   const handleNext = () => {
-    if (currentPage < products.length - productsPerPage) {
+    if (currentPage < products?.length - productsPerPage) {
       const nextPage = currentPage + 1;
       setCurrentPage(nextPage);
       productRefs.current[nextPage]?.scrollIntoView({
@@ -55,6 +55,7 @@ const Home = () => {
       console.error("Error fetching products:", error);
       return toast.error(error.message);
     }
+    
     dispatch(getProduct());
     updateProductsPerPage();
     window.addEventListener('resize', updateProductsPerPage);
