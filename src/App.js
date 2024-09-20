@@ -26,7 +26,6 @@ import { useSelector } from "react-redux";
 // import { Elements } from "@stripe/react-stripe-js";
 // import { loadStripe } from "@stripe/stripe-js";
 import OrderSuccess from "./components/cart/OrderSuccess.jsx";
-// import ElementLayout from "./ElementLayout.js";
 import MyOrders from "./components/Order/MyOrders.js";
 import OrderDetails from "./components/Order/OrderDetails.js";
 import Dashboard from './components/Admin/Dashboard.jsx'

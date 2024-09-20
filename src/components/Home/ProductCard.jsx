@@ -20,7 +20,7 @@ export const ProductCard = ({ product }) => {
         </span>
       </div>
       <span>{`₹${product.price}`}</span>
-      {/* <button style={{fontStyle:"oblique", border:"1px solid black"}}> Buy Now</button> */}
+    
         </Link>
     )
 }
