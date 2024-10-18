@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   const { loading, error, products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  const [shuffledProducts, setShuffledProducts] = useState([]);
+  // const [shuffledProducts, setShuffledProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [productsPerPage, setProductsPerPage] = useState(4);
 
@@ -52,15 +52,20 @@ const Home = () => {
     }
   };
 
-  const shuffleArray = (array) => {
-    let shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
-  };
+// Fisher-Yates Shuffle Algorithm
+const shuffleArray = (array) => {
+  let currentIndex = array.length;
+  let randomIndex;
 
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    // Swap it with the current element
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+};
   useEffect(() => {
     if (error) {
       console.error('Error fetching products:', error);
@@ -76,12 +81,7 @@ const Home = () => {
     return () => window.removeEventListener('resize', updateProductsPerPage);
   }, []);
 
-  useEffect(() => {
-    if (products && products.length > 0) {
-      const shuffled = shuffleArray(products);
-      setShuffledProducts(shuffled);
-    }
-  }, [products]);
+  const shuffledProducts = products ? shuffleArray(products.slice()) : [];
 
   return (
     <Fragment>
