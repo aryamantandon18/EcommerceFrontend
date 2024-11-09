@@ -1,5 +1,4 @@
 .confirmOrderPage {
-    padding-top: 11vh;
     height: 100vh;
     background-color: white;
     display: grid;
@@ -122,8 +121,7 @@
   }
   
   .orderSummary > button:hover {
-    background-color: rgb(247, 226, 0);
-    color:black;
+    background-color: #02467e;
   }
   
   @media screen and (max-width: 600px) {

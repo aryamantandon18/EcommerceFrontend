@@ -20,9 +20,9 @@ const AllUsers = () => {
     const allUsers=async()=>{
         try {
            setLoading(true);
-           const {data} = await axios.get(`${server}/users/admin/users`,{
-               withCredentials:true,   
-           });
+            const {data} = await axios.get(`${server}/users/admin/users`,{
+                withCredentials:true,   
+            });
            setLoading(false);
            console.log("users after allUsers request",data.users)
            setUsers(data.users);

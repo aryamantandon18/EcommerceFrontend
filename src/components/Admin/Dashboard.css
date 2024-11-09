@@ -3,8 +3,9 @@
     max-width: 100%;
     display: grid;
     grid-template-columns: 1fr 5fr;
-    padding-top: 8vh;
+    /* padding-top: 4vh; */
     /* position: absolute; */
+    overflow-x:hidden ;
   }
   
   .dashboardContainer {
@@ -19,6 +20,7 @@
     width: 50%;
     padding: 1.5rem;
     margin: auto;
+    margin-top: 20px;
   }
   .dashboardSummary {
     margin: 2rem 0;
@@ -80,7 +82,9 @@
       grid-template-columns: 1fr;
       /* padding-top: 0vh; */
     }
-  
+    .dashboard h1{
+      margin-top: 0px;
+    }
     .dashboardContainer {
       border-left: none;
     }
