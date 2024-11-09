@@ -1,16 +1,10 @@
-import React, { Fragment, useEffect, useRef} from "react";
+import React, { Fragment, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 import MetaData from "../layouts/MetaData";
 import CheckOutSteps from "./CheckOutSteps";
 import { useDispatch, useSelector } from "react-redux";
-
-// import { Typography } from "@mui/material";
-// import CreditCardIcon from "@mui/icons-material/CreditCard";
-// import EventIcon from "@mui/icons-material/Event";
-// import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import toast from "react-hot-toast";
 import { clearErrors, createOrder } from "../../actions/orderAction.js";
-import "./payment.css";
-// import Shipping from "./Shipping";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { server } from "../../index.js";
@@ -19,25 +13,30 @@ const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const payBtn = useRef(null);
-
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
   const { error } = useSelector((state) => state.newOrder);
 
- 
-  const paymentData = {
-    amount: Math.round(orderInfo.totalPrice * 100), //bcoz stripe will take amount only in paise
-  };
+  const paymentData = { amount: Math.round(orderInfo.totalPrice * 100) };
+  const order = { shippingInfo, orderItems: cartItems, itemsPrice: orderInfo.subTotal, taxPrice: orderInfo.tax, shippingPrice: orderInfo.shippingCharges, totalPrice: orderInfo.totalPrice };
 
-  const order = {
-    shippingInfo,
-    orderItems: cartItems,
-    itemsPrice: orderInfo.subTotal,
-    taxPrice: orderInfo.tax,
-    shippingPrice: orderInfo.sippingCharges,
-    totalPrice: orderInfo.totalPrice,
+  // const containerVariants = {
+  //   hidden: { opacity: 0, y: 50 },
+  //   visible: {
+  //     opacity: 1,
+  //     y: 0,
+  //     transition: { type: "spring", stiffness: 50, delay: 0.3 },
+  //   },
+  // };
+  const containerVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+  };
+  
+  
+  const buttonVariants = {
+    hover: { scale: 1.1, transition: { duration: 0.3 } },
   };
 
   const submitHandler = async (e) => {
@@ -134,7 +133,6 @@ const Payment = () => {
       toast.error(error.message);        //The error object here is likely an Axios error object, which contains  properties like message, name, etc. The toast.error function might not be able to handle rendering this object directly.
     }
    };
-
   useEffect(() => {
     if (error) {
       toast.error(error);
@@ -144,23 +142,61 @@ const Payment = () => {
 
   return (
     <Fragment>
-      <MetaData title="Payment" />
-      <CheckOutSteps activeStep={2} />
-      <div className="paymentContainer">
-        <form className="paymentForm" onSubmit={submitHandler}>
-          <input
-            type="submit"
-            value={`Pay - ₹${orderInfo && orderInfo.totalPrice}`}
-            ref={payBtn}
-            className="paymentFormBtn mt-20 bg-[#1F74BA]"
-          />
-        </form>
-      </div>
-    </Fragment>
+    <MetaData title="Payment" />
+    <CheckOutSteps activeStep={2} />
+
+    <motion.div
+      className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
+      <motion.h2
+        className="text-2xl font-semibold text-gray-800 mb-2"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+      >
+        Thank you for choosing us!
+      </motion.h2>
+      <motion.p
+        className="text-center text-gray-600 mb-1"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        You’re just one step away from securing your order. Pay securely using Razorpay.
+      </motion.p>
+      <motion.p
+        className="text-center text-gray-600 mb-6"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+      >
+        Please have your payment details ready. Once the payment is successful, you’ll be redirected to a confirmation page.
+      </motion.p>
+
+      <motion.form
+        className="w-full max-w-sm"
+        onSubmit={submitHandler}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <input
+          type="submit"
+          value={`Pay - ₹${orderInfo && orderInfo.totalPrice}`}
+          ref={payBtn}
+          className="w-full py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg shadow-md transition duration-200 mt-4 cursor-pointer"
+        />
+      </motion.form>
+    </motion.div>
+  </Fragment>
   );
 };
 
 export default Payment;
+
 
 
  //     const result = await stripe.confirmCardPayment(client_secret, {
@@ -210,3 +246,5 @@ export default Payment;
             <VpnKeyIcon />
             <CardCvcElement className="paymentInput" />
           </div> */}
+
+

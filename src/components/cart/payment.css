@@ -55,10 +55,13 @@
     cursor: pointer;
     transition: all 0.5s;
     outline: none;
+    background-color: rgb(247, 226, 0);
+    color: black;
   }
   
   .paymentFormBtn:hover {
-    background-color: #02467e;
+    background-color: gold;
+    color:black;
   }
   
   @media screen and (max-width: 600px) {

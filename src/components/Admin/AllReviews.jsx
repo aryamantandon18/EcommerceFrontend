@@ -90,14 +90,15 @@ const AllReviews = () => {
 
     return (
         <Fragment>
-            <MetaData title={'All Reviews - Admin'} />
-            <div className="dashboard">
-                <SideBar />
-                <div className="productListContainer">
-                    <h1 id="productListHeading">ALL REVIEWS</h1>
+        <MetaData title={'All Reviews - Admin'} />
+        <div className="flex mt-16 sm:mt-20 h-[125vh]">
+            <SideBar />
+            <div className="flex-1 p-6 bg-gray-100 overflow-x-scroll">
+                <h1 className="text-3xl font-semibold mb-6">ALL REVIEWS</h1>
+                <div className="bg-white shadow-md rounded-lg p-4">
                     <DataGrid
-                        rows={rows}          // Display rows in the table
-                        columns={columns}    // Define columns for the table
+                        rows={rows}
+                        columns={columns}
                         pageSizeOptions={[10]}
                         disableSelectionOnClick
                         autoHeight
@@ -105,7 +106,9 @@ const AllReviews = () => {
                     />
                 </div>
             </div>
-        </Fragment>
+        </div>
+    </Fragment>
+
     );
 };
 
