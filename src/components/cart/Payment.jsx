@@ -143,7 +143,7 @@ const Payment = () => {
   return (
     <Fragment>
     <MetaData title="Payment" />
-    <CheckOutSteps activeStep={2} />
+    {/* <CheckOutSteps activeStep={2} /> */}
 
     <motion.div
       className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4"

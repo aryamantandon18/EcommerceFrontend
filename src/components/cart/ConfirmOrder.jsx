@@ -39,8 +39,8 @@ const ConfirmOrder = () => {
       ) : (
         <Fragment>
           <MetaData title="Confirm Order" />
-          <CheckOutSteps activeStep={1} />
-          <div className="min-h-screen bg-white grid grid-cols-1 md:grid-cols-[2fr_1fr] pt-4">
+          {/* <CheckOutSteps activeStep={1} /> */}
+          <div className="min-h-screen bg-white grid grid-cols-1 md:grid-cols-[2fr_1fr] mt-[55px] sm:mt-20">
             <div className="p-5">
               <div className="border-b pb-5">
                 <Typography variant="h5" className="text-2xl font-semibold">Shipping Info</Typography>

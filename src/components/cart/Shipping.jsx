@@ -37,9 +37,9 @@ const Shipping = () => {
 
     return (
         <Fragment>
-            <CheckOutSteps activeStep={0} />
+            {/* <CheckOutSteps activeStep={0} /> */}
             <MetaData title="Shipping Info" />
-            <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-400 to-purple-500">
+            <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-400 to-purple-500 mt-12 sm:mt-0">
                 <div className="bg-white p-8 rounded-lg shadow-xl w-96">
                     <h3 className="text-2xl font-bold mb-6 text-center text-gray-800 border-l-4 border-blue-500 pl-3">
                         Shipping Info
