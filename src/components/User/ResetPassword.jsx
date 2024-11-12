@@ -30,8 +30,12 @@ const ResetPassword = () => {
             toast.error(error.message);
             dispatch(clearErrors());
         }
+        console.log("Line 33 ",success);
         if (success) {
+            console.log("Line 34");
             toast.success("Password Updated Successfully");
+            setPassword("");
+            setConfirmPassword("");
             navigate("/login");
         }
     }, [dispatch, error, navigate, success]);

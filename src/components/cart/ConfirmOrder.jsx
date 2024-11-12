@@ -15,7 +15,7 @@ const ConfirmOrder = () => {
     (acc, item) => acc + item.quantity * item.price, 0
   );
 
-  const shippingCharges = subtotal > 1000 ? 0 : 200;
+  const shippingCharges = subtotal < 1000 ? 0 : 200;
   const tax = subtotal * 0.18;
   const totalPrice = Math.round(subtotal + shippingCharges + tax);
   const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode}, ${shippingInfo.country}`;
@@ -23,7 +23,7 @@ const ConfirmOrder = () => {
   const proceedToPayment = () => {
     const data = {
       subtotal,
-      shippingCharges,
+      shippingCharges,  
       tax,
       totalPrice,
     };
