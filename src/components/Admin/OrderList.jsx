@@ -109,6 +109,23 @@ const OrderList = () => {
           <div className="bg-white shadow-md rounded-lg p-4">
             <div className="overflow-x-auto">
               <DataGrid
+              sx={{
+                overflowY:"scroll",
+                "& .MuiDataGrid-columnHeaders": {
+                    backgroundColor: "#1f2937",
+                    // fontSize: "16px",
+                    color: "#040404",
+                },
+                "& .MuiDataGrid-actionsCell": {
+                    color: "#ffffff", // Set the color of the actions (three dots) to white
+                },
+                "& .MuiDataGrid-columnHeaderTitle": {
+                    color: "#ffffff", // Ensuring the column header titles are white
+                },
+                '& .MuiDataGrid-cell:hover': {
+                    color: 'primary.main',
+                  },
+            }}
                 rows={rows}
                 columns={columns}
                 pageSizeOptions={[10]}
