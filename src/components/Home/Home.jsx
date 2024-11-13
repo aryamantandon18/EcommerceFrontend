@@ -77,7 +77,7 @@ const Home = () => {
             <Banner />
 
             {/* Featured Products Section */}
-            <motion.div className="bg-[#f1f2f4] px-3 pt-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+            <motion.div className="bg-[#f1f2f4] px-3 py-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
               <div className="bg-white group rounded-md">
                 <h2 className="homeHeading mx-auto pt-8 pb-2 mb-7 md:pt-10 md:mb-10">Featured Products</h2>
                 <div className="flex mx-auto w-[99%] justify-center max-w-full h-[60vh]">
