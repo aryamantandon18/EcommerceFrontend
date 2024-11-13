@@ -118,6 +118,16 @@ const Home = () => {
               </div>
             </motion.div>
 
+            <motion.div
+              className="bg-blue-100 w-[99%] h-[100px] lg:h-[200px] rounded-md mx-auto flex flex-col px-10 py-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+            >
+              <p className="text-xl lg:text-5xl font-bold my-2 lg:my-4">Connect with us!</p>
+              <p className="text-sm lg:text-lg font-medium">Open for 24 X 7 customer support</p>
+            </motion.div>
+            
             {/* Best Sellers Section */}
             <motion.div className="pt-5 w-[99%] mx-auto bg-white mt-4 rounded-md">
               <h2 className="homeHeading mx-auto pt-8 pb-2 mb-7 md:pt-10 md:mb-10">Best Sellers</h2>
