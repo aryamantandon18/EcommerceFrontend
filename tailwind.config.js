@@ -8,7 +8,12 @@ module.exports = {
       boxShadow: {
         'image': '0px 0px 7px 1px rgba(96,165,250,0.7)', 
       },
+      fontFamily: {
+        roboto: ['Roboto', 'sans-serif'], // Adding Roboto font-family
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar')
+  ],
 }

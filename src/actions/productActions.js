@@ -123,7 +123,7 @@ export const createProduct=(productData)=>async(dispatch)=>{
     try {
         dispatch({type:NEW_PRODUCT_REQUEST});
         const config={
-            headers:{"Content-Type":"application/json"},
+            headers:{"Content-Type":"multipart/form-data"},
             withCredentials: true, 
         }
         const {data} = await axios.post(`${server}/admin/product/new`,productData,config);

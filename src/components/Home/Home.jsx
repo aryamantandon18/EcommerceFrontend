@@ -79,7 +79,7 @@ const Home = () => {
             {/* Featured Products Section */}
             <motion.div className="bg-[#f1f2f4] px-3 py-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
               <div className="bg-white group rounded-md">
-                <h2 className="homeHeading mx-auto pt-8 pb-2 mb-7 md:pt-10 md:mb-10">Featured Products</h2>
+                <h2 className="text-center text-[1.4vmax] border-b-2 border-gray-400 w-[20vmax] font-roboto mx-auto pt-8 pb-2 mb-7 md:pt-10 md:mb-10">Featured Products</h2>
                 <div className="flex mx-auto w-[99%] justify-center max-w-full h-[60vh]">
                   <div className="my-auto lg:mt-36 cursor-pointer hover:font-bold">
                     <button
@@ -91,7 +91,7 @@ const Home = () => {
                     </button>
                   </div>
 
-                  <div className="flex flex-wrap justify-center">
+                  <div className="flex flex-wrap justify-center sm:space-x-2">
                     {featuredProducts.slice(currentPage, currentPage + productsPerPage).map((product, index) => (
                       <motion.div
                         key={product._id}
@@ -129,9 +129,9 @@ const Home = () => {
             </motion.div>
             
             {/* Best Sellers Section */}
-            <motion.div className="pt-5 w-[99%] mx-auto bg-white mt-4 rounded-md">
-              <h2 className="homeHeading mx-auto pt-8 pb-2 mb-7 md:pt-10 md:mb-10">Best Sellers</h2>
-              <div className="flex mx-auto w-[99%] justify-center max-w-full h-[60vh] flex-wrap">
+            <motion.div className="pt-5 w-[99%] mx-auto max-w-full bg-white mt-4 rounded-md">
+              <h2 className="text-center text-[1.4vmax] border-b-2 border-gray-400 w-[20vmax] font-roboto mx-auto pt-8 pb-2 mb-7 md:pt-10 md:mb-10">Best Sellers</h2>
+              <div className="flex mx-auto justify-center max-w-full h-[60vh] flex-wrap sm:space-x-2">
                 {featuredProducts.slice(4,sliceEnd).map((product) => (
                   <motion.div
                     key={product._id}
