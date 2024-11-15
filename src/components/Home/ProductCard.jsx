@@ -10,7 +10,7 @@ export const ProductCard = ({ product }) => {
     };
 
     return (
-        <Link className="flex flex-col items-center text-gray-800 hover:shadow-lg transition-all duration-500 p-2 m-2 w-[14vmax] hover:translate-y-[-1vmax]" to={`/product/${product._id}`}>
+        <Link className="flex flex-col items-center text-gray-800 hover:shadow-lg transition-all duration-500 p-2 m-2 w-[14vmax] hover:translate-y-[-1vmax] border-gray-200 border-2" to={`/product/${product._id}`}>
             <img className="w-[14vmax] h-[14vmax]" src={product.images && product.images[0].url} alt={product.name} />
             <p className="font-roboto text-[1.2vmax] my-1">{product.name}</p>
             <div className="flex items-center sm:space-x-2 sm:my-1 flex-wrap ">

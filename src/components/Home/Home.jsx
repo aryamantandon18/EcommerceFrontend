@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState, useRef } from 'react';
 import MetaData from '../layouts/MetaData.js';
 import { ProductCard } from './ProductCard';
-import './Home.scss';
 import { useSelector} from 'react-redux';
 import Loader from '../layouts/loader/Loader.jsx';
 import toast from 'react-hot-toast';
@@ -131,7 +130,7 @@ const Home = () => {
             {/* Best Sellers Section */}
             <motion.div className="pt-5 w-[99%] mx-auto max-w-full bg-white mt-4 rounded-md">
               <h2 className="text-center text-[1.4vmax] border-b-2 border-gray-400 w-[20vmax] font-roboto mx-auto pt-8 pb-2 mb-7 md:pt-10 md:mb-10">Best Sellers</h2>
-              <div className="flex mx-auto justify-center max-w-full h-[60vh] flex-wrap sm:space-x-2">
+              <div className="flex mx-auto justify-center sm:w-[100%] w-[90%] h-[60vh] flex-wrap sm:space-x-2">
                 {featuredProducts.slice(4,sliceEnd).map((product) => (
                   <motion.div
                     key={product._id}

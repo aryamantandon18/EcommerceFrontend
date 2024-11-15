@@ -94,7 +94,8 @@ const ProductDetails = () => {
 
     useEffect(()=>{
       dispatch(getProductDetails(id)); 
-    },[id])
+    },[id,dispatch])
+
     useEffect(()=>{
       if(product?.images) setProductImage(product?.images[0]);
     },[product,dispatch])
@@ -134,7 +135,7 @@ const ProductDetails = () => {
         {/* Images */}
         <div className="lg:flex flex-col gap-4 mr-4 mt-0.5 hidden h-[60vh] pr-2 overflow-y-auto scrollbar-thin scrollbar-track-slate-600">
         {product && product.images.map((imageObj,index)=>(
-           <img key={index} src={imageObj.url} className="w-[60px] h-[60px] border-[0.7px] border-gray-700 rounded-lg hover:shadow-image focus:shadow-image active:shadow-image" 
+           <img key={index} src={imageObj.url} alt="Product" className="w-[60px] h-[60px] border-[0.7px] border-gray-700 rounded-lg hover:shadow-image focus:shadow-image active:shadow-image" 
            onClick={()=> {setProductImage(imageObj); setShowVideos(false);}}
            />
         ))}

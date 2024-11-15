@@ -115,6 +115,6 @@
   }
   .products{
     transform: translateX(0px);
-    padding: 0 6vmax;
+    padding: 0 2vmax;
   }
 }
