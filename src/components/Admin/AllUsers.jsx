@@ -1,6 +1,4 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { clearErrors } from '../../actions/productActions'
-import toast from 'react-hot-toast'
 import { DataGrid } from '@mui/x-data-grid'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -78,11 +76,11 @@ const AllUsers = () => {
             renderCell: (params) => {
                 return (
                     <Fragment>
-                        <Link to={`/admin/user/${params.row.id}`}>
+                        {/* <Link to={`/admin/user/${params.row.id}`}>
                             <EditIcon className="text-blue-500 hover:text-blue-700 mr-2" />
-                        </Link>
-                        <Button onClick={() => deleteUserHandler(params.row.id)} className="text-red-500 hover:text-red-700">
-                            <DeleteIcon />
+                        </Link> */}
+                        <Button onClick={() => deleteUserHandler(params.row.id)}>
+                            <DeleteIcon className="text-red-500 hover:text-red-700"/>
                         </Button>
                     </Fragment>
                 )

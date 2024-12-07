@@ -24,7 +24,7 @@ const AllReviews = () => {
     const getReviews = async (currentPage = 1) => {
         try {
             setLoading(true); // Set loading to true while fetching
-            const { data } = await axios.post(`${server}/admin/products/reviews?page=${currentPage}&limit=10`,{},{
+            const { data } = await axios.post(`${server}/admin/reviews?page=${currentPage}&limit=10`,{},{
                 withCredentials:true,   
             });
             
@@ -59,11 +59,11 @@ const AllReviews = () => {
             flex: 0.3,
             renderCell: (params) => (
                 <Fragment>
-                    <Link to={`/admin/review/${params.row.reviewId}`}>
-                        <EditIcon />
-                    </Link>
+                    {/* <Link to={`/admin/reviews/${params.row.reviewId}`}>
+                        <EditIcon className="text-blue-500 hover:text-blue-700 mr-2"/>
+                    </Link> */}
                     <Button onClick={() => deleteReviewHandler(params.row.reviewId)}>
-                        <DeleteIcon />
+                        <DeleteIcon className="text-red-500 hover:text-red-700"/>
                     </Button>
                 </Fragment>
             ),
@@ -72,7 +72,7 @@ const AllReviews = () => {
 
     // Map the reviews data to rows for DataGrid
     const rows = reviews.map((review) => ({
-        reviewId: review.reviewId.slice(0,15) +"...",  // Use the review ID as the row ID
+        reviewId: review.reviewId,  // Use the review ID as the row ID
         productId: review.productId.slice(0,15)+"...",
         username: review.userName,  // Assuming the review contains the user's name
         rating: review.rating,
@@ -83,7 +83,9 @@ const AllReviews = () => {
     const deleteReviewHandler = async (reviewId) => {
         try {
             // Call API to delete review
-            await axios.delete(`${server}/reviews/${reviewId}`);
+            await axios.delete(`${server}/admin/review/${reviewId}`,{
+                withCredentials:true,
+            });
             getReviews(page);  // Refresh the reviews list
             toast.success('Review deleted successfully');
         } catch (error) {

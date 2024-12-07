@@ -41,12 +41,12 @@ const OrderList = () => {
   };
 
   const columns = [
-    { field: "id", headerName: "OrderId", minWidth: 200, flex: 1 },
+    { field: "id", headerName: "OrderId", minWidth: 200, flex: 1 },  // Reduced flex for OrderId
     {
       field: "status",
       headerName: "Status",
       minWidth: 100,
-      flex: 0.5,
+      flex: 0.4,  // Reduced flex for Status
       cellClassName: (params) => {
         const statusValue = params.row.status;
         return statusValue === "Delivered" ? "greenColor" : "redColor";
@@ -57,35 +57,36 @@ const OrderList = () => {
       headerName: "Items Qty",
       type: "number",
       minWidth: 120,
-      flex: 0.3,
+      flex: 0.3,  // Reduced flex for Items Qty
     },
     {
       field: "amount",
       headerName: "Amount",
       type: "number",
       minWidth: 150,
-      flex: 0.5,
+      flex: 0.5,  // Reduced flex for Amount
     },
     {
       field: "actions",
       headerName: "Actions",
-      flex: 0.3,
+      flex: 0.3,  // Increased flex for Actions to push it to the end
       minWidth: 120,
       sortable: false,
       renderCell: (params) => {
         return (
           <Fragment>
-            <Link to={`/admin/order/${params.row.id}`}>
-              <EditIcon />
-            </Link>
+            {/* <Link to={`/admin/order/${params.row.id}`}>
+              <EditIcon className="text-blue-500 hover:text-blue-700 mr-2"/>
+            </Link> */}
             <Button onClick={() => { deleteOrderHandler(params.row.id) }}>
-              <DeleteIcon />
+              <DeleteIcon className="text-red-500 hover:text-red-700" />
             </Button>
           </Fragment>
         );
       },
     }
   ];
+  
 
   const rows = [];
   if (Array.isArray(orders)) {
@@ -132,10 +133,7 @@ const OrderList = () => {
                 disableSelectionOnClick
                 autoHeight
                 className="productListTable"
-                // Hide columns on small screens
-                columnVisibilityModel={{
-                  actions: window.innerWidth < 768, // Hide 'Actions' on mobile
-                }}
+                // Hide columns on small screen
               />
             </div>
           </div>

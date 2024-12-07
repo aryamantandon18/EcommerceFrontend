@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { register } from '../../actions/userActions';
-import IconButton from '@mui/material/IconButton';
+import { clearErrors, register } from '../../actions/userActions';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import toast from 'react-hot-toast';
-import { CLEAR_ERRORS } from '../../constants/userConstant';
 
 const Register = () => {
     const [show, setShow] = useState(false);
@@ -15,37 +13,40 @@ const Register = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { error, loading, isAuthenticated } = useSelector(state => state.user);
+    const { error,isAuthenticated } = useSelector(state => state.user);
 
     const [user, setUser] = useState({
-        name: "",
-        email: "",
-        password: "",
+        name: "Rahul",
+        email: "rahul@gmail.com",
+        password: "password",
+        role:"user",
     });
-    const { name, email, password } = user;
-    const [role, setRole] = useState('user');
+    const { name, email, password, role } = user;
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const myForm = new FormData();
+        console.log("Line 29 ",avatar);
         myForm.set("name", name);
         myForm.set("email", email);
         myForm.set("password", password);
         myForm.set("role", role);
         myForm.set("avatar", avatar);
+
         dispatch(register(myForm));
     };
 
     const registerUserHandler = (e) => {
         if (e.target.name === 'avatar') {
+            const file = e.target.files[0];
             const reader = new FileReader();
             reader.onload = () => {
                 if (reader.readyState === 2) {
-                    setAvatarPreview(reader.result);
-                    setAvatar(reader.result);
+                    setAvatarPreview(reader.result);  // Store the preview for the UI
+                    setAvatar(file);   // Store the file object for upload
                 }
             };
-            reader.readAsDataURL(e.target.files[0]);
+            reader.readAsDataURL(file);
         } else {
             setUser({ ...user, [e.target.name]: e.target.value });
         }
@@ -54,7 +55,7 @@ const Register = () => {
     useEffect(() => {
         if (error) {
             toast.error(error);
-            dispatch({ type: CLEAR_ERRORS });
+            dispatch(clearErrors());
         }   
         if (isAuthenticated) {
             navigate("/");
@@ -110,7 +111,7 @@ const Register = () => {
                         <select 
                             name="role"
                             value={role}
-                            onChange={(e) => setRole(e.target.value)}
+                            onChange={registerUserHandler}
                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                         >
                             <option value="User">User</option>

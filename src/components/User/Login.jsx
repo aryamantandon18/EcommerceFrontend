@@ -1,11 +1,9 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { login } from '../../actions/userActions';
-import { CLEAR_ERRORS } from '../../constants/userConstant';
+import { clearErrors, login } from '../../actions/userActions';
 import toast from 'react-hot-toast';
 import Loader from '../layouts/loader/Loader';
-import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
@@ -30,7 +28,7 @@ const Login = () => {
         }
         if (error) {
             toast.error(error);
-            dispatch({ type: CLEAR_ERRORS });
+            dispatch(clearErrors());
         }
     }, [dispatch, error, isAuthenticated, navigate]);
 
