@@ -8,13 +8,6 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import DescriptionIcon from '@mui/icons-material/Description';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import StorageIcon from '@mui/icons-material/Storage';
-// import {
-//   FormHelperText,
-//   Grid,
-//   Input,
-//   InputLabel,
-//   TextField,
-// } from "@mui/material";
 import toast from "react-hot-toast";
 import { clearErrors, getProductDetails, updateProduct } from "../../actions/productActions";
 import { useNavigate, useParams } from "react-router-dom";
@@ -118,7 +111,7 @@ const UpdateProduct = () => {
   return (
     <Fragment>
     <MetaData title="Update Product" />
-    <div className="dashboard">
+    <div className="flex mt-16 sm:mt-20 h-[125vh] bg-[#DDDDDD]">
       <SideBar />
       <div className="newProductContainer">
         <form

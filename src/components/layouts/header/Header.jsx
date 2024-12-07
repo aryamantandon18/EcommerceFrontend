@@ -97,7 +97,7 @@ const Header = () => {
             <>
               <Link to="/cart" className="text-white hover:text-yellow-300 transition-colors">Cart</Link>
               <Link to="/orders" className="text-white hover:text-yellow-300 transition-colors">Orders</Link>
-              <Link to="/admin/dashboard" className="text-white hover:text-yellow-300 transition-colors">Dashboard</Link>
+              {user?.role=="admin" && <Link to="/admin/dashboard" className="text-white hover:text-yellow-300 transition-colors">Dashboard</Link>}
               <Link to="/" onClick={()=>logoutUser()} className="text-white hover:text-yellow-300 transition-colors">Logout</Link>
               <UserOptions user={user} top={7} left={16}/>
               
@@ -138,7 +138,7 @@ const Header = () => {
               <>
                 <Link to="/cart" className="text-white py-2"  onClick={() => { setMenuOpen(false); }}>Cart</Link>
                 <Link to="/orders" className="text-white py-2"  >Orders</Link>
-              <Link to="/admin/dashboard" className="text-white py-2"  >Dashboard</Link>
+              {user?.role=="admin" && <Link to="/admin/dashboard" className="text-white py-2"  >Dashboard</Link>}
               <Link to="/" onClick={() => logoutUser()} className="text-white py-2">Logout</Link>
                 <UserOptions user={user} top={10} left={16} noOptions={true}/>
               </>

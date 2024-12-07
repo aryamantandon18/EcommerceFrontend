@@ -16,9 +16,9 @@ const Register = () => {
     const { error,isAuthenticated } = useSelector(state => state.user);
 
     const [user, setUser] = useState({
-        name: "Rahul",
-        email: "rahul@gmail.com",
-        password: "password",
+        name: "",
+        email: "",
+        password: "",
         role:"user",
     });
     const { name, email, password, role } = user;

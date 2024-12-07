@@ -37,6 +37,12 @@ const SideBar = () => {
           <span className={`ml-2 text-sm ${sidebarOpen ? 'inline-block' : 'hidden group-hover:inline-block lg:inline-block'}`}>Orders</span>
         </Link>
 
+        <Link to="/admin/products" className="flex items-center space-x-2 hover:bg-gray-700 p-2 rounded-lg mb-4 group">
+          <ListAltIcon />
+          <span className={`ml-2 text-sm ${sidebarOpen ? 'inline-block' : 'hidden group-hover:inline-block lg:inline-block'}`}>Products</span>
+        </Link>
+
+
         <Link to="/admin/users" className="flex items-center space-x-2 hover:bg-gray-700 p-2 rounded-lg mb-4 group">
           <PeopleIcon />
           <span className={`ml-2 text-sm ${sidebarOpen ? 'inline-block' : 'hidden group-hover:inline-block lg:inline-block'}`}>Users</span>
