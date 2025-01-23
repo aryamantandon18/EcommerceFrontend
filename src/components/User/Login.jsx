@@ -26,19 +26,22 @@ const Login = () => {
         if (isAuthenticated) {
             navigate("/");
         }
+    }, [isAuthenticated, navigate]);
+
+    useEffect(()=>{
         if (error) {
             toast.error(error);
             dispatch(clearErrors());
         }
-    }, [dispatch, error, isAuthenticated, navigate]);
+    },[dispatch, error])
 
     return (
         <Fragment>
             {loading ? (
                 <Loader />
             ) : (
-                <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-400 to-purple-500">
-                    <div className="bg-white p-8 rounded-lg shadow-xl w-96">
+                <div className={`flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-400 to-purple-500`}>
+                    <div className="bg-white p-8 rounded-lg shadow-xl w-96 animate-fromDown ">
                         <h1 className="text-3xl font-bold mb-6 text-center text-gray-800 border-l-4 border-blue-500 pl-3">
                             Login Here
                         </h1>

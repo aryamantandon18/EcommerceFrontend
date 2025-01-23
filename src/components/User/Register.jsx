@@ -63,9 +63,9 @@ const Register = () => {
     }, [dispatch, error, isAuthenticated, navigate]);
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-green-400 to-blue-500">
-            <div className="bg-white p-8 rounded-lg shadow-xl w-96">
-                <h1 className="text-3xl font-bold mb-6 text-center text-gray-800 border-l-4 border-green-500 pl-3">Register Here</h1>
+        <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-400 to-purple-500">
+            <div className="bg-white p-8 rounded-lg shadow-xl w-96 animate-fromDown">
+                <h1 className="text-3xl font-bold mb-6 text-center text-gray-800 border-l-4 border-blue-500 pl-3">Register Here</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
                         <input 
@@ -74,7 +74,7 @@ const Register = () => {
                             value={name}
                             onChange={registerUserHandler}
                             placeholder="Username" 
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             required 
                         />
                     </div>
@@ -85,7 +85,7 @@ const Register = () => {
                             value={email}
                             onChange={registerUserHandler}
                             placeholder="Email" 
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             required 
                         />
                     </div>
@@ -96,7 +96,7 @@ const Register = () => {
                             value={password}
                             onChange={registerUserHandler}
                             placeholder="Password" 
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             required 
                         />
                         <button 
@@ -112,7 +112,7 @@ const Register = () => {
                             name="role"
                             value={role}
                             onChange={registerUserHandler}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
                             <option value="User">User</option>
                             <option value="Admin">Admin</option>
@@ -130,13 +130,13 @@ const Register = () => {
                     </div>
                     <button 
                         type="submit" 
-                        className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition duration-300"
+                        className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-green-600 transition duration-300"
                     >
                         Sign Up
                     </button>
                 </form>
                 <div className="mt-4 text-center">
-                    <Link to="/login" className="text-green-500 hover:underline">
+                    <Link to="/login" className="text-blue-500 hover:underline">
                         Already have an account? Login
                     </Link>
                 </div>

@@ -3,7 +3,6 @@ import "./App.css";
 import React, { useEffect, lazy, Suspense } from "react";
 import webFont from "webfontloader";
 import { Toaster } from "react-hot-toast";
-import { useSelector } from "react-redux";
 import store from "./store.js";
 import { loadUser } from "./actions/userActions.js";
 import Loader from "./components/layouts/loader/Loader.jsx";
@@ -38,8 +37,6 @@ const AllUsers = lazy(() => import("./components/Admin/AllUsers.jsx"));
 const Home = lazy(() => import("./components/Home/Home.jsx"));
 
 function App() {
-  const { isAuthenticated, user } = useSelector((state) => state.user);
-
   useEffect(() => {
     webFont.load({
       google: {
@@ -89,19 +86,19 @@ function App() {
 export default App;
 
 
-{
-  /* <Route path="/products/:keyword" element={<Products/>} /> */
-}
-{
-  /* <Route path="/search" element={<Search/>} />     */
-}
+
+/* <Route path="/products/:keyword" element={<Products/>} /> */
+
+
+/* <Route path="/search" element={<Search/>} />     */
+
 // <ProtectedRoute exact path="/account" component={Profile} />
 // <Route path="/account" element={<ProtectedRoute element={<Profile />} />}/>
-{
-  /* <Route path="/me/update"   element={<ProtectedRoute element={<UpdateProfile/>}/>}   /> */
-}
 
-{
+/* <Route path="/me/update"   element={<ProtectedRoute element={<UpdateProfile/>}/>}   /> */
+
+
+
   /* {stripeApiKey && (
       <Route element={<ElementLayout stripe={loadStripe(stripeApiKey)} />} >
       <Route path="/process/payment" element={<Payment />} />
@@ -110,5 +107,5 @@ export default App;
     rzp_test_vHbrgp2hw5L3bw  
     soCTLJsoOBir0aWxLAOFwA4v
     */
-}
-  {/* <Route path="/order/:id" element={<OrderDetails/>} /> */}
+// 
+  // {/* <Route path="/order/:id" element={<OrderDetails/>} /> */}

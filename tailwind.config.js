@@ -1,3 +1,4 @@
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -11,7 +12,18 @@ module.exports = {
       fontFamily: {
         roboto: ['Roboto', 'sans-serif'], // Adding Roboto font-family
       },
+      keyframes:{
+        fromDown:{
+          '0%':{transform:'translateY(10%)',opacity:'20%'},
+          '50%':{transform:'translateY(5%)',opacity:'50%'},
+          '100%':{transform:'translateY(0%)',opacity:'100%'},
+        }
+      },
+      animation:{
+        fromDown:'fromDown 0.4s ease-out',
+      }
     },
+    
   },
   plugins: [
     require('tailwind-scrollbar')
