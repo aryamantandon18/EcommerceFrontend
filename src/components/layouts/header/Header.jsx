@@ -138,7 +138,7 @@ const Header = () => {
               <>
                 <Link to="/cart" className="text-white py-2"  onClick={() => { setMenuOpen(false); }}>Cart</Link>
                 <Link to="/orders" className="text-white py-2"  >Orders</Link>
-              {user?.role=="admin" && <Link to="/admin/dashboard" className="text-white py-2"  >Dashboard</Link>}
+              {user?.role=="Admin" && <Link to="/admin/dashboard" className="text-white py-2"  >Dashboard</Link>}
               <Link to="/" onClick={() => logoutUser()} className="text-white py-2">Logout</Link>
                 <UserOptions user={user} top={10} left={16} noOptions={true}/>
               </>
