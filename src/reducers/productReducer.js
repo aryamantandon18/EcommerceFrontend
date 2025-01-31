@@ -170,7 +170,7 @@ export const deleteProduct=(state={},action)=>{
                 loading:false,
                 isDeleted:action.payload,
             }
-        case DELETE_PRODUCT_SUCCESS:
+        case UPDATE_PRODUCT_SUCCESS:
              return{
                     ...state,
                     loading:false,

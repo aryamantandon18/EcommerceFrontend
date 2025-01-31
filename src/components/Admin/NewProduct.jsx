@@ -13,6 +13,7 @@ import { clearErrors, createProduct } from "../../actions/productActions";
 import { useNavigate } from "react-router-dom";
 import { NEW_PRODUCT_RESET } from "../../constants/productConstants";
 import { Button } from "@mui/material";
+import { AddPhotoAlternate, VideoLibrary } from "@mui/icons-material";
 
 const NewProduct = () => {
   const dispatch = useDispatch();
@@ -58,9 +59,7 @@ const NewProduct = () => {
 
     // Append video files to the form data (as actual file objects, not base64)
     videos.forEach((video) => myForm.append("videos", video));
-    for (const [key, value] of myForm.entries()) {
-      console.log(`${key}:`, value);
-    }
+
     dispatch(createProduct(myForm));  
   };
 
@@ -135,32 +134,72 @@ const NewProduct = () => {
                 onChange={(e) => setStock(e.target.value)}
               />
             </div>
-            <div id="createProductFormFile">
+            <div className="flex gap-4 my-4">
+              <Button
+                variant="outlined"
+                component="label"
+                startIcon={<AddPhotoAlternate/>}
+                // className="flex-1"
+                sx={{
+                  fontSize: {
+                    xs: "0.65rem", // Smaller text on mobile
+                    sm: "0.875rem", 
+                  },
+                  flex:"1",
+                  padding: {
+                    xs: "6px 8px", // Smaller padding on mobile
+                    sm: "12px 16px", 
+                  },
+                }}
+              >
+                Choose Images
               <input
                 type="file"
-                name="images"
+                name="avatar"
+                hidden
                 accept="image/*"
                 onChange={createProductImagesChange}
                 multiple
               />
+              </Button>
+              <Button
+                variant="outlined"
+                color="success"
+                component="label"
+                startIcon={<VideoLibrary/>}
+                sx={{
+                  fontSize: {
+                    xs: "0.65rem", // Smaller text on mobile
+                    sm: "0.875rem", 
+                  },
+                  flex:"1",
+                  padding: {
+                    xs: "6px 8px", // Smaller padding on mobile
+                    sm: "12px 16px", 
+                  },
+                }}
+              >
+                Choose Videos
               <input
                 type="file"
                 name="videos"
                 accept="video/*"
+                hidden
                 onChange={createProductVideosChange}
                 multiple
               />
+              </Button>
             </div>
 
-            <div id="createProductFormImage">
+            <div className="flex gap-2 overflow-x-auto md:mt-4 overflow-y-hidden">
               {images.map((image, index) => (
-                <img key={index} src={URL.createObjectURL(image)} alt="Product Preview" />
+                <img key={index} src={URL.createObjectURL(image)} alt="Product Preview" className="md:w-16 md:h-16 w-10 h-10  object-cover"/>
               ))}
             </div>
 
-            <div id="createProductFormVideo">
+            <div className="flex gap-2 overflow-x-auto mt-2 md:mt-4 mb-3 overflow-y-hidden">
               {videos.map((video, index) => (
-                <video key={index} controls>
+                <video key={index} className="md:w-16 md:h-16 w-10 h-10 object-cover">
                   <source src={URL.createObjectURL(video)} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>

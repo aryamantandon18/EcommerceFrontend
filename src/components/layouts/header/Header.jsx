@@ -97,7 +97,7 @@ const Header = () => {
             <>
               <Link to="/cart" className="text-white hover:text-yellow-300 transition-colors">Cart</Link>
               <Link to="/orders" className="text-white hover:text-yellow-300 transition-colors">Orders</Link>
-              {user?.role=="admin" && <Link to="/admin/dashboard" className="text-white hover:text-yellow-300 transition-colors">Dashboard</Link>}
+              {user?.role=="Admin" && <Link to="/admin/dashboard" className="text-white hover:text-yellow-300 transition-colors">Dashboard</Link>}
               <Link to="/" onClick={()=>logoutUser()} className="text-white hover:text-yellow-300 transition-colors">Logout</Link>
               <UserOptions user={user} top={7} left={16}/>
               
