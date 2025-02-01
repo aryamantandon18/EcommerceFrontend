@@ -15,7 +15,7 @@ const SideBar = () => {
   }
 
   return (
-    <div className={`flex flex-col h-[125vh] bg-gray-800 text-white ${sidebarOpen ? 'w-64' : 'w-[55px]'} lg:w-64 transition-all`}>
+    <div className={`flex flex-col bg-gray-800 text-white ${sidebarOpen ? 'w-64' : 'w-[55px]'} lg:w-64 transition-all`}>
       {/* Hamburger icon for mobile view */}
       <div className="lg:hidden p-4 cursor-pointer pt-5" onClick={toggleSidebar}>
         {sidebarOpen ? <FaTimes className="text-white" size={24} /> : <FaBars className="text-white" size={24} />}

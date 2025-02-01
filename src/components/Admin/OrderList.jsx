@@ -9,7 +9,6 @@ import MetaData from '../layouts/MetaData';
 import SideBar from './SideBar';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
-import './productList.css'
 import { DELETE_ORDER_RESET } from '../../constants/orderConstant';
 import { deleteOrder, getAllOrders } from '../../actions/orderAction';
 
@@ -46,7 +45,7 @@ const OrderList = () => {
       field: "status",
       headerName: "Status",
       minWidth: 100,
-      flex: 0.4,  // Reduced flex for Status
+      flex: 0.5,  // Reduced flex for Status
       cellClassName: (params) => {
         const statusValue = params.row.status;
         return statusValue === "Delivered" ? "greenColor" : "redColor";
@@ -57,7 +56,7 @@ const OrderList = () => {
       headerName: "Items Qty",
       type: "number",
       minWidth: 120,
-      flex: 0.3,  // Reduced flex for Items Qty
+      flex: 0.5,  // Reduced flex for Items Qty
     },
     {
       field: "amount",
@@ -69,15 +68,17 @@ const OrderList = () => {
     {
       field: "actions",
       headerName: "Actions",
-      flex: 0.3,  // Increased flex for Actions to push it to the end
+      flex: 0.5,  // Increased flex for Actions to push it to the end
       minWidth: 120,
       sortable: false,
+      align:'right',
+      headerAlign:'right',
       renderCell: (params) => {
         return (
           <Fragment>
-            {/* <Link to={`/admin/order/${params.row.id}`}>
+            <Link to={`/admin/order/${params.row.id}`}>
               <EditIcon className="text-blue-500 hover:text-blue-700 mr-2"/>
-            </Link> */}
+            </Link>
             <Button onClick={() => { deleteOrderHandler(params.row.id) }}>
               <DeleteIcon className="text-red-500 hover:text-red-700" />
             </Button>
@@ -103,14 +104,15 @@ const OrderList = () => {
   return (
     <Fragment>
       <MetaData title={'ALL Orders - ADMIN'} />
-      <div className="flex mt-16 sm:mt-20 h-full">
+      <div className="flex mt-16 sm:mt-20 h-[100vh]">
         <SideBar />
-        <div className="flex-1 p-6 bg-gray-100 overflow-x-scroll">
-          <h1 className="text-3xl font-semibold mb-6">ALL ORDERS</h1>
+        <div className="flex-1 p-6 bg-white border-l border-gray-300 overflow-auto">
+          <h1 className="text-3xl font-semibold mb-6 text-center text-gray-600 transition-all duration-500">ALL ORDERS</h1>
           <div className="bg-white shadow-md rounded-lg p-4">
             <div className="overflow-x-auto">
               <DataGrid
               sx={{
+                fontSize:{xs:"15px",sx:"17px",md:"20px"},
                 overflowY:"scroll",
                 "& .MuiDataGrid-columnHeaders": {
                     backgroundColor: "#1f2937",
@@ -125,14 +127,33 @@ const OrderList = () => {
                 },
                 '& .MuiDataGrid-cell:hover': {
                     color: 'primary.main',
+                },
+                '& .MuiDataGrid-columnSeparator': {
+                  display:'none', // Make the column separator invisible by default
+                },
+                '&::-webkit-scrollbar': {
+                    width: '10px',
+                 },
+                '&::-webkit-scrollbar-track': {
+                   backgroundColor: '#f1f1f1',
+                   borderRightRadius: '10px',
                   },
+                    '&::-webkit-scrollbar-thumb': {
+                      backgroundColor: '#888',
+                      borderRightRadius: '10px',
+                    },
+                    '&::-webkit-scrollbar-thumb:hover': {
+                      backgroundColor: '#555',
+                    },
+
+                
             }}
                 rows={rows}
                 columns={columns}
                 pageSizeOptions={[10]}
                 disableSelectionOnClick
                 autoHeight
-                className="productListTable"
+                // className="productListTable"
                 // Hide columns on small screen
               />
             </div>
