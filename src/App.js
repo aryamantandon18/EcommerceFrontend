@@ -35,6 +35,7 @@ const OrderList = lazy(() => import("./components/Admin/OrderList.jsx"));
 const UpdateProduct = lazy(() => import("./components/Admin/UpdateProduct.jsx"));
 const AllUsers = lazy(() => import("./components/Admin/AllUsers.jsx"));
 const Home = lazy(() => import("./components/Home/Home.jsx"));
+const ProcessOrder = lazy(()=> import("./components/Admin/ProcessOrder.jsx"));
 
 function App() {
   useEffect(() => {
@@ -73,6 +74,7 @@ function App() {
           <Route path="/admin/product" element={<NewProduct />} />
           <Route path="/admin/product/:id" element={<UpdateProduct />} />
           <Route path="/admin/orders" element={<OrderList />} />
+          <Route path="admin/order/:id" element={<ProcessOrder/>}/>
           <Route path="/admin/users" element={<AllUsers />} />
           <Route path="/admin/reviews" element={<AllReviews/>}/>
         </Routes>
