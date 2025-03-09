@@ -69,6 +69,7 @@ const UpdateProduct = () => {
   },[dispatch,isUpdated,updateError,error,product,id,navigate])
 
   useEffect(()=>{
+    console.log("Line 72 ",isUpdated);
     if(isUpdated){
       toast.success("Product updated Successfully");
       navigate("/admin/products");

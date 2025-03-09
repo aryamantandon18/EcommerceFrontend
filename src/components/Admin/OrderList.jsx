@@ -43,10 +43,12 @@ const OrderList = () => {
     {
       accessorKey: "id",
       header: "Order ID",
+      size:300
     },
     {
       accessorKey: "status",
       header: "Status",
+      size:200,
       Cell: ({ cell }) => (
         <span className={cell.getValue() === "Delivered" ? "text-green-600" : "text-red-600"}>
           {cell.getValue()}
@@ -56,10 +58,12 @@ const OrderList = () => {
     {
       accessorKey: "itemsQty",
       header: "Items Qty",
+      size:200,
     },
     {
       accessorKey: "amount",
       header: "Amount",
+      size:300,
     },
     {
       accessorKey: "actions",
@@ -103,6 +107,9 @@ const OrderList = () => {
               enableStickyHeader
               enablePagination
               initialState={{ density: 'comfortable' }}
+              muiPaginationProps= {{
+                rowsPerPageOptions: [5, 10, 20,50],
+              }}
               muiTablePaperProps={{
                 elevation: 2,
                 sx: {
@@ -110,6 +117,32 @@ const OrderList = () => {
                   '&::-webkit-scrollbar': { width: '10px' },
                   '&::-webkit-scrollbar-thumb': { backgroundColor: '#888' },
                   '&::-webkit-scrollbar-thumb:hover': { backgroundColor: '#555' },
+                  '& .MuiTypography-root': { color: 'black' },
+                },
+              }}
+              muiTableContainerProps={{
+                sx: { width: '100%', minHeight: '500px',
+                  '& .MuiInputBase-input': { color: 'white' },
+                 }, // Ensure full width
+              }}
+              muiTableHeadCellProps={{
+                sx: {
+                  backgroundColor: '#1f2937',
+                  color: '#fff',  
+                  fontSize: '18px',
+                  textAlign: 'center',
+                  '& .MuiTableSortLabel-root': { color: 'white' }, // Sort Icon color
+                  '& .MuiTableSortLabel-icon': { color: 'white' }, // Sort Asc/Desc icon color
+                  '& .MuiIconButton-root': { color: 'white' }, // 3-dot column options menu color
+                  '& .MuiTableSortLabel-icon': { color: 'white !important' },
+                },
+              }}
+              muiTableBodyCellProps={{
+                sx: { textAlign: 'center', fontSize: '15px' }, // Center align content
+              }}
+              muiTableProps={{
+                sx: {
+                  '& .MuiTableRow-hover:hover': { backgroundColor: 'rgba(0, 0, 0, 0.08)' },
                 },
               }}
             />

@@ -132,6 +132,7 @@ export const newReviewReducer = (state={},action)=>{
             }
         case NEW_REVIEW_SUCCESS:
             return {
+                ...state,
                 loading:false,
                 success:action.payload,
             }    

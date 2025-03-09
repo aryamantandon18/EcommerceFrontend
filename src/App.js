@@ -8,7 +8,6 @@ import { loadUser } from "./actions/userActions.js";
 import Loader from "./components/layouts/loader/Loader.jsx";
 import AllReviews from "./components/Admin/AllReviews.jsx";
 
-// Dynamically import components using lazy
 const Header = lazy(() => import("./components/layouts/header/Header.jsx"));
 const Footer = lazy(() => import("./components/layouts/footer/Footer.jsx"));
 const ProductDetails = lazy(() => import("./components/product/productDetails.js"));
@@ -36,6 +35,7 @@ const UpdateProduct = lazy(() => import("./components/Admin/UpdateProduct.jsx"))
 const AllUsers = lazy(() => import("./components/Admin/AllUsers.jsx"));
 const Home = lazy(() => import("./components/Home/Home.jsx"));
 const ProcessOrder = lazy(()=> import("./components/Admin/ProcessOrder.jsx"));
+const NotFound = lazy(() => import("./components/Routes/NotFound.jsx"))
 
 function App() {
   useEffect(() => {
@@ -77,6 +77,8 @@ function App() {
           <Route path="admin/order/:id" element={<ProcessOrder/>}/>
           <Route path="/admin/users" element={<AllUsers />} />
           <Route path="/admin/reviews" element={<AllReviews/>}/>
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
         <Toaster />
@@ -89,25 +91,3 @@ export default App;
 
 
 
-/* <Route path="/products/:keyword" element={<Products/>} /> */
-
-
-/* <Route path="/search" element={<Search/>} />     */
-
-// <ProtectedRoute exact path="/account" component={Profile} />
-// <Route path="/account" element={<ProtectedRoute element={<Profile />} />}/>
-
-/* <Route path="/me/update"   element={<ProtectedRoute element={<UpdateProfile/>}/>}   /> */
-
-
-
-  /* {stripeApiKey && (
-      <Route element={<ElementLayout stripe={loadStripe(stripeApiKey)} />} >
-      <Route path="/process/payment" element={<Payment />} />
-      </Route>
-    )} 
-    rzp_test_vHbrgp2hw5L3bw  
-    soCTLJsoOBir0aWxLAOFwA4v
-    */
-// 
-  // {/* <Route path="/order/:id" element={<OrderDetails/>} /> */}

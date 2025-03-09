@@ -104,6 +104,7 @@ export const getProductDetails =(id)=> async(dispatch)=>{
             // console.log("SUBMITTING Review");
             const {data} = await axios.put(`${server}/product/review`,reviewData,config);
             // console.log("Review was DONE");
+            // console.log("Line 107 ", data);
 
             dispatch({
                 type:NEW_REVIEW_SUCCESS,payload:data.success

@@ -1,9 +1,9 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import React, { useEffect, useState } from 'react';
+import {MaterialReactTable} from 'material-react-table';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { IconButton } from '@mui/material';
 import MetaData from '../layouts/MetaData';
 import SideBar from './SideBar';
-import { Button } from '@mui/material';
 import axios from 'axios';
 import { server } from '../..';
 
@@ -35,35 +35,33 @@ const AllUsers = () => {
     }, []);
 
     const columns = [
-        { field: 'id', headerName: 'USER ID', minWidth: 200, flex: 0.5 },
-        { field: 'email', headerName: 'Email', minWidth: 200, flex: 1 },
-        { field: 'name', headerName: 'Name', minWidth: 150, flex: 0.3 },
+        { accessorKey: 'id', header: 'USER ID',size:300 },
+        { accessorKey: 'email', header: 'Email',size:400 },
+        { accessorKey: 'name', header: 'Name',size:250  },
         {
-            field: 'role',
-            headerName: 'Role',
-            minWidth: 150,
-            flex: 0.5,
-            renderCell: (params) => (
-                <span className={params.value.toLowerCase() === 'admin' ? 'text-green-500' : 'text-red-500'}>
-                    {params.value}
+            accessorKey: 'role',
+            header: 'Role',
+            size: 250,
+            Cell: ({ cell }) => (
+                <span className={cell.getValue().toLowerCase() === 'admin' ? 'text-green-500' : 'text-red-500'}>
+                    {cell.getValue()}
                 </span>
             ),
         },
         {
-            field: 'actions',
-            flex: 0.3,
-            headerName: 'Actions',
-            minWidth: 150,
-            sortable: false,
-            renderCell: (params) => (
-                <Button onClick={() => deleteUserHandler(params.row.id)}>
+            accessorKey: 'actions',
+            header: 'Actions',
+            size: 200,
+            Cell: ({ row }) => (
+                <IconButton onClick={() => deleteUserHandler(row.original.id)}>
                     <DeleteIcon className="text-red-500 hover:text-red-700" />
-                </Button>
+                </IconButton>
             ),
         },
     ];
+    
 
-    const rows = users.map((item) => ({
+    const data = users.map((item) => ({
         id: item._id,
         role: item.role,
         email: item.email,
@@ -71,83 +69,64 @@ const AllUsers = () => {
     }));
 
     return (
-        <Fragment>
+        <div>
             <MetaData title={'ALL Users - ADMIN'} />
-            <div className="flex sm:mt-20 mt-16 h-[125vh]">
+            <div className="flex sm:mt-20 mt-16 bg-[#f3f4f6] ">
                 <SideBar />
-                <div className="flex-1 p-6 bg-white border-l border-gray-300 overflow-auto">
-                    <h1 className="text-3xl font-semibold mb-6 text-center text-gray-600 transition-all duration-500">ALL USERS</h1>
-                    <DataGrid
-                        sx={{
-                            fontSize:{xs:"15px",sx:"17px",md:"20px"},
-                            overflowY:"scroll",
-                            backgroundColor: 'white',
-                            border: 'none !important',
-                            '& .MuiDataGrid-columnHeaders': {
-                                backgroundColor: '#1f2937',
-                                color: 'white',
-                            },
-                            '& .MuiDataGrid-actionsCell': {
-                                color: 'black',
-                            },
-                            '& .MuiDataGrid-columnHeaderTitle': {
-                                color: 'white',
-                            },
-                            // '& .MuiDataGrid-cell': {
-                            //     fontSize: '1vmax',
-                            //     color: 'rgba(0, 0, 0, 0.678)',
-                            //     border: 'none !important',
-                            // },
-                            '& .MuiDataGrid-cell:hover': {
-                                color: 'primary.main',
-                            },
-                            '& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-columnHeader:focus-within': {
-                                outline: "none !important",
-                            },
-                            '& .MuiDataGrid-cell:focus, & .MuiDataGrid-cell:focus-within': {
-                                outline: "none !important",
-                            },
-                            // '@media screen and (max-width:600px)': {
-                            //     '& .MuiDataGrid-cell': {
-                            //         fontSize: '4vw',
-                            //     },
-                            // },
-                            '& .MuiDataGrid-iconButtonContainer': {
-                                color: '#ffffff !important', // Change filter button color
-                                visibility: 'visible !important'
-                            },
-                            '& .MuiDataGrid-menuIcon': {
-                                color: '#ffffff !important', // Change options (three dots) button color
-                                visibility: 'visible !important'
-                            },
-                            '& .MuiDataGrid-columnSeparator': {
-                                display:'none', // Make the column separator invisible by default
-                              },
-                              '&::-webkit-scrollbar': {
-                                  width: '10px',
-                               },
-                              '&::-webkit-scrollbar-track': {
-                                 backgroundColor: '#f1f1f1',
-                                 borderRightRadius: '10px',
-                                },
-                                  '&::-webkit-scrollbar-thumb': {
-                                    backgroundColor: '#888',
-                                    borderRightRadius: '10px',
-                                  },
-                                  '&::-webkit-scrollbar-thumb:hover': {
-                                    backgroundColor: '#555',
-                                  },
-              
-                        }}
-                        rows={rows}
+                <div className="p-6 border-l border-gray-300 overflow-auto">
+                <h1 className="text-3xl font-semibold mb-6 text-center text-gray-600 transition-all duration-500">ALL USERS</h1>
+                <div className="bg-white shadow-md rounded-lg p-4 overflow-x-auto">
+                    <MaterialReactTable
                         columns={columns}
-                        pageSizeOptions={[10]}
-                        disableSelectionOnClick
-                        autoHeight
+                        data={data}
+                        enableColumnResizing
+                        enableColumnFilters
+                        enablePagination
+                        enableSorting
+                        initialState={{ density: 'comfortable' }}
+                        muiPaginationProps= {{
+                            rowsPerPageOptions: [5, 10, 20,50],
+                          }}
+                        muiTablePaperProps={{
+                            elevation: 2,
+                            sx: {
+                              overflowX: "auto",
+                              '&::-webkit-scrollbar': { width: '10px' },
+                              '&::-webkit-scrollbar-thumb': { backgroundColor: '#888' },
+                              '&::-webkit-scrollbar-thumb:hover': { backgroundColor: '#555' },
+                              '& .MuiTypography-root': { color: 'black' },
+                            },
+                          }}
+                          muiTableContainerProps={{
+                            sx: { width: '100%', minHeight: '500px',
+                              '& .MuiInputBase-input': { color: 'white' },
+                             }, // Ensure full width
+                          }}
+                          muiTableHeadCellProps={{
+                            sx: {
+                              backgroundColor: '#1f2937',
+                              color: '#fff',  
+                              fontSize: '18px',
+                              textAlign: 'center',
+                              '& .MuiTableSortLabel-root': { color: 'white' }, // Sort Icon color
+                              '& .MuiTableSortLabel-icon': { color: 'white' }, // Sort Asc/Desc icon color
+                              '& .MuiIconButton-root': { color: 'white' }, // 3-dot column options menu color
+                              '& .MuiTableSortLabel-icon': { color: 'white !important' },
+                            },
+                          }}
+                          muiTableBodyCellProps={{
+                            sx: { textAlign: 'center', fontSize: '15px' }, // Center align content
+                          }}
+                          muiTableProps={{
+                            sx: {
+                              '& .MuiTableRow-hover:hover': { backgroundColor: 'rgba(0, 0, 0, 0.08)' },
+                            },
+                          }}
                     />
+                </div>    
                 </div>
             </div>
-        </Fragment>
+        </div>
     );
 };
 

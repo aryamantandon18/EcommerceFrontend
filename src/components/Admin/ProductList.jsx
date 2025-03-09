@@ -70,11 +70,11 @@ const ProductList = () => {
   return (
     <Fragment>
       <MetaData title={'ALL Products - ADMIN'} />
-      <div className="flex sm:mt-20 mt-16  overflow-hidden">
+      <div className="flex sm:mt-20 mt-16 ">
         <SideBar />
-        <div className="flex-1 p-6 bg-[#f3f4f6] border-l border-gray-300">
-          <h1 className="text-3xl font-semibold mb-5 text-center text-gray-600 transition-all duration-500">ALL PRODUCTS</h1>
-          <div className="bg-white shadow-md rounded-lg p-4">
+        <div className="flex-1 p-6 bg-[#f3f4f6] border-l border-gray-300 overflow-auto">
+          <h1 className="text-3xl font-semibold mb-6 text-center text-gray-600 transition-all duration-500">ALL PRODUCTS</h1>
+          <div className="bg-white shadow-md rounded-lg p-4 overflow-x-auto">
             <MaterialReactTable
               columns={columns}
               data={rows}
@@ -83,36 +83,45 @@ const ProductList = () => {
               enableColumnResizing
               layoutMode="grid"
               initialState={{ pagination: { pageSize: 10 } }}
+              muiTablePaperProps={{
+                elevation: 2,
+                sx: {
+                  overflowX: "auto",
+                  '&::-webkit-scrollbar': { width: '10px' },
+                  '&::-webkit-scrollbar-thumb': { backgroundColor: '#888' },
+                  '&::-webkit-scrollbar-thumb:hover': { backgroundColor: '#555' },
+                  '& .MuiTypography-root': { color: 'black' },
+                },
+              }}
               muiTableContainerProps={{
-                sx: { width: '100%', minHeight: '500px' }, // Ensure full width
+                sx: { width: '100%', minHeight: '500px',
+                  '& .MuiInputBase-input': { color: 'white' },
+                 }, // Ensure full width
               }}
               muiTableHeadCellProps={{
                 sx: {
                   backgroundColor: '#1f2937',
-                  color: '#fff',
+                  color: '#fff',  
                   fontSize: '18px',
                   textAlign: 'center',
+                  '& .MuiTableSortLabel-root': { color: 'white' }, // Sort Icon color
+                  '& .MuiTableSortLabel-icon': { color: 'white' }, // Sort Asc/Desc icon color
+                  '& .MuiIconButton-root': { color: 'white' }, // 3-dot column options menu color
+                  '& .MuiTableSortLabel-icon': { color: 'white !important' },
                 },
               }}
               muiTableBodyCellProps={{
                 sx: { textAlign: 'center', fontSize: '15px' }, // Center align content
               }}
-              muiTablePaginationProps={{
-                sx: {
-                  backgroundColor: '#fff',
-                  color: '#000',
-                  '& .MuiTypography-root': { color: '#000' },
-                  '& .MuiSelect-select': { color: '#000' },
-                  '& .MuiSvgIcon-root': { color: '#000' },
-                },
-              }}
-              muiTablePaperProps={{
-                sx: {
-                  backgroundColor: '#fff',
-                  '& .MuiInputBase-input': { color: '#000' },
-                  '& .MuiTypography-root': { color: '#000' },
-                },
-              }}
+              // muiTablePaginationProps={{
+              //   sx: {
+              //     backgroundColor: '#fff',
+              //     color: '#000',
+              //     '& .MuiTypography-root': { color: '#000' },
+              //     '& .MuiSelect-select': { color: '#000' },
+              //     '& .MuiSvgIcon-root': { color: '#000' },
+              //   },
+              // }}
               muiTableProps={{
                 sx: {
                   '& .MuiTableRow-hover:hover': { backgroundColor: 'rgba(0, 0, 0, 0.08)' },

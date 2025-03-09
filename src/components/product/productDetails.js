@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 // import Carousel from 'react-material-ui-carousel';
 import {useSelector, useDispatch } from 'react-redux';
 import { getProductDetails, newReview } from '../../actions/productActions'
@@ -23,6 +23,8 @@ import { IoPricetagOutline } from "react-icons/io5";
 const ProductDetails = () => {
     const {id} = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const {isAuthenticated} = useSelector((state)=>state.user);
     const {product,loading,error} = useSelector((state) => state.productDetails);  //to pull data from the redux store.(from the reducer)
     const {success,error:reviewError} = useSelector((state)=>state.newReview); //extracting error from newReview as reviewError so that it does not confuse with the error of productDetails
     const [quantity, setQuantity] = useState(1);
@@ -65,8 +67,22 @@ const ProductDetails = () => {
       }
       const addToCartHandler=()=>{
         dispatch(addItemsToCart(id,quantity));
+        if(!isAuthenticated){
+          navigate("/login");
+          return;
+        }
         toast.success("Item Added To Cart ");
       } 
+
+      useEffect(() => {
+        console.log("Review Success State:", success);
+        if (success) {
+          toast.success("Review submitted Successfully");
+          setTimeout(() => {
+            dispatch({ type: NEW_REVIEW_RESET });
+          }, 1000);
+        }
+      }, [dispatch, success]); 
      
     useEffect(()=>{
       if(error){
@@ -77,13 +93,10 @@ const ProductDetails = () => {
         toast.error(reviewError);
         dispatch(clearErrors());
       }
-      if(success){
-        toast.success("Review submitted Successfully");
-        dispatch({type:NEW_REVIEW_RESET});
-      }
-
-                  //like in backend we use req.params.id to access the product is 
+      //like in backend we use req.params.id to access the product is 
     },[dispatch,error,success,reviewError,product])
+
+
 
     const options={
       size: "large",
