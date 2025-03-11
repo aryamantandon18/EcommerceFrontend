@@ -68,17 +68,7 @@ const UpdateProduct = () => {
     }
   },[dispatch,isUpdated,updateError,error,product,id,navigate])
 
-  useEffect(()=>{
-    console.log("Line 72 ",isUpdated);
-    if(isUpdated){
-      toast.success("Product updated Successfully");
-      navigate("/admin/products");
-      dispatch({type:UPDATE_PRODUCT_RESET})
-  }
-  },[isUpdated,dispatch])
-
   const updateProductSubmitHandler=(e)=>{
-    console.log("Line 78");
     e.preventDefault();
 
     const myForm = new FormData();
@@ -93,12 +83,20 @@ const UpdateProduct = () => {
 
     videos.forEach((video)=> myForm.append("videos",video));
     
-    for (const [key, value] of myForm.entries()) {
-      console.log(`${key}:`, value);
-    }
+    // for (const [key, value] of myForm.entries()) {
+    //   console.log(`${key}:`, value);
+    // }
 
     dispatch(updateProduct({id,productData:myForm}));
   }
+
+  useEffect(()=>{
+    if(isUpdated){
+      toast.success("Product updated Successfully");
+      navigate("/admin/products");
+      dispatch({type:UPDATE_PRODUCT_RESET})
+  }
+  },[isUpdated])
 
   // const updateProductImagesChange=(e)=>{
   //   const files = Array.from(e.target.files);

@@ -117,11 +117,13 @@
 }
 .detailsBlock-4 {
   color: rgba(0, 0, 0, 0.897);
-  font: 500 1.2vmax sans-serif;
+  font: 500 1vmax sans-serif;
+  width:70%;
 }
 .detailsBlock-4 > p {
   color: rgba(0, 0, 0, 0.8);
   font: 300 0.8vmax sans-serif;
+  margin-top: 3px;
 }
 .submitReview {
   border: none;

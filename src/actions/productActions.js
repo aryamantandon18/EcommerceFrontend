@@ -148,7 +148,7 @@ export const updateProduct=({id,productData})=>async(dispatch)=>{
         dispatch({type:UPDATE_PRODUCT_REQUEST});
 
         const config={
-            headers:{"Content-Type":"application/json"},
+            headers:{"Content-Type":"multipart/form-data"},
             withCredentials: true, 
         }
         const {data} = await axios.put(`${server}/admin/product/${id}`,productData,config);
@@ -170,9 +170,8 @@ export const updateProduct=({id,productData})=>async(dispatch)=>{
 export const deleteProduct = (id)=>async(dispatch)=>{
     try{
         dispatch({ type:DELETE_PRODUCT_REQUEST })
-
         const {data} = await axios.delete(`${server}/admin/product/${id}`,{
-            withCredentials: true
+            withCredentials: true,
           });
 
         dispatch({

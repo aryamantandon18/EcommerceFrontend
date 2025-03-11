@@ -66,52 +66,46 @@ const ProductDetails = () => {
         setOpen(false);
       }
       const addToCartHandler=()=>{
-        dispatch(addItemsToCart(id,quantity));
         if(!isAuthenticated){
           navigate("/login");
-          return;
         }
+        dispatch(addItemsToCart(id,quantity));
         toast.success("Item Added To Cart ");
       } 
 
       useEffect(() => {
-        console.log("Review Success State:", success);
         if (success) {
           toast.success("Review submitted Successfully");
-          setTimeout(() => {
-            dispatch({ type: NEW_REVIEW_RESET });
-          }, 1000);
+          dispatch(getProductDetails(id)); 
+          dispatch({ type: NEW_REVIEW_RESET });
         }
-      }, [dispatch, success]); 
+      }, [success]); 
      
     useEffect(()=>{
-      if(error){
-        toast.error(error);
+      if(error || reviewError){
+        toast.error(error || reviewError);
         dispatch(clearErrors());
-      }
-      if(reviewError){
-        toast.error(reviewError);
-        dispatch(clearErrors());
+        dispatch(getProductDetails(id));
       }
       //like in backend we use req.params.id to access the product is 
-    },[dispatch,error,success,reviewError,product])
+    },[error,success,reviewError,product])
 
 
 
     const options={
       size: "large",
-    value: product.rating,
+    value: product.rating || 0,
     readOnly: true,
     precision: 0.5,
     }
 
     useEffect(()=>{
       dispatch(getProductDetails(id)); 
-    },[id,dispatch])
+    },[id])
 
     useEffect(()=>{
       if(product?.images) setProductImage(product?.images[0]);
-    },[product,dispatch])
+    },[product])
 
     
   return ( 
@@ -210,7 +204,9 @@ const ProductDetails = () => {
     <span> ({product.numOfReviews} Reviews )</span>
     </div>
     <div className='detailsBlock-3'>
+    
     <h1>{`₹${product.price}`}</h1>
+    
     <div className='detailsBlock-3-1'>
       <div className='detailsBlock-3-1-1'>
         <button onClick={decreaseQuantity}>-</button>

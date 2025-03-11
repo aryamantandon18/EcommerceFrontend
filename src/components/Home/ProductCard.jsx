@@ -9,8 +9,6 @@ export const ProductCard = ({ product }) => {
         precision: 0.5,
     };
     
-    
-
     return (
         <Link className="flex flex-col items-center text-gray-800 shadow-md hover:shadow-xl transition-all duration-500 p-2 m-2 w-[14vmax] hover:translate-y-[-1vmax] border-gray-200 border-2" to={`/product/${product._id}`}>
             <img className="w-[14vmax] h-[14vmax]" src={product?.images && product?.images[0]?.url} alt={product?.name} />
