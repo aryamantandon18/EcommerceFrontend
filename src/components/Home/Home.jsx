@@ -9,9 +9,10 @@ import Banner from './Banner/Banner.jsx';
 import Categories from './Categories.jsx';
 import debounce from 'lodash/debounce';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion , useScroll} from 'framer-motion';
 import axios from 'axios';
 import { server } from '../../index.js';
+import Carousel from './carousel/Carousel.jsx';
 
 const Home = () => {
   const { loading } = useSelector((state) => state.products);
@@ -19,6 +20,7 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [productsPerPage, setProductsPerPage] = useState(4);
   const [sliceEnd,setSliceEnd] = useState(9);
+  const {scrollYProgress} = useScroll();
 
   const productRefs = useRef([]);
   const updateProductsPerPage = debounce(() => {
@@ -67,11 +69,18 @@ const Home = () => {
         <Fragment>
           <MetaData title="ECOMMERCE" />
           <motion.main
-            className="flex flex-col pt-16 md:pt-20 bg-[#f1f2f4]"
+            className="flex flex-col pt-16 md:pt-20 bg-[#f1f2f4] overflow-x-hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
           >
+            <motion.div
+            style={{
+              scaleX:scrollYProgress,
+            }}
+            className="bg-slate-400 w-full h-2 fixed left-0 top-[70px] z-10 rounded-md">
+              
+            </motion.div>
             <Categories />
             <Banner />
 
@@ -144,8 +153,26 @@ const Home = () => {
               </div>
             </motion.div>
 
+            <Carousel/>
+
+            <motion.div className="pt-5 w-[99%] mx-auto max-w-full bg-white mt-4 rounded-md">
+            
+              <div className="flex mx-auto justify-center sm:w-[100%] w-[90%] h-[60vh] flex-wrap sm:space-x-2 items-center">
+                {featuredProducts.slice(4,sliceEnd).map((product) => (
+                  <motion.div
+                    key={product._id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                  >
+                    <ProductCard product={product} />
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
             <motion.div
-              className="bg-green-200 w-[99%] h-[100px] lg:h-[200px] rounded-md mx-auto flex flex-col px-10 py-2 my-2"
+              className="bg-green-200 w-[99%] h-[100px] lg:h-[200px] rounded-md mx-auto flex flex-col px-10 py-2 my-2 mb-3"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7, duration: 0.5 }}
@@ -155,6 +182,9 @@ const Home = () => {
                 explore more
               </Link>
             </motion.div>
+
+
+                
           </motion.main>
         </Fragment>
       )}

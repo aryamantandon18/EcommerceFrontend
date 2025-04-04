@@ -6,8 +6,9 @@ import { AppContext } from '../../..';
 import UserOptions from './UserOptions';
 import { getProduct } from '../../../actions/productActions';
 import toast from 'react-hot-toast';
-import logo from './flipkart.png';
+import logo from '../../../assets/images/ecommerceLogo.png';
 import { logout } from '../../../actions/userActions';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Header = () => {
   const { currentPage, setCurrentPage, price, rating, category, setCategory, finalKeyword, setFinalKeyword } = useContext(AppContext);
@@ -67,45 +68,45 @@ const Header = () => {
 
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-gradient-to-r from-blue-600 to-purple-600 shadow-md">
-      <nav className="flex items-center justify-between py-4 px-4 md:px-6 max-w-screen-xl mx-auto">
-        {/* Logo and Site Name */}
+    <header className="fixed top-0 w-[100%] z-50 bg-gradient-to-r from-blue-600 to-purple-600 shadow-md">
+      <nav className="flex items-center justify-between py-4 px-4 md:px-6 w-full h-16 md:h-[70px]">
         <Link to="/" className="flex items-center space-x-2">
-          <img src={logo} alt="Logo" className="h-10 w-auto" />
-          <h2 className="text-lg md:text-2xl font-bold text-yellow-300">
-            <span className="font-bold">Shop</span>kart
+          <img src={logo} alt="Logo" className="h-11 w-auto"  />
+          <h2 className="text-lg md:text-3xl font-bold text-yellow-300">
+            <span className="font-bold">Shop</span>Bazar
           </h2>
         </Link>
 
         {/* Search Bar */}
-        <form onSubmit={searchHandler} className="relative flex-grow max-w-xs md:max-w-md mx-4 hidden md:block">
+        <form onSubmit={searchHandler} className=" relative flex-grow max-w-md md:max-w-xl mx-4 hidden md:block">
           <input
             type="text"
             placeholder="Search"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
-            className="w-full py-2 px-4 rounded-full border-2 border-blue-400 outline-none transition duration-200 ease-in-out transform hover:scale-105 focus:border-blue-600"
+            className="w-full py-2 px-4 rounded-full border-2 border-blue-400 outline-none transition duration-200 ease-in-out transform hover:scale-105 focus:border-blue-600 "
           />
           <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-700" />
         </form>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center space-x-6">
-          <Link to="/" className="text-white hover:text-yellow-300 transition-colors">Home</Link>
-          <Link to="/products" className="text-white hover:text-yellow-300 transition-colors">Products</Link>
+        <div className={`hidden md:flex items-center space-x-6 text-lg ${isAuthenticated ? "mr-2" : "mr-0"}`} >
+          <Link to="/" className="text-white hover:text-yellow-300 transition-colors focus:text-yellow-300 ">Home</Link>
+          <Link to="/products" className="text-white hover:text-yellow-300 transition-colors focus:text-yellow-300">Products</Link>
           {isAuthenticated ? (
             <>
-              <Link to="/cart" className="text-white hover:text-yellow-300 transition-colors">Cart</Link>
-              <Link to="/orders" className="text-white hover:text-yellow-300 transition-colors">Orders</Link>
-              {user?.role==="Admin" && <Link to="/admin/dashboard" className="text-white hover:text-yellow-300 transition-colors">Dashboard</Link>}
-              <Link to="/" onClick={()=>logoutUser()} className="text-white hover:text-yellow-300 transition-colors">Logout</Link>
-              <UserOptions user={user} top={7} left={16}/>
+              <Link to="/cart" className="text-white hover:text-yellow-300 transition-colors focus:text-yellow-300">Cart</Link>
+              <Link to="/orders" className="text-white hover:text-yellow-300 transition-colors focus:text-yellow-300">Orders</Link>
+              {user?.role==="Admin" && <Link to="/admin/dashboard" className="text-white hover:text-yellow-300 transition-colors focus:text-yellow-300">Dashboard</Link>}
+              <Link to="/" onClick={()=>logoutUser()} className="text-white hover:text-yellow-300 transition-colors focus:text-yellow-300">Logout</Link>
+              <LanguageSwitcher/>
+              <UserOptions user={user} top={7} right={16}/>
               
             </>
           ) : (
             <>
-              <Link to="/login" className="text-white hover:text-yellow-300 transition-colors">Login</Link>
-              <Link to="/register" className="text-white hover:text-yellow-300 transition-colors">Sign Up</Link>
+              <Link to="/login" className="text-white hover:text-yellow-300 transition-colors focus:text-yellow-300">Login</Link>
+              <Link to="/register" className="text-white hover:text-yellow-300 transition-colors focus:text-yellow-300">Sign Up</Link>
             </>
           )}
         </div>
@@ -140,7 +141,7 @@ const Header = () => {
                 <Link to="/orders" className="text-white py-2"  >Orders</Link>
               {user?.role==="Admin" && <Link to="/admin/dashboard" className="text-white py-2"  >Dashboard</Link>}
               <Link to="/" onClick={() => logoutUser()} className="text-white py-2">Logout</Link>
-                <UserOptions user={user} top={10} left={16} noOptions={true}/>
+                <UserOptions user={user} onMobile={true}/>
               </>
             ) : (
               <>

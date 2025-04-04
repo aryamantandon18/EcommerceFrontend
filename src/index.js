@@ -20,7 +20,7 @@ export const AppProvider = ({ children }) => {
   );
 };
 
-export const server="https://ecmm-nhgl.onrender.com"
+export const server="https://ecommercebackend-lg9q.onrender.com"
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>

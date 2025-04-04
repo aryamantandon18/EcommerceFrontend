@@ -125,12 +125,12 @@ const Register = () => {
                             name="avatar"
                             accept="image/*" 
                             onChange={registerUserHandler}
-                            className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
+                            className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                         />
                     </div>
                     <button 
                         type="submit" 
-                        className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-green-600 transition duration-300"
+                        className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300"
                     >
                         Sign Up
                     </button>
