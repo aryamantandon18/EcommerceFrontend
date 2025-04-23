@@ -6,12 +6,20 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import toast from 'react-hot-toast';
 
+
 const Register = () => {
     const [show, setShow] = useState(false);
     const [avatarPreview, setAvatarPreview] = useState('/Profile.png');
     const [avatar, setAvatar] = useState('/Profile.png');
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [passwordFocused, setPasswordFocused] = useState(false);
+
+    const [passwordValidations,setPasswordValidations] = useState({
+        length:false,
+        uppercase:false,
+        specialChar:false,
+    })
 
     const { error,isAuthenticated } = useSelector(state => state.user);
 
@@ -23,8 +31,30 @@ const Register = () => {
     });
     const { name, email, password, role } = user;
 
+    const validatePassword = (value) => {
+        const validations = {
+            length: value.length >= 8,
+            uppercase: /[A-Z]/.test(value),
+            specialChar: /[!@#$%^&*(),.?":{}|<>]/.test(value),
+        };
+        setPasswordValidations(validations);
+        return validations;
+    };
+    
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        const validations = validatePassword(password);
+        const errors = [];
+        if (!validations.length) errors.push("Password must be at least 8 characters.");
+        if (!validations.uppercase) errors.push("Password must contain at least one uppercase letter.");
+        if (!validations.specialChar) errors.push("Password must contain at least one special character.");
+
+        if (errors.length > 0) {
+            errors.forEach(msg => toast.error(msg));
+            return; 
+        }
+
         const myForm = new FormData();
         console.log("Line 29 ",avatar);
         myForm.set("name", name);
@@ -48,7 +78,9 @@ const Register = () => {
             };
             reader.readAsDataURL(file);
         } else {
-            setUser({ ...user, [e.target.name]: e.target.value });
+            const {name,value} = e.target;
+            setUser({ ...user, [name]: value });
+            if (name === 'password') validatePassword(value);
         }
     };
 
@@ -96,6 +128,8 @@ const Register = () => {
                             value={password}
                             onChange={registerUserHandler}
                             placeholder="Password" 
+                            onFocus={() => setPasswordFocused(true)}
+                            onBlur={()=> setPasswordFocused(false)}
                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             required 
                         />
@@ -107,6 +141,36 @@ const Register = () => {
                             {show ? <VisibilityOff className="h-5 w-5" /> : <Visibility className="h-5 w-5" />}
                         </button>
                     </div>
+                    {passwordFocused && (
+  <div className="mb-4 space-y-2 text-sm transition-all duration-300 animate-fadeIn">
+    <div className="flex items-center">
+      <svg className={`w-5 h-5 mr-2 ${passwordValidations.length ? 'text-green-600' : 'text-blue-500'}`} fill="currentColor" viewBox="0 0 20 20">
+        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" clipRule="evenodd" />
+      </svg>
+      <span className={`${passwordValidations.length ? 'text-green-700' : 'text-gray-800'}`}>
+        Minimum 8 characters
+      </span>
+    </div>
+
+    <div className="flex items-center">
+      <svg className={`w-5 h-5 mr-2 ${passwordValidations.uppercase ? 'text-green-600' : 'text-blue-500'}`} fill="currentColor" viewBox="0 0 20 20">
+        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" clipRule="evenodd" />
+      </svg>
+      <span className={`${passwordValidations.uppercase ? 'text-green-700' : 'text-gray-800'}`}>
+        At least one uppercase letter
+      </span>
+    </div>
+
+    <div className="flex items-center">
+      <svg className={`w-5 h-5 mr-2 ${passwordValidations.specialChar ? 'text-green-600' : 'text-blue-500'}`} fill="currentColor" viewBox="0 0 20 20">
+        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" clipRule="evenodd" />
+      </svg>
+      <span className={`${passwordValidations.specialChar ? 'text-green-700' : 'text-gray-800'}`}>
+        At least one special character (!@#$...)
+      </span>
+    </div>
+  </div>
+)}
                     <div className="mb-4">
                         <select 
                             name="role"
@@ -130,8 +194,8 @@ const Register = () => {
                     </div>
                     <button 
                         type="submit" 
-                        className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300"
-                    >
+                    
+                        className={`w-full py-2 rounded-md transition duration-300 bg-blue-500 text-white hover:bg-blue-600`}>
                         Sign Up
                     </button>
                 </form>

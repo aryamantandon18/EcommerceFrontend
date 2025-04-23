@@ -17,10 +17,15 @@ module.exports = {
           '0%':{transform:'translateY(10%)',opacity:'20%'},
           '50%':{transform:'translateY(5%)',opacity:'50%'},
           '100%':{transform:'translateY(0%)',opacity:'100%'},
-        }
+        },
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
       },
       animation:{
         fromDown:'fromDown 0.4s ease-out',
+        fadeIn: 'fadeIn 0.3s ease-in-out forwards'
       }
     },
     

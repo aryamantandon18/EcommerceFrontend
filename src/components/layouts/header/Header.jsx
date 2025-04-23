@@ -2,46 +2,61 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Search, Menu, Close } from '@mui/icons-material';
-import { AppContext } from '../../..';
+import { AppContext, server } from '../../..';
 import UserOptions from './UserOptions';
 import { getProduct } from '../../../actions/productActions';
 import toast from 'react-hot-toast';
 import logo from '../../../assets/images/ecommerceLogo.png';
 import { logout } from '../../../actions/userActions';
 import LanguageSwitcher from './LanguageSwitcher';
+import axios from 'axios';
 
 const Header = () => {
-  const { currentPage, setCurrentPage, price, rating, category, setCategory, finalKeyword, setFinalKeyword } = useContext(AppContext);
   const dispatch = useDispatch();
   const { error } = useSelector((state) => state.products);
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const location = useLocation();  // Use the location object to detect route changes
   const [keyword, setKeyword] = useState('');
+  const [suggestions,setSuggestions] = useState([]);
+  const [showSuggestions,setShowSuggestions] = useState(false);
+  const debounceTimeout = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
   const searchHandler = (e) => {
     e.preventDefault();
     if (keyword.trim()) {
-      setCategory('');
-      setFinalKeyword(keyword);
-      setCurrentPage(1);
+      setKeyword('');
       navigate(`/products`);
+      setSuggestions([]);
     } else {
       navigate(`/`);
     }
   };
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
+  const fetchSuggestions = async(query)=>{
+    try {
+      const {data} = await axios.get(`${server}/products/suggestions?keyword=${query}`);
+      setSuggestions(data.products || []);
+    } catch (error) {
+      console.error("Error fetching products for searchbar: ",error);
+      setSuggestions([]);
+    }
+  }
+
+  useEffect(()=>{
+    if(!keyword.trim()){
+      setSuggestions([]);
       return;
     }
-    dispatch(getProduct(finalKeyword, currentPage, price, rating, category));
-    setKeyword('');
-  }, [dispatch, finalKeyword, currentPage, error, price, rating, category]);
+    if(debounceTimeout.current) clearTimeout(debounceTimeout.current);
+    debounceTimeout.current = setTimeout(()=>{
+      fetchSuggestions(keyword);
+    },300);
 
+    return () => clearTimeout(debounceTimeout.current);
+  },[keyword]);
   // Close sidebar when clicking outside
   useEffect(() => {
     const handleOutsideClick = (e) => {
@@ -78,15 +93,38 @@ const Header = () => {
         </Link>
 
         {/* Search Bar */}
-        <form onSubmit={searchHandler} className=" relative flex-grow max-w-md md:max-w-xl mx-4 hidden md:block">
+        <form className=" relative flex-grow max-w-md md:max-w-xl mx-4 hidden md:block"
+            onSubmit={searchHandler}
+        >
           <input
             type="text"
             placeholder="Search"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
             className="w-full py-2 px-4 rounded-full border-2 border-blue-400 outline-none transition duration-200 ease-in-out transform hover:scale-105 focus:border-blue-600 "
+            onFocus={()=>setShowSuggestions(true)}
+            onBlur={()=>setShowSuggestions(false)}
           />
           <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-700" />
+          {
+           showSuggestions && suggestions.length>0 &&(
+              <ul className="absolute top-full left-0 right-0 bg-white border rounded shadow-md mt-1 z-50 max-h-64 overflow-y-auto">
+                {suggestions.map((name,idx)=>(
+                  <li
+                    key={idx}
+                    className="px-4 py-2 hover:bg-blue-100 cursor-pointer"
+                    onClick={()=>{
+                      setKeyword(name);
+                      navigate('/products');
+                      setSuggestions([]);
+                    }}
+                  >
+                    {name}
+                  </li>
+                ))}
+              </ul>
+            )
+          }
         </form>
 
         {/* Desktop Links */}
