@@ -12,6 +12,7 @@ import LanguageSwitcher from './LanguageSwitcher';
 import axios from 'axios';
 
 const Header = () => {
+  const {setFinalKeyword} = useContext(AppContext);
   const dispatch = useDispatch();
   const { error } = useSelector((state) => state.products);
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -27,6 +28,7 @@ const Header = () => {
   const searchHandler = (e) => {
     e.preventDefault();
     if (keyword.trim()) {
+      setFinalKeyword(keyword);
       setKeyword('');
       navigate(`/products`);
       setSuggestions([]);
@@ -34,6 +36,7 @@ const Header = () => {
       navigate(`/`);
     }
   };
+
 
   const fetchSuggestions = async(query)=>{
     try {

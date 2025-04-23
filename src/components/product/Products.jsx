@@ -57,7 +57,7 @@ setPrice(newPrice);
       return;
     }
     dispatch(getProduct(finalKeyword, currentPage, price, rating, category));
-  }, [dispatch,currentPage, error, price, rating, category]);
+  }, [dispatch,currentPage, error, price, rating, category,finalKeyword]);
   
 
 
