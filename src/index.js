@@ -20,7 +20,7 @@ export const AppProvider = ({ children }) => {
   );
 };
 
-export const server="http://localhost:4000"
+export const server= process.env.REACT_APP_ENV_TYPE==="PRODUCTION" ? "https://ecmm-nhgl.onrender.com" :"http://localhost:4000";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
