@@ -56,6 +56,7 @@ setPrice(newPrice);
       toast.error(error);
       return;
     }
+    console.log("Line 59 : ",finalKeyword);
     dispatch(getProduct(finalKeyword, currentPage, price, rating, category));
   }, [dispatch,currentPage, error, price, rating, category,finalKeyword]);
   

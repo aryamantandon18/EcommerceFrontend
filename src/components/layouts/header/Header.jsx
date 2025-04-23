@@ -106,7 +106,10 @@ const Header = () => {
             onChange={(e) => setKeyword(e.target.value)}
             className="w-full py-2 px-4 rounded-full border-2 border-blue-400 outline-none transition duration-200 ease-in-out transform hover:scale-105 focus:border-blue-600 "
             onFocus={()=>setShowSuggestions(true)}
-            onBlur={()=>setShowSuggestions(false)}
+            onBlur={()=>setTimeout(()=>{
+              setShowSuggestions(false)
+            },300)
+            }
           />
           <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-700" />
           {
@@ -116,8 +119,11 @@ const Header = () => {
                   <li
                     key={idx}
                     className="px-4 py-2 hover:bg-blue-100 cursor-pointer"
-                    onClick={()=>{
+                    onClick={(e)=>{
+                      e.preventDefault();
+                      e.stopPropagation();
                       setKeyword(name);
+                      setFinalKeyword(name);
                       navigate('/products');
                       setSuggestions([]);
                     }}
