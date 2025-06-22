@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import Sidebar from './SideBar.js'
+import Sidebar from './SideBar.jsx'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAdminProducts } from '../../actions/productActions.js'

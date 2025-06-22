@@ -40,7 +40,11 @@ const Login = () => {
             {loading ? (
                 <Loader />
             ) : (
-                <div className={`flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-400 to-purple-500`}>
+                <div className={`flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-400 to-purple-500`}
+                // style={{
+                //     backgroundImage:"linear-gradient(rgba(200,200,200,0.5),rgba(120,110,220,0.5))",
+                //   }}
+                >
                     <div className="bg-white p-8 rounded-lg shadow-xl w-96 animate-fromDown ">
                         <h1 className="text-3xl font-bold mb-6 text-center text-gray-800 border-l-4 border-blue-500 pl-3">
                             Login Here

@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState, useRef } from 'react';
 import MetaData from '../layouts/MetaData.js';
 import { ProductCard } from './ProductCard';
-import { useSelector} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import Loader from '../layouts/loader/Loader.jsx';
 import toast from 'react-hot-toast';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
@@ -13,14 +13,20 @@ import { motion , useScroll} from 'framer-motion';
 import axios from 'axios';
 import { server } from '../../index.js';
 import Carousel from './carousel/Carousel.jsx';
+import { getFeaturedProducts } from '../../actions/productActions.js';
+import { CLEAR_ERRORS } from '../../constants/productConstants.js';
+import "../layouts/loader/loader.css"
 
 const Home = () => {
-  const { loading } = useSelector((state) => state.products);
-  const [featuredProducts, setFeaturedProducts] = useState([]);
+  // const { loading } = useSelector((state) => state.products);
+  // const [featuredProducts, setFeaturedProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [productsPerPage, setProductsPerPage] = useState(4);
   const [sliceEnd,setSliceEnd] = useState(9);
   const {scrollYProgress} = useScroll();
+
+  const dispatch = useDispatch();
+  const {loading,featuredProducts,error} = useSelector((state) => state.featuredProducts);
 
   const productRefs = useRef([]);
   const updateProductsPerPage = debounce(() => {
@@ -42,18 +48,25 @@ const Home = () => {
     }
   };
 
-  const fetchFeaturedProducts = async () => {
-    try {
-      const { data } = await axios.get(`${server}/products/featuredProducts`);
-      setFeaturedProducts(data.products);
-    } catch (error) {
-      toast.error(error.response?.data.message || "Could not fetch featured products.");
-    }
-  };
+  // const fetchFeaturedProducts = async () => {
+  //   try {
+  //     const { data } = await axios.get(`${server}/products/featuredProducts`);
+  //     setFeaturedProducts(data.products);
+  //   } catch (error) {
+  //     toast.error(error.response?.data.message || "Could not fetch featured products.");
+  //   }
+  // };
   
   useEffect(() => {
-    fetchFeaturedProducts();
-  }, []);
+    dispatch(getFeaturedProducts());
+  }, [dispatch]);
+
+  useEffect(()=>{
+    if(error){
+      toast.error(error);
+    }
+    dispatch({type:CLEAR_ERRORS})
+  },[error])
 
   useEffect(() => {
     updateProductsPerPage();
@@ -63,11 +76,11 @@ const Home = () => {
 
   return (
     <Fragment>
-      {loading ? (
+      {/* {loading ? (
         <Loader />
-      ) : (
+      ) : ( */}
         <Fragment>
-          <MetaData title="ECOMMERCE" />
+          <MetaData title="ShopBazar" />
           <motion.main
             className="flex flex-col pt-16 md:pt-20 bg-[#f1f2f4] overflow-x-hidden"
             initial={{ opacity: 0 }}
@@ -88,7 +101,12 @@ const Home = () => {
             <motion.div className="bg-[#f1f2f4] px-3 py-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
               <div className="bg-white group rounded-md">
                 <h2 className="text-center text-[1.4vmax] border-b-2 border-gray-400 w-[20vmax] font-roboto mx-auto pt-8 pb-2 mb-7 md:pt-10 md:mb-10">Featured Products</h2>
-                <div className="flex mx-auto w-[99%] justify-center max-w-full h-[60vh]">
+                {loading ? (
+                        <div className="w-full py-10 h-[60vh] flex justify-center items-center bg-white">
+  <div className="w-[8vmax] h-[8vmax] border-b-[5px] border-gray-600 rounded-full animate-spin" />
+</div>
+                ):(
+                  <div className={`flex mx-auto w-[99%] justify-center max-w-full h-[60vh]`}>
                   <div className="my-auto lg:mt-36 cursor-pointer hover:font-bold">
                     <button
                       onClick={handlePrev}
@@ -100,7 +118,7 @@ const Home = () => {
                   </div>
 
                   <div className="flex flex-wrap justify-center sm:space-x-2">
-                    {featuredProducts.slice(currentPage, currentPage + productsPerPage).map((product, index) => (
+                    {featuredProducts?.slice(currentPage, currentPage + productsPerPage).map((product, index) => (
                       <motion.div
                         key={product._id}
                         ref={(el) => (productRefs.current[index + currentPage] = el)}
@@ -117,12 +135,13 @@ const Home = () => {
                     <button
                       onClick={handleNext}
                       className="absolute right-0 bg-[#f1f2f4] md:p-6 p-3 h-20 sm:h-16 md:h-28"
-                      disabled={currentPage >= featuredProducts.length - productsPerPage}
+                      disabled={currentPage >= featuredProducts?.length - productsPerPage}
                     >
                       <FaChevronRight />
                     </button>
                   </div>
                 </div>
+                )}
               </div>
             </motion.div>
 
@@ -139,8 +158,11 @@ const Home = () => {
             {/* Best Sellers Section */}
             <motion.div className="pt-5 w-[99%] mx-auto max-w-full bg-white mt-4 rounded-md">
               <h2 className="text-center text-[1.4vmax] border-b-2 border-gray-400 w-[20vmax] font-roboto mx-auto pt-8 pb-2 mb-7 md:pt-10 md:mb-10">Best Sellers</h2>
-              <div className="flex mx-auto justify-center sm:w-[100%] w-[90%] h-[60vh] flex-wrap sm:space-x-2">
-                {featuredProducts.slice(4,sliceEnd).map((product) => (
+              {loading?(    <div className="w-full py-10 h-[60vh] flex justify-center items-center bg-white">
+  <div className="w-[8vmax] h-[8vmax] border-b-[5px] border-gray-600 rounded-full animate-spin" />
+</div>):(
+                <div className="flex mx-auto justify-center sm:w-[100%] w-[90%] h-[60vh] flex-wrap sm:space-x-2">
+                {featuredProducts?.slice(4,sliceEnd).map((product) => (
                   <motion.div
                     key={product._id}
                     initial={{ opacity: 0, y: 20 }}
@@ -150,7 +172,8 @@ const Home = () => {
                     <ProductCard product={product} />
                   </motion.div>
                 ))}
-              </div>
+                </div>
+              )}
             </motion.div>
 
             <Carousel/>
@@ -158,7 +181,7 @@ const Home = () => {
             <motion.div className="pt-5 w-[99%] mx-auto max-w-full bg-white mt-4 rounded-md">
             
               <div className="flex mx-auto justify-center sm:w-[100%] w-[90%] h-[60vh] flex-wrap sm:space-x-2 items-center">
-                {featuredProducts.slice(4,sliceEnd).map((product) => (
+                {featuredProducts?.slice(4,sliceEnd).map((product) => (
                   <motion.div
                     key={product._id}
                     initial={{ opacity: 0, y: 20 }}
@@ -187,7 +210,7 @@ const Home = () => {
                 
           </motion.main>
         </Fragment>
-      )}
+      {/* )} */}
     </Fragment>
   );
 };

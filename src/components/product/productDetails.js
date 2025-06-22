@@ -68,6 +68,7 @@ const ProductDetails = () => {
       const addToCartHandler=()=>{
         if(!isAuthenticated){
           navigate("/login");
+          return;
         }
         dispatch(addItemsToCart(id,quantity));
         toast.success("Item Added To Cart ");

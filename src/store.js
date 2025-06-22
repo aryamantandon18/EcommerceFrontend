@@ -7,6 +7,7 @@ import {
   productDetailsReducer,
   productReducer,
   deleteProduct,
+  featuredProductsReducer,
 } from "./reducers/productReducer";
 import {
   ProfileReducer,
@@ -25,6 +26,7 @@ import {
 // Define your reducer
 const reducer = combineReducers({
   products: productReducer,
+  featuredProducts: featuredProductsReducer,
   productDetails: productDetailsReducer,
   user: UserReducer,
   profile: ProfileReducer,

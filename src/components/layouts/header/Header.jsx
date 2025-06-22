@@ -87,7 +87,8 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 w-[100%] z-50 bg-gradient-to-r from-blue-600 to-purple-600 shadow-md">
-      <nav className="flex items-center justify-between py-4 px-4 md:px-6 w-full h-16 md:h-[70px]">
+      <nav className="relative flex items-center justify-between py-4 px-4 md:px-6 w-full h-16 md:h-[70px]">
+
         <Link to="/" className="flex items-center space-x-2">
           <img src={logo} alt="Logo" className="h-11 w-auto"  />
           <h2 className="text-lg md:text-3xl font-bold text-yellow-300">
@@ -137,23 +138,23 @@ const Header = () => {
         </form>
 
         {/* Desktop Links */}
-        <div className={`hidden md:flex items-center space-x-6 text-lg ${isAuthenticated ? "mr-2" : "mr-0"}`} >
-          <Link to="/" className="text-white hover:text-yellow-300 transition-colors focus:text-yellow-300 ">Home</Link>
-          <Link to="/products" className="text-white hover:text-yellow-300 transition-colors focus:text-yellow-300">Products</Link>
+        <div className={` hidden md:flex items-center space-x-6 text-lg h-[100%] ${isAuthenticated ? "mr-2" : "mr-0"}`} >
+          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/products" className="nav-link">Products</Link>
           {isAuthenticated ? (
             <>
-              <Link to="/cart" className="text-white hover:text-yellow-300 transition-colors focus:text-yellow-300">Cart</Link>
-              <Link to="/orders" className="text-white hover:text-yellow-300 transition-colors focus:text-yellow-300">Orders</Link>
-              {user?.role==="Admin" && <Link to="/admin/dashboard" className="text-white hover:text-yellow-300 transition-colors focus:text-yellow-300">Dashboard</Link>}
-              <Link to="/" onClick={()=>logoutUser()} className="text-white hover:text-yellow-300 transition-colors focus:text-yellow-300">Logout</Link>
+              <Link to="/cart" className="nav-link">Cart</Link>
+              <Link to="/orders" className="nav-link">Orders</Link>
+              {user?.role==="Admin" && <Link to="/admin/dashboard" className="nav-link">Dashboard</Link>}
+              <Link to="/" onClick={()=>logoutUser()} className="nav-link">Logout</Link>
               <LanguageSwitcher/>
               <UserOptions user={user} top={7} right={16}/>
               
             </>
           ) : (
             <>
-              <Link to="/login" className="text-white hover:text-yellow-300 transition-colors focus:text-yellow-300">Login</Link>
-              <Link to="/register" className="text-white hover:text-yellow-300 transition-colors focus:text-yellow-300">Sign Up</Link>
+              <Link to="/login" className="nav-link">Login</Link>
+              <Link to="/register" className="nav-link">Sign Up</Link>
             </>
           )}
         </div>

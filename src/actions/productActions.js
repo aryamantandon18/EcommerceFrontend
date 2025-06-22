@@ -21,6 +21,9 @@ import{
     UPDATE_PRODUCT_REQUEST,
     UPDATE_PRODUCT_SUCCESS,
     UPDATE_PRODUCT_FAIL,
+    FEATURED_PRODUCTS_REQUEST,
+    FEATURED_PRODUCTS_FAIL,
+    FEATURED_PRODUCTS_SUCCESS,
 } from '../constants/productConstants.js'
 import { server } from '../index.js';
 
@@ -55,6 +58,19 @@ export const getProduct = (
     }
   };
   
+export const getFeaturedProducts = () => async(dispatch)=>{
+  try {
+    dispatch({type:FEATURED_PRODUCTS_REQUEST});
+    const {data} = await axios.get(`${server}/products/featuredProducts`);
+    console.log("Line 65 : ",data);
+    dispatch({type:FEATURED_PRODUCTS_SUCCESS,payload:data.products});
+  } catch (error) {
+    dispatch({
+      type:FEATURED_PRODUCTS_FAIL,
+      payload:error.response?.data?.message || error?.message || 'Something went wrong',
+    })
+  }
+}
 //for ADMIN
 export const getAdminProducts = () => async (dispatch) => {
     try {

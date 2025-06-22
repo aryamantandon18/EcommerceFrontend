@@ -1,5 +1,7 @@
 
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin')
+
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}"
@@ -31,6 +33,26 @@ module.exports = {
     
   },
   plugins: [
-    require('tailwind-scrollbar')
+    require('tailwind-scrollbar'),
+    plugin(function({ addComponents }) {
+      addComponents({
+        '.nav-link': {
+          '@apply relative flex items-center h-full text-white hover:text-yellow-300 transition-colors focus:text-yellow-300': {},
+          '&::before': {
+            content: "''",
+            position: 'absolute',
+            bottom: '0',
+            left: '0',
+            height: '2px',
+            width: '0',
+            backgroundColor: '#facc15', /* Tailwind yellow-300 */
+            transition: 'width 0.3s',
+          },
+          '&:hover::before': {
+            width: '100%',
+          }
+        }
+      })
+    })
   ],
 }
